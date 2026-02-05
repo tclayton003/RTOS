@@ -1,0 +1,144 @@
+#!/usr/bin/env python
+# encoding: utf-8
+# Copyright (c) 2013-2019 GomSpace A/S. All rights reserved.
+
+import os
+import time
+import gs_gcc
+import gs_doc
+import gs_dist
+import gs.buildtools.util
+from waflib.Build import BuildContext
+
+APPNAME = 'a3200-bsp'
+ELF_FILE = 'nanomind-bsp.elf'
+BIN_FILE = 'nanomind-bsp.bin'
+MAP_FILE = 'nanomind-bsp.map'
+
+
+def options(ctx):
+    ctx.load('gs_gcc')
+    gs_gcc.gs_recurse(ctx)
+
+    # override library defaults
+    ctx.add_option('--part', action='store', default='uc3c0512c', help='MCU part')
+    ctx.add_option('--embed-uart-console', default=2, type=int, help='UART used for console/stdio')
+    ctx.add_option('--hostname', action='store', default=APPNAME.upper(), help='Set hostname (CSP)')
+    ctx.add_option('--model', action='store', default=APPNAME.upper(), help='Set board model (CSP)')
+
+
+def configure(ctx):
+    ctx.load('gs_gcc gs_doc')
+
+    # Programmer
+    ctx.find_program('avr32program', var='AVR32PROGRAM', mandatory=False)
+
+    # Source files
+    ctx.env.append_unique('FILES_NANOMIND', ['src/*.c',
+                                             'src/**/*.c'])
+
+    # Linker script
+    ctx.env.append_unique('LINKFLAGS_NANOMIND', ['-Wl,-Map,'+MAP_FILE])
+
+    # Options for libembed
+    ctx.options.freertos_config = os.path.abspath('lib/liba3200/conf')
+    ctx.options.embed_min_stack_size = 1000
+
+    # Options for libasf
+    ctx.options.freertos_version = 10
+
+    # Options for libgscsp/libcsp
+    ctx.options.with_rtable = 'cidr'
+    ctx.options.with_max_connections = 5
+    ctx.options.with_conn_queue_length = 5
+    ctx.options.with_router_queue_length = 5
+    ctx.options.with_max_bind_port = 25
+    ctx.options.enable_if_i2c = True
+    ctx.options.enable_if_kiss = True
+    ctx.options.enable_if_can = True
+    ctx.options.enable_rdp = True
+
+    # Add version/revision info
+    bi = gs.buildtools.util.get_build_info(appName=APPNAME)
+    ctx.options.revision = bi.revision()
+
+    gs_gcc.gs_recurse(ctx)
+
+
+def build(ctx):
+    gs_gcc.gs_recurse(ctx)
+
+    use = [t.name for t in ctx.get_all_task_gen() if hasattr(t, 'typ') and t.typ == 'objects']
+
+    ctx.program(source=ctx.path.ant_glob(ctx.env.FILES_NANOMIND, excl=ctx.env.EXCLUDES_NANOMIND),
+                target=ELF_FILE,
+                linkflags=ctx.env.LINKFLAGS_NANOMIND,
+                use=use,
+                lib=['m', 'stdc++'])
+
+    ctx(name='objcopy',
+        rule='${OBJCOPY} -O binary -j .text -j .exception -j .data ${SRC} ${TGT}',
+        source=ELF_FILE, target=BIN_FILE)
+
+    ctx(name='size',
+        rule='${SIZE} --format=sysv -x ${SRC}',
+        source=ELF_FILE, always=True)
+
+
+def program(ctx):
+    ctx(name='program',
+        rule='${AVR32PROGRAM} --part ${GS_PART} program -finternal@0x80000000 -cint -F elf -O 0 -e -v -R -r ${SRC}',
+        source=ELF_FILE, always=True)
+
+
+class Program(BuildContext):
+    cmd = fun = 'program'
+
+
+def quickprogram(ctx):
+    ctx(name='program',
+        rule='${AVR32PROGRAM} --part ${GS_PART} program -finternal@0x80000000 -cint -F elf -O 0 -e -R -r ${SRC}',
+        source=ELF_FILE, always=True)
+
+
+class QuickProgram(BuildContext):
+    cmd = fun = 'quickprogram'
+
+
+def chiperase(ctx):
+    ctx(name='chiperase', rule='${AVR32PROGRAM} --part ${GS_PART} chiperase', always=True)
+
+
+class ChipErase(BuildContext):
+    cmd = fun = 'chiperase'
+
+
+def doc(ctx):
+    gs_doc.manual(ctx,
+                  doxygen=True,
+                  keyvalues={'gs_prod_group': 'NanoMind',
+                             'gs_prod_name': 'A3200 Board Support Package',
+                             'gs_prod_desc': 'Software Development Kit',
+                             'gs_ifs_doc_number': '1019598',
+                             'gs_front_image': os.path.abspath('doc/img/sw_front.png')})
+
+
+class Doc(BuildContext):
+    cmd = fun = 'doc'
+
+
+def gs_dist(ctx):
+    ctx.set_appname('gs-sw-nanomind-a3200-board-support-package')
+    ctx.set_subdir('external')
+    ctx.recurse('tools/buildtools')
+    gs_gcc.gs_recurse(ctx)
+    ctx.add_default_files(source_module=True)
+    ctx.add_file_to_dir('artifacts/manifest.json', '')
+    ctx.add_file_to_dir(ctx.path.ant_glob('artifacts/external/*.pdf'), 'doc')
+    ctx.add_file_on_path('artifacts/html', 'doc/html')
+    ctx.add_file_to_dir('tools/99-avrtools.rules', 'tools')
+    ctx.add_file_to_dir(ctx.path.ant_glob('artifacts/nanomind*'), 'build')
+    ctx.add_file_to_dir('program.py', '')
+    ctx.add_file_to_dir('tst/ifc/run_ifc_test.sh', 'tst/csp-ifc-test')
+    ctx.add_file_to_dir(ctx.path.ant_glob('tst/ifc/build/csp-ifc-test'), 'tst/csp-ifc-test/build')
+    ctx.add_file_to_dir(ctx.path.ant_glob('tst/ifc/build/libaardvark_c.so'), 'tst/csp-ifc-test/build')

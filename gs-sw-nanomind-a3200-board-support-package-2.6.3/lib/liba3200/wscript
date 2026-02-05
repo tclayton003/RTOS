@@ -1,0 +1,90 @@
+#!/usr/bin/env python
+# encoding: utf-8
+# Copyright (c) 2013-2017 GomSpace A/S. All rights reserved.
+
+import os
+import gs_gcc
+import gs_doc
+import gs_dist
+from waflib.Build import BuildContext
+
+APPNAME = 'a3200'
+
+
+def options(ctx):
+    ctx.load("gs_gcc")
+    gs_gcc.gs_recurse(ctx)
+
+    gr = ctx.add_option_group('liba3200 options')
+    gr.add_option('--boardrev', action='store', default=3, help='Set board revision')
+    gr.add_option('--hostname', action='store', default='nanomind', help='Set hostname (CSP)')
+    gr.add_option('--model', action='store', default='A3200', help='Set board model (CSP)')
+    gr.add_option('--revision', action='store', default='revision', help='Set software revision')
+    gr.add_option('--node', action='store', type=int, default=1, help='Set node (CSP)')
+    gr.add_option('--ram', action='store_true', help='Link image for SDRAM')
+
+    gr.add_option('--a3200-sdk', action='store_true', help='Enable SDK features')
+    gr.add_option('--a3200-sdk-disable-board-task', action='store_true', help='Disable board task')
+
+
+def configure(ctx):
+    ctx.load("gs_gcc")
+
+    ctx.env.append_unique('FILES_LIBA3200', ['src/*.c', 'src/cmd/*.c'])
+    ctx.env.append_unique('USES_LIBA3200', ['a3200_client_h', 'thirdparty', 'embed', 'util'])
+
+    linker_script = os.path.join(ctx.path.abspath(),
+                                 'conf/avr32{0}{1}.lds'.format(ctx.options.part,
+                                                               ('-sdram' if ctx.options.ram else '')))
+    ctx.env.append_unique('LINKFLAGS_NANOMIND', '-T{0}'.format(linker_script))
+
+    if ctx.options.a3200_sdk:
+        ctx.env.append_unique('FILES_LIBA3200', ['src/sdk/*.c', 'src/param/*.c'])
+        ctx.env.append_unique('USES_LIBA3200', ['param', 'log', 'a3200dock', 'storage',
+                                                'ftp', 'gosh', 'gscsp'])
+
+    ctx.define('GS_A3200_BOARD_REVISION', int(ctx.options.boardrev))
+    ctx.define('GS_A3200_SDK', ctx.options.a3200_sdk)
+    ctx.define('GS_A3200_RAM_IMAGE', ctx.options.ram)
+    ctx.define('GS_A3200_HOSTNAME', ctx.options.hostname)
+    ctx.define('GS_A3200_MODEL', ctx.options.model + ('(RAM)' if ctx.options.ram else ''))
+    ctx.define('GS_A3200_REVISION', ctx.options.revision)
+    ctx.define('GS_A3200_NODE', ctx.options.node)
+    ctx.define('GS_A3200_SDK_BOARD_TASK', not ctx.options.a3200_sdk_disable_board_task)
+
+    ctx.write_config_header('include/conf_a3200.h', top=True)
+
+    ctx.gs_add_doxygen(exclude=['*/include/gs/a3200/mpu3300.h'])
+
+    gs_gcc.gs_recurse(ctx)
+
+
+def build(ctx):
+    gs_gcc.gs_recurse(ctx)
+
+    ctx.gs_call_handler(handler='param_gen_4_3', name=APPNAME, prefix='a3200',
+                        source=ctx.path.ant_glob('lib/liba3200_client/conf/tables/*.json'),
+                        generate_host=True)
+
+    public_include = ctx.gs_include(includes=['include', 'conf'], name=APPNAME)
+
+    ctx.gs_objects(source=ctx.path.ant_glob(ctx.env.FILES_LIBA3200),
+                   target=APPNAME,
+                   use=ctx.env.USES_LIBA3200 + [public_include])
+
+
+def doc(ctx):
+    gs_doc.library(ctx, keyvalues={
+        'gs_prod_name': 'lib'+APPNAME,
+        'gs_prod_desc': 'A3200 Library',
+    })
+
+
+class Doc(BuildContext):
+    cmd = fun = 'doc'
+
+
+def gs_dist(ctx):
+    gs_gcc.gs_recurse(ctx)
+    ctx.add_default_files(source_module=True)
+    ctx.add_files(ctx.path.ant_glob(['conf/**/*']))

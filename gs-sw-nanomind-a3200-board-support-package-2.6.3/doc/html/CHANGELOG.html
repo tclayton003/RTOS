@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.1.1. A3200 BSP &mdash; A3200 Board Support Package 2.6.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="A3200 Board Support Package 2.6.3 documentation" href="index.html"/>
+        <link rel="up" title="5.1. Software Changelogs" href="doc/appendix/changelogs.html"/>
+        <link rel="next" title="5.1.2. Libraries" href="doc/appendix/changelogs_libraries.html"/>
+        <link rel="prev" title="5.1. Software Changelogs" href="doc/appendix/changelogs.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="doc/index.html" class="icon icon-home"> A3200 Board Support Package
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.6.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="doc/a3200-bsp.html">1. A3200 BSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc/a3200_toolchain.html">2. Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc/libraries.html">3. Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc/tools.html">4. Tools</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="doc/appendix/appendix.html">5. Appendix</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="doc/appendix/changelogs.html">5.1. Software Changelogs</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">5.1.1. A3200 BSP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc/appendix/changelogs_libraries.html">5.1.2. Libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc/appendix/changelogs_tools.html">5.1.3. Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="doc/appendix/api.html">5.2. API Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc/zrefs.html">6. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="doc/index.html">A3200 Board Support Package</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="doc/index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="doc/appendix/appendix.html">5. Appendix</a> &raquo;</li>
+      
+          <li><a href="doc/appendix/changelogs.html">5.1. Software Changelogs</a> &raquo;</li>
+      
+    <li>5.1.1. A3200 BSP</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="a3200-bsp">
+<h1>5.1.1. A3200 BSP<a class="headerlink" href="#a3200-bsp" title="Permalink to this headline">¶</a></h1>
+<p><strong>2.6.3 (2023-07-05)</strong></p>
+<ul class="simple">
+<li>Improvement: Update tools and documentation to support alternative to AVR Dragon programmer.</li>
+</ul>
+<p><strong>2.6.2 (2021-06-09)</strong></p>
+<ul class="simple">
+<li>Improvement: Update tools library</li>
+</ul>
+<p><strong>2.6.1 (2019-12-17)</strong></p>
+<ul class="simple">
+<li>Improvement: Updated and added checkout commands to cover more of the manual checkout.</li>
+<li>Improvement: Changed size summary to sysv format to get details on section sizes.</li>
+<li>Bug: Increaased stack size for router task, so it doesn’t crash with CSP debug enabled (GOSH: ‘debug csp trace’).</li>
+<li>Improvement: Include HTML documentation.</li>
+<li>Improvement: Updated libraries.</li>
+</ul>
+<p><strong>2.5.2 (2019-10-29)</strong></p>
+<ul class="simple">
+<li>Improvement: Updated documentation.</li>
+</ul>
+<p><strong>2.5.1 (2019-10-18)</strong></p>
+<ul class="simple">
+<li>Limitation: if enabling FreeRTOS configUSE_NEWLIB_REENTRANT (default), use AVR32 toolchain: 3.4.2_gs1 or later - otherwise crash occurs, when a task terminates (libembed).</li>
+<li>Limitation: Disabled FreeRTOS runtime stats until implemented for FreeRTOS 10.2.0.</li>
+<li>Improvement: Updated example code and documentation.</li>
+<li>Improvement: New AVR32 toolchain 3.4.2_gs1, with newlib patches for bug in reent and missing locking in file operations.</li>
+<li>Feature: Added commands for production checkout test.</li>
+<li>Feature: Added CSP communication over CAN and I2C.</li>
+</ul>
+<p><strong>2.4.1 (2019-06-12)</strong></p>
+<ul class="simple">
+<li>Improvement: Updated example code and documentation.</li>
+<li>Improvement: Integrated toolchain setup in A3200 BSP manual.</li>
+<li>Breaking: Replaced Eclipse with Visual Code editor.</li>
+</ul>
+<p><strong>2.3.1 (2019-05-20)</strong></p>
+<ul class="simple">
+<li>Improvement: Updated libraries.</li>
+</ul>
+<p><strong>2.2.1 (2019-04-11)</strong></p>
+<ul class="simple">
+<li>Improvement: Added SPI FLASH example.</li>
+<li>Improvement: Updated libraries.</li>
+</ul>
+<p><strong>2.1.1 (2019-02-27)</strong></p>
+<ul class="simple">
+<li>Breaking: Renamed LM70 to LM71.</li>
+<li>Improvement: Updated libraries.</li>
+</ul>
+<p><strong>2.0.4 (2019-02-01)</strong></p>
+<ul class="simple">
+<li>Improvement: Updated documentation and libraries.</li>
+</ul>
+<p><strong>2.0.3 (2018-11-23)</strong></p>
+<ul class="simple">
+<li>Improvement: Updated libraries.</li>
+</ul>
+<p><strong>2.0.2 (2018-09-21)</strong></p>
+<ul class="simple">
+<li>Bug: Missing avrisp.rules file was added to dist. tarball.</li>
+</ul>
+<p><strong>2.0.1 (2018-08-14)</strong></p>
+<ul class="simple">
+<li>Breaking: Updated libraries and re-structured source modules.</li>
+</ul>
+<p><strong>1.3 (2016-11-23)</strong></p>
+<ul class="simple">
+<li>Feature: Added missing avrisp.rules to distribution</li>
+</ul>
+<p><strong>1.2 (2016-03-02)</strong></p>
+<ul class="simple">
+<li>Feature: Added program.py for flash programming</li>
+<li>Feature: Manual updated</li>
+</ul>
+<p><strong>1.1 (2015-09-10)</strong></p>
+<ul class="simple">
+<li>Feature: Manual updated</li>
+</ul>
+<p><strong>1.0 (2015-07-31)</strong></p>
+<ul class="simple">
+<li>Feature: Imported source code for first release</li>
+<li>Feature: Documentation included in doc folder (pdf format)</li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="doc/appendix/changelogs_libraries.html" class="btn btn-neutral float-right" title="5.1.2. Libraries" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="doc/appendix/changelogs.html" class="btn btn-neutral" title="5.1. Software Changelogs" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023 GomSpace A/S..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'2.6.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

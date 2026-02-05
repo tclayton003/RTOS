@@ -1,0 +1,164 @@
+#!/usr/bin/env python
+# encoding: utf-8
+# Copyright (c) 2013-2017 GomSpace A/S. All rights reserved.
+
+import os
+import re
+import gs_gcc
+import gs_doc
+import gs_dist
+from waflib.Build import BuildContext
+
+APPNAME = 'embed'
+
+
+def options(ctx):
+    ctx.load('gs_gcc gs_doc')
+    gs_gcc.gs_recurse(ctx)
+
+    # Group options
+    gr = ctx.add_option_group('libembed options')
+    gr.add_option('--embed-uart-console', default=-1, type=int, help='Define which UART is used for console/stdio')
+    gr.add_option('--embed-compile-check', action='store_true', help='Compile check - adds module configuration')
+    gr.add_option('--embed-flash-data-size', action='store', default=0, help='Reserved Flash area for user data')
+    gr.add_option('--embed-min-stack-size', type=int, help='Set minimum stack size for tasks/threads')
+    gr.add_option('--embed-disable-syscall-fs', action='store_true', help='Disable syscalls for file operations')
+    gr.add_option('--embed-enable-test', action='store_true', help='Enable special test code and commands')
+
+    gr = ctx.add_option_group('FreeRTOS options')
+    gr.add_option('--freertos-on-linux', action='store_true', help='Use/build with FreeRTOS on Linux')
+    gr.add_option('--embed-compile-check-freertos', action='store_true', help='Compile check - adds FreeRTOS header')
+
+
+def get_thread_min_stack_size(ctx):
+    if hasattr(ctx.options, 'embed_min_stack_size'):
+        return ctx.options.embed_min_stack_size
+    return None
+
+
+def set_thread_min_stack_size(ctx, size):
+    if not get_thread_min_stack_size(ctx):
+        ctx.options.embed_min_stack_size = size
+
+
+def configure(ctx):
+    ctx.load('gs_gcc gs_doc')
+
+    ctx.env.append_unique('USE_EMBED', ['util'])
+
+    ctx.env.append_unique('INCLUDES_EMBED',   ['include'])
+
+    if ctx.options.arch in ['ucr3fp']:
+        ctx.env.append_unique('USE_EMBED',   ['asf'])
+        ctx.env.append_unique('FILES_EMBED', ['src/*.c'])
+        ctx.env.append_unique('FILES_EMBED', ['src/newlib/**/*.c'])
+        ctx.env.append_unique('FILES_EMBED', ['src/cmd/**/*.c'])
+        ctx.env.append_unique('FILES_EMBED', ['src/drivers/**/*.c'])
+        ctx.env.append_unique('FILES_EMBED', ['src/asf/*.c'])
+        ctx.env.append_unique('FILES_EMBED', ['src/asf/avr32/**/*.c'])
+        ctx.env.append_unique('CFLAGS_EMBED', ['-Wno-deprecated', '-Wno-deprecated-declarations'])
+        set_thread_min_stack_size(ctx, 10000)
+
+    elif ctx.options.arch in ['avr8']:
+        ctx.env.append_unique('USE_EMBED',   ['asf'])
+        ctx.env.append_unique('FILES_EMBED', ['src/*.c'])
+        ctx.env.append_unique('FILES_EMBED', ['src/cmd/**/*.c'])
+        ctx.env.append_unique('FILES_EMBED', ['src/drivers/**/*.c'])
+        ctx.env.append_unique('FILES_EMBED', ['src/asf/*.c'])
+        ctx.env.append_unique('FILES_EMBED', ['src/asf/avr8/**/*.c'])
+        ctx.env.append_unique('FILES_EXCL_EMBED', ['src/asf/avr8/drivers/usart/*.c'])  # LIBEMBED-16
+        set_thread_min_stack_size(ctx, 5000)
+
+    elif ctx.options.arch in ['sam0']:
+        ctx.env.append_unique('USE_EMBED',   ['asf'])
+        ctx.env.append_unique('FILES_EMBED', ['src/*.c'])
+        ctx.env.append_unique('FILES_EMBED', ['src/newlib/**/*.c'])
+        ctx.env.append_unique('FILES_EMBED', ['src/cmd/**/*.c'])
+        ctx.env.append_unique('FILES_EMBED', ['src/drivers/**/*.c'])
+        ctx.env.append_unique('FILES_EMBED', ['src/asf/*.c'])
+        ctx.env.append_unique('FILES_EMBED', ['src/asf/samc/**/*.c'])
+        set_thread_min_stack_size(ctx, 2000)
+
+        if ctx.options.embed_compile_check:
+            ctx.env.append_unique('INCLUDES_EMBED', ['conf/samc/compilecheck'])
+
+    elif ctx.options.arch in ['stm32l4']:
+        ctx.env.append_unique('USE_EMBED',   ['stm32'])
+        ctx.env.append_unique('FILES_EMBED', ['src/*.c'])
+        ctx.env.append_unique('FILES_EMBED', ['src/newlib/**/*.c'])
+        ctx.env.append_unique('FILES_EMBED', ['src/cmd/**/*.c'])
+        ctx.env.append_unique('FILES_EMBED', ['src/drivers/**/*.c'])
+        ctx.env.append_unique('FILES_EMBED', ['src/stm32/stm32l4/**/*.c'])
+        set_thread_min_stack_size(ctx, 5000)
+
+    elif ctx.gs_is_linux():
+        ctx.env.append_unique('INCLUDES_EMBED', ['include/gs/embed/linux/freertos'])
+
+        if ctx.options.freertos_on_linux:
+            ctx.env.append_unique('DEFINES', ['FREERTOS_USED=1'])
+            ctx.env.append_unique('FILES_EMBED', ['src/cmd/**/*.c'])
+            ctx.env.append_unique('FILES_EMBED', ['src/linux/**/*.c'])
+
+    ctx.env.embed_compile_check_freertos = ctx.options.embed_compile_check_freertos
+    if ctx.options.embed_compile_check_freertos:
+        ctx.env.append_unique('INCLUDES_EMBED', ['conf/freertos'])
+
+    embed_disable_syscall_fs = True if ((hasattr(ctx.options, 'syscalls_external') and
+                                         ctx.options.syscalls_external) or
+                                        ctx.options.embed_disable_syscall_fs) else False
+
+    ctx.env.append_unique('DEFINES_EMBED',
+                          ['GS_EMBED_UART_CONSOLE=' + str(int(ctx.options.embed_uart_console)),
+                           'GS_EMBED_DISABLE_SYSCALL_FS=' + ("1" if embed_disable_syscall_fs else "0"),
+                           'GS_EMBED_ENABLE_TEST=' + ("1" if ctx.options.embed_enable_test else "0")])
+
+    if get_thread_min_stack_size(ctx):
+        ctx.env.append_unique('DEFINES_EMBED',
+                              'GS_EMBED_THREAD_MIN_STACK_SIZE=' + str(int(get_thread_min_stack_size(ctx))))
+
+    ctx.env.append_unique('LINKFLAGS', '-Wl,--defsym=GS_FLASH_DATA_SIZE' + '=' + str(ctx.options.embed_flash_data_size))
+
+    ctx.gs_add_doxygen()
+
+    gs_gcc.gs_recurse(ctx)
+
+
+def build(ctx):
+    gs_gcc.gs_recurse(ctx)
+
+    public_include = ctx.gs_include(includes=ctx.env.INCLUDES_EMBED, name=APPNAME)
+
+    if ctx.env.embed_compile_check_freertos:
+        ctx.gs_include(includes=ctx.env.INCLUDES_EMBED, name='freertos')  # used by libcsp to locate freertos
+
+    if ctx.env.FILES_EMBED and not ctx.env.embed_compile_check_freertos:
+        ctx.gs_objects(source=ctx.path.ant_glob(ctx.env.FILES_EMBED, excl=ctx.env.FILES_EXCL_EMBED),
+                       target=APPNAME,
+                       includes=['src'],
+                       defines=ctx.env.DEFINES_EMBED,
+                       use=ctx.env.USE_EMBED + [public_include],
+                       cflags=ctx.env.CFLAGS_EMBED)
+        ctx.gs_shlib(source=ctx.path.ant_glob(ctx.env.FILES_EMBED, excl=ctx.env.FILES_EXCL_EMBED),
+                     target=APPNAME,
+                     includes=['src'],
+                     defines=ctx.env.DEFINES_EMBED,
+                     gs_use_shlib=ctx.env.USE_EMBED + [public_include],
+                     cflags=ctx.env.CFLAGS_EMBED)
+    else:
+        ctx(export_includes=ctx.env.INCLUDES_EMBED, name=APPNAME)  # no source to build
+
+
+def doc(ctx):
+    gs_doc.library(ctx, keyvalues={
+        'gs_prod_name': 'lib'+APPNAME,
+        'gs_prod_desc': 'Embedded abstraction layer',
+    })
+
+
+class Doc(BuildContext):
+    cmd = fun = 'doc'
+
+
+def gs_dist(ctx):
+    ctx.add_default_files(source_module=True)
+    ctx.add_files(ctx.path.ant_glob(['conf/**/*']))

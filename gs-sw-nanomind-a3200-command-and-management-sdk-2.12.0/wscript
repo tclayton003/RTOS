@@ -1,0 +1,198 @@
+#!/usr/bin/env python
+# encoding: utf-8
+# Copyright (c) 2013-2017 GomSpace A/S. All rights reserved.
+
+import os
+import gs_util
+import gs_doc
+import gs_gcc
+import gs.buildtools.util
+import gs_dist
+
+from waflib.Build import BuildContext
+
+APPNAME = 'a3200-sdk'
+
+
+def options(ctx):
+    ctx.load('gs_gcc gs_doc')
+    gs_gcc.gs_recurse(ctx)
+
+    gr = ctx.add_option_group("A3200 SDK options")
+
+    # override other default options
+    gr.add_option('--part', action='store', default='uc3c0512c', help='MCU part')
+    gr.add_option('--embed-uart-console', default=2, type=int, help='UART used for console/stdio')
+    gr.add_option('--model', action='store', default='A3200-SDK', help='Set board model (CSP)')
+
+
+def configure(ctx):
+    ctx.load('gs_gcc gs_doc')
+
+    # Locate programs
+    ctx.find_program('avr32program', var='AVR32PROGRAM', mandatory=False)
+
+    # Add source
+    ctx.env.append_unique('FILES_NANOMIND', ['src/**/*.c'])
+
+    # Add include(s)
+    ctx.env.append_unique('INCLUDES_NANOMIND', ['include', 'src/include'])
+
+    # Set target-name according to RAM (or FLASH image) option (from liba3200)
+    ctx.env.NANOMIND_TARGET_NAME = 'nanomind' + ('_ram' if ctx.options.ram else '')
+
+    # Make map file
+    ctx.env.append_unique('LINKFLAGS_NANOMIND', ['-Wl,-Map,{0}.map'.format(ctx.env.NANOMIND_TARGET_NAME)])
+
+    # Options for libasf
+    ctx.options.freertos_version = 10
+
+    # Options for liba3200
+    ctx.options.a3200_sdk = True
+
+    # Options for libembed
+    ctx.options.freertos_config = os.path.abspath('lib/liba3200/conf')
+    ctx.options.embed_disable_syscall_fs = True
+    ctx.options.embed_flash_data_size = '8K'
+
+    # Options for libgscsp/libcsp
+    ctx.options.with_rtable = 'cidr'
+    ctx.options.with_max_connections = 20
+    ctx.options.with_conn_queue_length = 20
+    ctx.options.with_router_queue_length = 100
+    ctx.options.with_max_bind_port = 25
+    ctx.options.enable_if_i2c = True
+    ctx.options.enable_if_kiss = True
+    ctx.options.enable_if_can = True
+    ctx.options.enable_rdp = True
+
+    # Options for libparam
+    ctx.options.param_max_tables = 40
+
+    # Options for libgssb
+    ctx.options.gssb_twi_handler = 2
+    ctx.options.gssb_enable_msp = True
+    ctx.options.gssb_enable_i4 = True
+    ctx.options.gssb_enable_ar6 = True
+    ctx.options.gssb_enable_ant6 = True
+    ctx.options.gssb_enable_msp = True
+    ctx.options.gssb_enable_istage = True
+    ctx.options.gssb_enable_sunsensor = True
+
+    # Options for libstorage
+    ctx.options.enable_uffs_driver_fl512s = True
+
+    # Options for NanoPower
+    ctx.options.enable_nanopower_client = True
+    ctx.options.enable_nanopower2_client = True
+
+    # Options for NanoPower-bpx
+    ctx.options.enable_bpx_client = True
+
+    # Add version/revision info
+    bi = gs.buildtools.util.get_build_info(appName=APPNAME)
+    ctx.options.revision = bi.revision()
+
+    # Write config to header file
+    ctx.write_config_header('include/conf_a3200_sdk.h', top=True)
+
+    gs_gcc.gs_recurse(ctx)
+
+
+def build(ctx):
+    gs_gcc.gs_recurse(ctx)
+
+    use = [t.name for t in ctx.get_all_task_gen() if hasattr(t, 'typ') and t.typ == 'objects']
+
+    ctx.gs_call_handler(handler='param_gen_4_3', name=APPNAME, prefix='a3200_sdk',
+                        update_source=True,
+                        generate_client=True, generate_host=True,
+                        generate_rsti=True)
+
+    ctx.program(source=ctx.path.ant_glob(ctx.env.FILES_NANOMIND, excl=ctx.env.EXCLUDES_NANOMIND),
+                target=ctx.env.NANOMIND_TARGET_NAME + '.elf',
+                includes=ctx.env.INCLUDES_NANOMIND,
+                linkflags=ctx.env.LINKFLAGS_NANOMIND,
+                use=use,
+                stlib=['m', 'stdc++'])
+
+    ctx(name='objcopy',
+        rule='${OBJCOPY} -O binary -j .text -j .exception -j .data ${SRC} ${TGT}',
+        source=ctx.env.NANOMIND_TARGET_NAME + '.elf',
+        target=ctx.env.NANOMIND_TARGET_NAME + '.bin')
+
+    ctx(name='size',
+        rule='${SIZE} --format=sysv -x ${SRC}',
+        source=ctx.env.NANOMIND_TARGET_NAME + '.elf',
+        always=True)
+
+
+def program(ctx):
+    ctx(name='program',
+        rule='${AVR32PROGRAM} --part ${GS_PART} program -finternal@0x80000000 -cint -F elf -O 0 -e -v -R -r ${SRC}',
+        source=ctx.env.NANOMIND_TARGET_NAME + '.elf',
+        always=True)
+
+
+class Program(BuildContext):
+    cmd = fun = 'program'
+
+
+def quickprogram(ctx):
+    ctx(name='program',
+        rule='${AVR32PROGRAM} --part ${GS_PART} program -finternal@0x80000000 -cint -F elf -O 0 -e -R -r ${SRC}',
+        source=ctx.env.NANOMIND_TARGET_NAME + '.elf', always=True)
+
+
+class QuickProgram(BuildContext):
+    cmd = fun = 'quickprogram'
+
+
+def chiperase(ctx):
+    ctx(name='chiperase',
+        rule='${AVR32PROGRAM} --part ${GS_PART} chiperase',
+        source=ctx.env.NANOMIND_TARGET_NAME + '.elf', always=True)
+
+
+class ChipErase(BuildContext):
+    cmd = fun = 'chiperase'
+
+
+def flashlock(ctx):
+    ctx(name='flashlock',
+        rule='${AVR32PROGRAM} --part ${GS_PART} writefuses -f internal@0x80000000 gp=0xffff0000', always=True)
+
+
+class FlashLock(BuildContext):
+    cmd = fun = 'flashlock'
+
+
+def doc(ctx):
+    gs_doc.manual(ctx,
+                  doxygen=True,
+                  keyvalues={'gs_prod_group': 'NanoMind',
+                             'gs_prod_name': 'A3200 Command and Management SDK',
+                             'gs_prod_desc': 'Software Development Kit',
+                             'gs_ifs_doc_number': '1006899',
+                             'gs_front_image': os.path.abspath('doc/img/sw_front.png'),
+                             'gs_sphinx_tags': ['sdk', 'a3200_sdk'],
+                             'gs_sphinx_exclude': ['tst/systest/**/*']})
+
+
+class Doc(BuildContext):
+    cmd = fun = 'doc'
+
+
+def gs_dist(ctx):
+    subdir = 'sdk'
+    ctx.set_appname('gs-sw-nanomind-a3200-command-and-management-sdk')
+    exclude = []
+    ctx.set_subdir('external')
+    ctx.add_file_to_dir('artifacts/' + subdir + '/manifest.json', "")
+    ctx.add_default_files(source_module=True)
+    ctx.add_file_to_dir(ctx.path.ant_glob('artifacts/external/*.pdf'), 'doc')
+    ctx.add_file_on_path('artifacts/html', 'doc/html')
+    ctx.add_file_to_dir(ctx.path.ant_glob('build/nanomind.*'), 'build')
+    ctx.add_file_to_dir('program.py', '')
+    ctx.recurse('tools/buildtools')
+    gs_gcc.gs_recurse(ctx, exclude=exclude)

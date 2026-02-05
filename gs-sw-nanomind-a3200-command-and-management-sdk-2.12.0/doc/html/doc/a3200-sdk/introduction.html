@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1.1. Introduction &mdash; A3200 Command and Management SDK 2.12.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="A3200 Command and Management SDK 2.12.0 documentation" href="../../index.html"/>
+        <link rel="up" title="1. A3200 SDK" href="a3200-sdk.html"/>
+        <link rel="next" title="1.2. Software" href="software.html"/>
+        <link rel="prev" title="1. A3200 SDK" href="a3200-sdk.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> A3200 Command and Management SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.12.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="a3200-sdk.html">1. A3200 SDK</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.1. Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#getting-started">1.1.1. Getting started</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#prerequisites">1.1.1.1. Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unpacking-a3200-sdk">1.1.1.2. Unpacking A3200 SDK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-a3200-sdk">1.1.1.3. Building A3200 SDK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#programming-nanomind-a3200">1.1.1.4. Programming NanoMind A3200</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="software.html">1.2. Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limitations.html">1.3. Known Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter_tables.html">1.4. Parameter Tables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../product_interfaces.html">2. Product Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries.html">3. Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">4. Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">5. Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zrefs.html">6. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">A3200 Command and Management SDK</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="a3200-sdk.html">1. A3200 SDK</a> &raquo;</li>
+      
+    <li>1.1. Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<h1>1.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>The A3200 Command &amp; Management SDK (A3200 SDK) software package provides a set of advanced and feature rich modules that enable fast and efficient development of a rich featured OBC applications for NanoMind A3200 Board. The included modules provides among other the following features:</p>
+<ul class="simple">
+<li>Board Support Package, including FreeRTOS and toolchain for A3200 development.</li>
+<li>CSP Communication, including drivers for I2C, CAN and USART (KISS)</li>
+<li>Parameter System for Configuration and Status</li>
+<li>Console interface for test and control</li>
+<li>GomSpace Sensor Bus (GSSB) interface for controlling GSSB devices</li>
+<li>FTP Service for upload and download of data.</li>
+<li>File system for Flash Storage</li>
+</ul>
+<div class="section" id="getting-started">
+<h2>1.1.1. Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="prerequisites">
+<h3>1.1.1.1. Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>In order to develop software for the A3200 NanoMind, a toolchain (compiler and tools) must be installed on your Linux PC. Please see the chapter <cite>A3200 Toolchain</cite> in the manual <cite>NanoMind A3200 Board Support Package</cite> (<a class="reference internal" href="../zrefs.html#a3200-bsp-bib" id="id1">[1]</a>) for details on installation.</p>
+</div>
+<div class="section" id="unpacking-a3200-sdk">
+<h3>1.1.1.2. Unpacking A3200 SDK<a class="headerlink" href="#unpacking-a3200-sdk" title="Permalink to this headline">¶</a></h3>
+<p>The A3200 SDK is shipped as a single archive, which includes all the source code, build scripts, documentation (this document), etc.</p>
+<p>Use following steps to extract all files from the archive into a working directory on your Linux system.</p>
+<ol class="arabic">
+<li><p class="first">Create a workspace folder for the source code, e.g. ~/workspace:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ mkdir ~/workspace
+</pre></div>
+</div>
+</li>
+<li><p class="first">Copy the archive to the workspace folder:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ cp gs-sw-nanomind-a3200-command-and-management-sdk-&lt;version&gt;.tar.gz ~/workspace
+</pre></div>
+</div>
+</li>
+<li><p class="first">Change directory to the workspace folder:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ cd ~/workspace
+</pre></div>
+</div>
+</li>
+<li><p class="first">Unpack the archive:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ tar xvf gs-sw-nanomind-a3200-command-and-management-sdk-&lt;version&gt;.tar.gz
+</pre></div>
+</div>
+</li>
+</ol>
+<p>You now have the source code unpacked in: <cite>~/workspace/gs-sw-nanomind-a3200-command-and-management-sdk-&lt;version&gt;</cite>.</p>
+</div>
+<div class="section" id="building-a3200-sdk">
+<h3>1.1.1.3. Building A3200 SDK<a class="headerlink" href="#building-a3200-sdk" title="Permalink to this headline">¶</a></h3>
+<p>Use the following steps to build the A3200 SDK.</p>
+<p>Building the first time:</p>
+<ol class="arabic">
+<li><p class="first">Change directory to the A3200 SDK folder:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ cd ~/workspace/gs-sw-nanomind-a3200-command-and-management-sdk-&lt;version&gt;
+</pre></div>
+</div>
+</li>
+<li><p class="first">Bootstrap buildtools:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ ./tools/buildtools/gsbuildtools_bootstrap.py
+</pre></div>
+</div>
+</li>
+<li><p class="first">Build using Waf:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ ./waf distclean configure build
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Subsequent building:</p>
+<ol class="arabic">
+<li><p class="first">Change directory to the A3200 SDK folder:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ cd ~/workspace/gs-sw-nanomind-a3200-command-and-management-sdk-&lt;version&gt;
+</pre></div>
+</div>
+</li>
+<li><p class="first">Build using Waf:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ ./waf
+</pre></div>
+</div>
+</li>
+</ol>
+<p>More details about using BuildTools can be found in <a class="reference internal" href="../../tools/buildtools/doc/buildtools.html#gsbuildtools"><span class="std std-numref">Section 4.1</span></a>.</p>
+</div>
+<div class="section" id="programming-nanomind-a3200">
+<h3>1.1.1.4. Programming NanoMind A3200<a class="headerlink" href="#programming-nanomind-a3200" title="Permalink to this headline">¶</a></h3>
+<p>See the chapter <cite>A3200 Toolchain</cite> in the manual <cite>NanoMind A3200 Board Support Package</cite> (<a class="reference internal" href="../zrefs.html#a3200-bsp-bib" id="id2">[1]</a>) for connecting the programmer.</p>
+<p>Programming the first time:</p>
+<ol class="arabic">
+<li><p class="first">Change directory to the A3200 SDK folder:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ cd ~/workspace/gs-sw-nanomind-a3200-command-and-management-sdk-&lt;version&gt;
+</pre></div>
+</div>
+</li>
+<li><p class="first">Program A3200 AVR32 FLASH:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ ./waf program
+</pre></div>
+</div>
+</li>
+</ol>
+<p>This will write the A3200 image to the AVR32 internal program FLASH and then reset the A3200 to start the new image.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="software.html" class="btn btn-neutral float-right" title="1.2. Software" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="a3200-sdk.html" class="btn btn-neutral" title="1. A3200 SDK" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020 GomSpace A/S..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2.12.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

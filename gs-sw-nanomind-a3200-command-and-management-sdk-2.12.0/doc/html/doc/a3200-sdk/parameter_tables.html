@@ -1,0 +1,838 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1.4. Parameter Tables &mdash; A3200 Command and Management SDK 2.12.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="A3200 Command and Management SDK 2.12.0 documentation" href="../../index.html"/>
+        <link rel="up" title="1. A3200 SDK" href="a3200-sdk.html"/>
+        <link rel="next" title="2. Product Interfaces" href="../product_interfaces.html"/>
+        <link rel="prev" title="1.3. Known Limitations" href="limitations.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> A3200 Command and Management SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.12.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="a3200-sdk.html">1. A3200 SDK</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">1.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software.html">1.2. Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limitations.html">1.3. Known Limitations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.4. Parameter Tables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scheduler">1.4.1. Scheduler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nanopower-bpx-telemetry">1.4.2. NanoPower BPX telemetry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nanopower-telemetry">1.4.3. NanoPower P31u telemetry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gatoss-telemetry">1.4.4. NanoCom ADS-B telemetry</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../product_interfaces.html">2. Product Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries.html">3. Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">4. Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">5. Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zrefs.html">6. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">A3200 Command and Management SDK</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="a3200-sdk.html">1. A3200 SDK</a> &raquo;</li>
+      
+    <li>1.4. Parameter Tables</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parameter-tables">
+<h1>1.4. Parameter Tables<a class="headerlink" href="#parameter-tables" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="scheduler">
+<h2>1.4.1. Scheduler<a class="headerlink" href="#scheduler" title="Permalink to this headline">¶</a></h2>
+<p>This table contains configuration of the scheduler: <a class="reference internal" href="software.html#a3200-sdk-scheduler-c"><span class="std std-ref">scheduler.c</span></a>.</p>
+<span id="table-gs-a3200-sdk-scheduler"></span><table border="1" class="longtable docutils" id="id1">
+<caption><span class="caption-number">Table 1.1 </span><span class="caption-text">Parameter Table ‘scheduler’</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Addr.</th>
+<th class="head">Type</th>
+<th class="head">&#160;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-scheduler-enabled">enabled</p>
+</td>
+<td>0x00</td>
+<td>bool</td>
+<td><p class="first">Enable/disable scheduling</p>
+<p class="last">Default: <code class="docutils literal"><span class="pre">False</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-scheduler-delayed-start">delayed_start</p>
+</td>
+<td>0x02</td>
+<td>uint16</td>
+<td><p class="first">Delay before scheduling is started after boot/re-load</p>
+<p>Default: <code class="docutils literal"><span class="pre">30</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">second</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-scheduler-bpx-col-intv">bpx_col_intv</p>
+</td>
+<td>0x04</td>
+<td>uint16</td>
+<td><p class="first">BPX HK collection interval. 0 disables collection</p>
+<p>Default: <code class="docutils literal"><span class="pre">0</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">second</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-scheduler-bpx-csp-addr">bpx_csp_addr</p>
+</td>
+<td>0x06</td>
+<td>uint8</td>
+<td><p class="first">BPX CSP address</p>
+<p class="last">Default: <code class="docutils literal"><span class="pre">7</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-scheduler-eps-col-intv">eps_col_intv</p>
+</td>
+<td>0x08</td>
+<td>uint16</td>
+<td><p class="first">EPS HK collection interval. 0 disables collection</p>
+<p>Default: <code class="docutils literal"><span class="pre">0</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">second</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-scheduler-eps-csp-addr">eps_csp_addr</p>
+</td>
+<td>0x0a</td>
+<td>uint8</td>
+<td><p class="first">EPS CSP address</p>
+<p class="last">Default: <code class="docutils literal"><span class="pre">2</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-scheduler-adsb-col-intv">adsb_col_intv</p>
+</td>
+<td>0x0c</td>
+<td>uint16</td>
+<td><p class="first">ADSB collection interval. 0 disables collection</p>
+<p>Default: <code class="docutils literal"><span class="pre">0</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">second</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-scheduler-adsb-csp-addr">adsb_csp_addr</p>
+</td>
+<td>0x0e</td>
+<td>uint8</td>
+<td><p class="first">ADSB CSP address</p>
+<p class="last">Default: <code class="docutils literal"><span class="pre">4</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="nanopower-bpx-telemetry">
+<h2>1.4.2. NanoPower BPX telemetry<a class="headerlink" href="#nanopower-bpx-telemetry" title="Permalink to this headline">¶</a></h2>
+<span id="table-gs-a3200-sdk-bpx-hk"></span><table border="1" class="longtable docutils" id="id2">
+<caption><span class="caption-number">Table 1.2 </span><span class="caption-text">Parameter Table ‘bpx_hk’</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Addr.</th>
+<th class="head">Type</th>
+<th class="head">&#160;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-bpx-hk-c-charge">c_charge</p>
+</td>
+<td>0x00</td>
+<td>uint16</td>
+<td><p class="first">Charging current</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">65535</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">milliampere</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-bpx-hk-c-dcharge">c_dcharge</p>
+</td>
+<td>0x02</td>
+<td>uint16</td>
+<td><p class="first">Discharging current</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">65535</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">milliampere</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-bpx-hk-c-heater">c_heater</p>
+</td>
+<td>0x04</td>
+<td>uint16</td>
+<td><p class="first">Heater current</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">65535</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">milliampere</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-bpx-hk-vbatt">vbatt</p>
+</td>
+<td>0x06</td>
+<td>uint16</td>
+<td><p class="first">Voltage of battery</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">0</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">millivolt</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-bpx-hk-bat-temp1">bat_temp1</p>
+</td>
+<td>0x08</td>
+<td>int16</td>
+<td><p class="first">Battery temperature 1</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">-32768</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">degC</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-bpx-hk-bat-temp2">bat_temp2</p>
+</td>
+<td>0x0a</td>
+<td>int16</td>
+<td><p class="first">Battery temperature 2</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">-32768</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">degC</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-bpx-hk-bat-temp3">bat_temp3</p>
+</td>
+<td>0x0c</td>
+<td>int16</td>
+<td><p class="first">Battery temperature 3</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">-32768</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">degC</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-bpx-hk-bat-temp4">bat_temp4</p>
+</td>
+<td>0x0e</td>
+<td>int16</td>
+<td><p class="first">Battery temperature 4</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">-32768</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">degC</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-bpx-hk-bootcount">bootcount</p>
+</td>
+<td>0x10</td>
+<td>uint32</td>
+<td><p class="first">Number of BPX reboots</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-bpx-hk-bootcause">bootcause</p>
+</td>
+<td>0x14</td>
+<td>uint8</td>
+<td><p class="first">Cause of last BPX reset</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">255</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="nanopower-telemetry">
+<h2>1.4.3. NanoPower P31u telemetry<a class="headerlink" href="#nanopower-telemetry" title="Permalink to this headline">¶</a></h2>
+<span id="table-gs-a3200-sdk-eps-hk"></span><table border="1" class="longtable docutils" id="id3">
+<caption><span class="caption-number">Table 1.3 </span><span class="caption-text">Parameter Table ‘eps_hk’</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Addr.</th>
+<th class="head">Type</th>
+<th class="head">&#160;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-eps-hk-vboost">vboost</p>
+</td>
+<td>0x00</td>
+<td>uint16[3]</td>
+<td><p class="first">Voltage of boost converters [mV] [PV1, PV2, PV3]</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">0</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">millivolt</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-eps-hk-vbatt">vbatt</p>
+</td>
+<td>0x06</td>
+<td>uint16</td>
+<td><p class="first">Voltage of battery</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">0</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">millivolt</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-eps-hk-curout">curout</p>
+</td>
+<td>0x08</td>
+<td>uint16[6]</td>
+<td><p class="first">Current out</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">65535</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">milliampere</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-eps-hk-curin">curin</p>
+</td>
+<td>0x14</td>
+<td>uint16[3]</td>
+<td><p class="first">Current in</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">65535</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">milliampere</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-eps-hk-cursun">cursun</p>
+</td>
+<td>0x1a</td>
+<td>uint16</td>
+<td><p class="first">Current from boost converters</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">65535</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">milliampere</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-eps-hk-cursys">cursys</p>
+</td>
+<td>0x1c</td>
+<td>uint16</td>
+<td><p class="first">Current out of battery</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">65535</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">milliampere</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-eps-hk-temp">temp</p>
+</td>
+<td>0x1e</td>
+<td>int16[6]</td>
+<td><p class="first">Temperature sensors [0 = TEMP1, TEMP2, TEMP3, TEMP4, BATT0, BATT1]</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">-32768</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">decidegC</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-eps-hk-out-val">out_val</p>
+</td>
+<td>0x2a</td>
+<td>uint8[8]</td>
+<td><p class="first">Status of outputs</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">255</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-eps-hk-battmode">battmode</p>
+</td>
+<td>0x32</td>
+<td>uint8</td>
+<td><p class="first">Mode for battery [0 = normal, 1 = undervoltage, 2 = overvoltage]</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">255</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-eps-hk-pptmode">pptmode</p>
+</td>
+<td>0x33</td>
+<td>uint8</td>
+<td><p class="first">Mode for PPT [0 = HW, 1 = MPPT, 2 = FIXED]</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">255</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-eps-hk-wdti2cs">wdtI2cS</p>
+</td>
+<td>0x34</td>
+<td>uint32</td>
+<td><p class="first">Time left on I2C wdt</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">second</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-eps-hk-wdtgnds">wdtGndS</p>
+</td>
+<td>0x38</td>
+<td>uint32</td>
+<td><p class="first">Time left on Gnd wdt</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">second</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-eps-hk-bootcount">bootcount</p>
+</td>
+<td>0x3c</td>
+<td>uint32</td>
+<td><p class="first">Number of EPS reboots</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-eps-hk-cntwdti2c">cntWdtI2c</p>
+</td>
+<td>0x40</td>
+<td>uint32</td>
+<td><p class="first">Number of WDT I2C reboots</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-eps-hk-cntwdtgnd">cntWdtGnd</p>
+</td>
+<td>0x44</td>
+<td>uint32</td>
+<td><p class="first">Number of WDT GND reboots</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-eps-hk-cntwdtcsp">cntWdtCsp</p>
+</td>
+<td>0x48</td>
+<td>uint32[2]</td>
+<td><p class="first">Number of WDT CSP reboots</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-eps-hk-wdtcspc">wdtCspC</p>
+</td>
+<td>0x50</td>
+<td>uint32[2]</td>
+<td><p class="first">Pings left on CSP wdt</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-eps-hk-latchups">latchups</p>
+</td>
+<td>0x58</td>
+<td>uint16[6]</td>
+<td><p class="first">Number of latch-ups</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">65535</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-eps-hk-bootcause">bootcause</p>
+</td>
+<td>0x64</td>
+<td>uint8</td>
+<td><p class="first">Cause of last EPS reset</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">255</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="gatoss-telemetry">
+<h2>1.4.4. NanoCom ADS-B telemetry<a class="headerlink" href="#gatoss-telemetry" title="Permalink to this headline">¶</a></h2>
+<span id="table-gs-a3200-sdk-adsb-hk"></span><table border="1" class="longtable docutils" id="id4">
+<caption><span class="caption-number">Table 1.4 </span><span class="caption-text">Parameter Table ‘adsb_hk’</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Addr.</th>
+<th class="head">Type</th>
+<th class="head">&#160;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-cur-1v2">cur_1v2</p>
+</td>
+<td>0x00</td>
+<td>uint16</td>
+<td><p class="first">Current consumption, 1v2.</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">65535</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">milliampere</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-cur-2v5">cur_2v5</p>
+</td>
+<td>0x02</td>
+<td>uint16</td>
+<td><p class="first">Current consumption, 2v5.</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">65535</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">milliampere</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-cur-3v3-fpga">cur_3v3_fpga</p>
+</td>
+<td>0x04</td>
+<td>uint16</td>
+<td><p class="first">Current consumption, 3v3 FPGA.</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">65535</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">milliampere</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-cur-3v3-adc">cur_3v3_adc</p>
+</td>
+<td>0x06</td>
+<td>uint16</td>
+<td><p class="first">Current consumption, 3v3 ADC.</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">65535</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">milliampere</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-cur-5v0-board">cur_5v0_board</p>
+</td>
+<td>0x08</td>
+<td>uint16</td>
+<td><p class="first">Current consumption, 5v0 Board.</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">65535</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">milliampere</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-cur-3v3-board">cur_3v3_board</p>
+</td>
+<td>0x0a</td>
+<td>uint16</td>
+<td><p class="first">Current consumption, 3v3 Board.</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">65535</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">milliampere</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-cur-3v3-sd">cur_3v3_sd</p>
+</td>
+<td>0x0c</td>
+<td>uint16</td>
+<td><p class="first">Current consumption, 3v3 SD.</p>
+<p>Invalid reading: <code class="docutils literal"><span class="pre">65535</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">milliampere</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-avg-fps-10sec">avg_fps_10sec</p>
+</td>
+<td>0x0e</td>
+<td>uint16</td>
+<td><p class="first">Average frames/sec over the last 10 seconds.</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">65535</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-avg-fps-1min">avg_fps_1min</p>
+</td>
+<td>0x10</td>
+<td>uint16</td>
+<td><p class="first">Average frames/sec over the last 1 minute.</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">65535</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-avg-fps-5min">avg_fps_5min</p>
+</td>
+<td>0x12</td>
+<td>uint16</td>
+<td><p class="first">Average frames/sec over the last 5 minutes.</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">65535</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-plane-count">plane_count</p>
+</td>
+<td>0x14</td>
+<td>uint32</td>
+<td><p class="first">Number of unique airplanes with at least one position decoded since boot.</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-frame-count">frame_count</p>
+</td>
+<td>0x18</td>
+<td>uint32</td>
+<td><p class="first">Number of frames received since boot.</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-crc-corrected">crc_corrected</p>
+</td>
+<td>0x1c</td>
+<td>uint32</td>
+<td><p class="first">Number of CRC errors corrected since boot.</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-last-icao24">last_icao24</p>
+</td>
+<td>0x20</td>
+<td>uint32</td>
+<td><p class="first">ICAO24 address of the latest airplane received.</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-last-lat">last_lat</p>
+</td>
+<td>0x24</td>
+<td>float</td>
+<td><p class="first">Latitude of latest airplane received.</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">91.0</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-last-lon">last_lon</p>
+</td>
+<td>0x28</td>
+<td>float</td>
+<td><p class="first">Longitude of latest airplane received.</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">181.0</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-last-alt">last_alt</p>
+</td>
+<td>0x2c</td>
+<td>uint32</td>
+<td><p class="first">Altitude of latest airplane received.</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-last-ts">last_ts</p>
+</td>
+<td>0x30</td>
+<td>uint32</td>
+<td><p class="first">Timestamp of latest airplane received.</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-bootcount">bootcount</p>
+</td>
+<td>0x34</td>
+<td>uint32</td>
+<td><p class="first">Board boot count.</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-bootcause">bootcause</p>
+</td>
+<td>0x38</td>
+<td>uint16</td>
+<td><p class="first">Board boot cause.</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">65535</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-current-time">current_time</p>
+</td>
+<td>0x3c</td>
+<td>uint32</td>
+<td><p class="first">Current board time in seconds since UNIX epoch.</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-tot-frames">tot_frames</p>
+</td>
+<td>0x40</td>
+<td>uint32</td>
+<td><p class="first">Total number of frames received.</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-tot-planes">tot_planes</p>
+</td>
+<td>0x44</td>
+<td>uint32</td>
+<td><p class="first">Total number of unique airplanes with at least one position decoded.</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-tot-crc-cor">tot_crc_cor</p>
+</td>
+<td>0x48</td>
+<td>uint32</td>
+<td><p class="first">Total number of CRC errors corrected.</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-fpga-crc-cnt">fpga_crc_cnt</p>
+</td>
+<td>0x4c</td>
+<td>uint32</td>
+<td><p class="first">Total number of CRC errors in FPGA configuration.</p>
+<p class="last">Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-sdk-adsb-hk-flash-lw">flash_lw</p>
+</td>
+<td>0x50</td>
+<td>uint32</td>
+<td>Invalid reading: <code class="docutils literal"><span class="pre">4294967295</span></code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../product_interfaces.html" class="btn btn-neutral float-right" title="2. Product Interfaces" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="limitations.html" class="btn btn-neutral" title="1.3. Known Limitations" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020 GomSpace A/S..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2.12.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

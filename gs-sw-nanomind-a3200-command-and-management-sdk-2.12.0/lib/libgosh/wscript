@@ -1,0 +1,81 @@
+#!/usr/bin/env python
+# encoding: utf-8
+# Copyright (c) 2013-2017 GomSpace A/S. All rights reserved.
+
+import os
+import gs_gcc
+import gs_doc
+import gs_dist
+from waflib.Build import BuildContext
+
+APPNAME = 'gosh'
+
+
+def options(ctx):
+    ctx.load('gs_gcc gs_doc')
+    gs_gcc.gs_recurse(ctx)
+
+    gr = ctx.add_option_group('libgosh options')
+    gr.add_option('--gosh-remote', action='store_true', help='Remote shell command (linux only)')
+    gr.add_option('--gosh-app', action='store_true', help='Build Gosh redirect app (linux only)')
+
+
+def configure(ctx):
+    ctx.load('gs_gcc gs_doc')
+
+    ctx.env.append_unique('FILES_LIBGOSH', ['src/gscript/**/*.c'])
+
+    if ctx.gs_is_linux():
+        ctx.env.append_unique('FILES_LIBGOSH', ['src/redirect/*.c'])
+
+        if ctx.options.gosh_remote:
+            ctx.env.append_unique('LIBS', ['util'])
+            ctx.env.append_unique('FILES_LIBGOSH', ['src/remote/**/*.c'])
+
+        if ctx.options.gosh_app:
+            ctx.env.append_unique('FILES_LIBGOSH_APP', ['src/redirect/goshapp/*.c'])
+
+    ctx.gs_add_doxygen(exclude=['*/include/gs/gosh/gosh/*'])
+
+    gs_gcc.gs_recurse(ctx)
+
+
+def build(ctx):
+    gs_gcc.gs_recurse(ctx)
+
+    public_include = ctx.gs_include(name=APPNAME, includes=['include'])
+    use = ['gosh_client', 'gscsp', 'util', public_include]
+
+    ctx.gs_objects(source=ctx.path.ant_glob(ctx.env.FILES_LIBGOSH),
+                   target=APPNAME,
+                   use=use)
+
+    ctx.gs_shlib(source=ctx.path.ant_glob(ctx.env.FILES_LIBGOSH),
+                 target=APPNAME,
+                 gs_use_shlib=use,
+                 lib=['util'])
+
+    if ctx.env.FILES_LIBGOSH_APP:
+        source = ctx.path.ant_glob(ctx.env.FILES_LIBGOSH_APP)
+        if source:
+            ctx.program(source=source,
+                        name=APPNAME + 'app',
+                        target=APPNAME,
+                        use=[public_include, 'util_h'],
+                        lib=['pthread'])
+
+
+def doc(ctx):
+    gs_doc.library(ctx, keyvalues={
+        'gs_prod_name': 'lib'+APPNAME,
+        'gs_prod_desc': 'GomSpace Shell',
+    })
+
+
+class Doc(BuildContext):
+    cmd = fun = 'doc'
+
+
+def gs_dist(ctx):
+    ctx.add_default_files(source_module=True)
+    ctx.recurse(['lib/libgosh_client'])

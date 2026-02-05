@@ -1,0 +1,404 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1.2. Software &mdash; A3200 Command and Management SDK 2.12.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="A3200 Command and Management SDK 2.12.0 documentation" href="../../index.html"/>
+        <link rel="up" title="1. A3200 SDK" href="a3200-sdk.html"/>
+        <link rel="next" title="1.3. Known Limitations" href="limitations.html"/>
+        <link rel="prev" title="1.1. Introduction" href="introduction.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> A3200 Command and Management SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.12.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="a3200-sdk.html">1. A3200 SDK</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">1.1. Introduction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.2. Software</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#main-c">1.2.1. main.c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mission-init-c">1.2.2. mission_init.c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scheduler-c">1.2.3. scheduler.c</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#housekeeping">1.2.3.1. Housekeeping</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#add-additional-hooks">1.2.4. Add additional hooks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="limitations.html">1.3. Known Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter_tables.html">1.4. Parameter Tables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../product_interfaces.html">2. Product Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries.html">3. Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">4. Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">5. Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zrefs.html">6. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">A3200 Command and Management SDK</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="a3200-sdk.html">1. A3200 SDK</a> &raquo;</li>
+      
+    <li>1.2. Software</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="software">
+<h1>1.2. Software<a class="headerlink" href="#software" title="Permalink to this headline">¶</a></h1>
+<p>This chapter describes the source code provided in the A3200 SDK application.</p>
+<p>The main part of the software handles configuration (bootstrapping) of the system, e.g., setup Parameters stores,
+starting tasks, registering commands, which are provided by a number libraries (located in the ./lib folder).
+For simplicity, the majority of the libraries compiles all features/code and the linker will throw away all
+un-referenced/un-used code (controlled through compile and linker options).</p>
+<p>The A3200 SDK comes with a number source files in the <cite>./src</cite> folder, which compiles into a working OBC with a file
+system and a number of basic services - ready for adding mission specific software.</p>
+<ul class="simple">
+<li><a class="reference internal" href="#a3200-sdk-main-c"><span class="std std-ref">main.c</span></a>: basic initialisation and setup of Parameter stores (none-volatile storage).
+Mission specific VMEM mappings and Parameter stores should be added here.</li>
+<li><a class="reference internal" href="#a3200-sdk-mission-init-c"><span class="std std-ref">mission_init.c</span></a> mission initialisation, starts services and other tasks.
+Mission specific code hooks should be added here.</li>
+<li><a class="reference internal" href="#a3200-sdk-scheduler-c"><span class="std std-ref">scheduler.c</span></a> generic function scheduler.</li>
+<li><cite>param</cite>: Parameter store and table definitions.<ul>
+<li><cite>a3200_sdk_store.c</cite> layout of the A3200 SDK Parameter store, e.g. where the <cite>scheduler</cite> table is stored.</li>
+<li><cite>adsb_hk.c</cite> telemetry table, see <a class="reference internal" href="parameter_tables.html#table-gs-a3200-sdk-adsb-hk"><span class="std std-ref">Parameter Table ‘adsb_hk’</span></a> details.</li>
+<li><cite>bpx_hk.c</cite> telemetry table, see <a class="reference internal" href="parameter_tables.html#table-gs-a3200-sdk-bpx-hk"><span class="std std-ref">Parameter Table ‘bpx_hk’</span></a> details.</li>
+<li><cite>eps_hk.c</cite> telemetry table, see <a class="reference internal" href="parameter_tables.html#table-gs-a3200-sdk-eps-hk"><span class="std std-ref">Parameter Table ‘eps_hk’</span></a> details.</li>
+</ul>
+</li>
+<li><cite>hk</cite>: Housekeeping - collecting telemetry data from nodes, not supporting <cite>rparam</cite> protocol.<ul>
+<li><cite>adsb_hk.c</cite></li>
+<li><cite>bpx_hk.c</cite></li>
+<li><cite>eps_hk.c</cite></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="main-c">
+<span id="a3200-sdk-main-c"></span><h2>1.2.1. main.c<a class="headerlink" href="#main-c" title="Permalink to this headline">¶</a></h2>
+<p>This file contains the <code class="docutils literal"><span class="pre">main()</span></code> function, where the NanoMind A3200 starts its execution after power-on or reset:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Initialize: clock, watchdog, external memory, malloc</span>
+    <span class="n">gs_a3200_init</span><span class="p">();</span>
+
+    <span class="c1">// Early log initialize and register of the console log appender (sends log to stdout)</span>
+    <span class="n">gs_log_init</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+
+    <span class="c1">// Spawn a task to complete the initialization and launch application/mission tasks through hooks.</span>
+    <span class="n">gs_a3200_run</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hooks</span><span class="p">);</span>
+
+    <span class="c1">// Will never get here, as gs_a3200_run() never returns</span>
+    <span class="n">gs_sys_reset</span><span class="p">(</span><span class="n">GS_SYS_BOOT_UNKNOWN</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The function <code class="docutils literal"><span class="pre">gs_a3200_init()</span></code> makes the initial hardware initialisation, e.g. memory, watchdog.
+Once <code class="docutils literal"><span class="pre">gs_a3200_init()</span></code> completes, it is safe to allocate memory (e.g. <code class="docutils literal"><span class="pre">malloc()</span></code>).
+At this point, <code class="docutils literal"><span class="pre">printf()</span></code> will not work, as the UART hasn’t been configured yet.</p>
+<p>The function <code class="docutils literal"><span class="pre">gs_a3200_run(&amp;hooks)</span></code> performs the rest of the system initialisation, and invokes the configured hooks. All hooks are called from a
+FreeRTOS task, so it is safe to create new tasks and in general use FreeRTOS.</p>
+<p>The function <code class="docutils literal"><span class="pre">gs_a3200_run(&amp;hooks)</span></code> supports a number of hooks, which is used to customize the system:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">static</span> <span class="k">const</span> <span class="n">gs_a3200_hooks_t</span> <span class="n">hooks</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// hook called when liba3200 want to configure VMEM and the parameter stores (where to load parameter tables from)</span>
+    <span class="p">.</span><span class="n">init_vmem_param</span> <span class="o">=</span> <span class="n">param_init_stores</span><span class="p">,</span>
+    <span class="c1">// hook called when the basic boot process is completed, just before a task is spawned to mount the file system</span>
+    <span class="p">.</span><span class="n">init_complete</span> <span class="o">=</span> <span class="n">mission_init</span><span class="p">,</span>
+    <span class="c1">// hook called when the file system is mounted and the boot process is completed.</span>
+    <span class="p">.</span><span class="n">fs_mounted</span> <span class="o">=</span> <span class="n">mission_init_fs_mounted</span><span class="p">,</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>If more fine grained control of the boot sequence is required, please see <a class="reference internal" href="#a3200-sdk-extend-hooks"><span class="std std-ref">Add additional hooks</span></a> for
+details on changing the default boot behaviour.</p>
+</div>
+<div class="section" id="mission-init-c">
+<span id="a3200-sdk-mission-init-c"></span><h2>1.2.2. mission_init.c<a class="headerlink" href="#mission-init-c" title="Permalink to this headline">¶</a></h2>
+<p>This file contains a number of function hooks, called from either the boot process or the <a class="reference internal" href="#a3200-sdk-scheduler-c"><span class="std std-ref">scheduler.c</span></a></p>
+<p>The <code class="docutils literal"><span class="pre">mission_init()</span></code> is called during the boot process, at a point where everything is initialised - except the file
+system. All tasks/services that can function without a file system, should be placed here.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">mission_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">log_notice</span><span class="p">(</span><span class="s">&quot;Welcome to nanomind, model: %s, revision: %s&quot;</span><span class="p">,</span> <span class="n">csp_get_model</span><span class="p">(),</span> <span class="n">csp_get_revision</span><span class="p">());</span>
+
+    <span class="c1">// Launch server task for handling CSP service requests</span>
+    <span class="n">mission_server_init</span><span class="p">();</span>
+
+    <span class="c1">// Start time synchronization service</span>
+    <span class="n">gs_a3200_timesync</span><span class="p">();</span>
+
+    <span class="c1">// Register command &quot;only&quot; clients</span>
+    <span class="n">gs_adcs_register_commands</span><span class="p">();</span>
+    <span class="k">extern</span> <span class="kt">void</span> <span class="n">cmd_ax100_setup</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+    <span class="n">cmd_ax100_setup</span><span class="p">();</span>
+    <span class="k">extern</span> <span class="kt">void</span> <span class="n">cmd_p60pdu_setup</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+    <span class="n">cmd_p60pdu_setup</span><span class="p">();</span>
+    <span class="k">extern</span> <span class="kt">void</span> <span class="n">cmd_p60dock_setup</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+    <span class="n">cmd_p60dock_setup</span><span class="p">();</span>
+    <span class="k">extern</span> <span class="kt">void</span> <span class="n">cmd_p60pdu_setup</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+    <span class="n">cmd_p60pdu_setup</span><span class="p">();</span>
+    <span class="k">extern</span> <span class="kt">void</span> <span class="n">cmd_p60acu_setup</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+    <span class="n">cmd_p60acu_setup</span><span class="p">();</span>
+    <span class="k">extern</span> <span class="kt">void</span> <span class="n">cmd_eps_setup</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+    <span class="n">cmd_eps_setup</span><span class="p">();</span>
+    <span class="k">extern</span> <span class="kt">void</span> <span class="n">cmd_bpx_setup</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+    <span class="n">cmd_bpx_setup</span><span class="p">();</span>
+    <span class="k">extern</span> <span class="kt">void</span> <span class="n">gatoss_cmd_setup</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+    <span class="n">gatoss_cmd_setup</span><span class="p">();</span>
+    <span class="k">extern</span> <span class="kt">void</span> <span class="n">nanocam_register_commands</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+    <span class="n">nanocam_register_commands</span><span class="p">();</span>
+    <span class="k">extern</span> <span class="kt">void</span> <span class="n">soft_register_commands</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+    <span class="n">soft_register_commands</span><span class="p">();</span>
+    <span class="k">extern</span> <span class="kt">void</span> <span class="n">cmd_power_if_setup</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+    <span class="n">cmd_power_if_setup</span><span class="p">();</span>
+    <span class="n">gs_rgssb_register_commands</span><span class="p">();</span>
+    <span class="n">gs_gssb_register_commands</span><span class="p">();</span>
+
+    <span class="c1">// Start scheduler</span>
+    <span class="n">scheduler_init</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">mission_init_fs_mounted()</span></code> is called after the file system is mounted, and it the last callback from the boot process.
+The function will be called even if the initialisation of the file system fails (times out).</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">mission_init_fs_mounted</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Initialize Flight Planner (requires missionlib)</span>
+    <span class="n">mission_fp_init</span><span class="p">();</span>
+
+    <span class="c1">// Initialize House Keeping (requires missionlib)</span>
+    <span class="n">mission_hk_init</span><span class="p">();</span>
+
+    <span class="c1">// Initialize gscript/rgosh services</span>
+    <span class="n">mission_rgosh_init</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">mission_schedule()</span></code> is called by the generic scheduler task, whenever there is a change to the scheduler table, see <a class="reference internal" href="parameter_tables.html#table-gs-a3200-sdk-scheduler"><span class="std std-ref">Parameter Table ‘scheduler’</span></a>. The function must ONLY be called by the scheduler task itself, as the scheduling isn’t thread-safe.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">mission_schedule</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">extern</span> <span class="kt">void</span> <span class="n">adsb_hk_schedule</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+    <span class="n">adsb_hk_schedule</span><span class="p">();</span>
+    <span class="k">extern</span> <span class="kt">void</span> <span class="n">bpx_hk_schedule</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+    <span class="n">bpx_hk_schedule</span><span class="p">();</span>
+    <span class="k">extern</span> <span class="kt">void</span> <span class="n">eps_hk_schedule</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+    <span class="n">eps_hk_schedule</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scheduler-c">
+<span id="a3200-sdk-scheduler-c"></span><h2>1.2.3. scheduler.c<a class="headerlink" href="#scheduler-c" title="Permalink to this headline">¶</a></h2>
+<p>Generic scheduler for scheduling none time critical jobs, such as collecting housekeeping data from nodes not supporting
+the <cite>rparam</cite> protocol.</p>
+<p>The scheduler calls schduled functions at specific intervals. Because the scheduler runs in a single task/thread, scheduling
+will be impacted by how long the jobs actually takes, e.g. longer time due to errors.
+The scheduler runs at low priority, to limit impact on more time critical activities.</p>
+<p>The scheduler is configured through <a class="reference internal" href="parameter_tables.html#table-gs-a3200-sdk-scheduler"><span class="std std-ref">Parameter Table ‘scheduler’</span></a>. This table can be extended with more
+parameters for other jobs, or the configuration can be placed in different tables.
+If configuration is placed in different tables, the function <code class="docutils literal"><span class="pre">scheduler_reload()</span></code> can be called to trigger
+the scheduler to reload.</p>
+<p>The scheduler calls <code class="docutils literal"><span class="pre">mission_schedule()</span></code> to (re)load jobs. Jobs can be enabled/disabled/modified through <code class="docutils literal"><span class="pre">scheduler_modify()</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><code class="docutils literal"><span class="pre">scheduler_modify()</span></code> must only be called from the scheduler task. Place registration functions in <code class="docutils literal"><span class="pre">mission_schedule()</span></code>.</p>
+</div>
+<div class="section" id="housekeeping">
+<h3>1.2.3.1. Housekeeping<a class="headerlink" href="#housekeeping" title="Permalink to this headline">¶</a></h3>
+<p>The following nodes do not support the ‘rparam’ protocol, and the <a class="reference internal" href="../../lib/libhk/doc/libhk.html#libhk"><span class="std std-ref">Housekeeping (libhk)</span></a> system can therefore not fetch data directly from
+these nodes. To address this their respective telemetry data is collected by the OBC in scheduled functions updating local tables
+from which the <a class="reference internal" href="../../lib/libhk/doc/libhk.html#libhk"><span class="std std-ref">Housekeeping (libhk)</span></a> can collect data.</p>
+<ul class="simple">
+<li><a class="reference internal" href="../../lib/nanopower_client/doc/nanopower_client_sdk.html#nanopower-client-sdk"><span class="std std-ref">NanoPower P31u (nanopower_client)</span></a>, data collected by <cite>./src/hk/eps_hk.c</cite> and placed in <a class="reference internal" href="parameter_tables.html#table-gs-a3200-sdk-eps-hk"><span class="std std-ref">Parameter Table ‘eps_hk’</span></a>.</li>
+<li><a class="reference internal" href="../../lib/nanopower-bpx_client/doc/nanopower-bpx_client_sdk.html#nanopower-bpx-client-sdk"><span class="std std-ref">NanoPower BPX (nanopower-bpx_client)</span></a>, data collected by <cite>./src/hk/bpx_hk.c</cite> and placed in <a class="reference internal" href="parameter_tables.html#table-gs-a3200-sdk-bpx-hk"><span class="std std-ref">Parameter Table ‘bpx_hk’</span></a>.</li>
+<li><a class="reference internal" href="../../lib/gatoss-uc_client/doc/gatoss-uc_client_sdk.html#gatoss-client-sdk"><span class="std std-ref">NanoCom ADS-B (gatoss-uc_client)</span></a>, data collected by <cite>./src/hk/adsb_hk.c</cite> and placed in <a class="reference internal" href="parameter_tables.html#table-gs-a3200-sdk-adsb-hk"><span class="std std-ref">Parameter Table ‘adsb_hk’</span></a>.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="add-additional-hooks">
+<span id="a3200-sdk-extend-hooks"></span><h2>1.2.4. Add additional hooks<a class="headerlink" href="#add-additional-hooks" title="Permalink to this headline">¶</a></h2>
+<p>For a more fine grained control of the boot sequence, additional hooks can easily be added.</p>
+<p>The function <code class="docutils literal"><span class="pre">gs_a3200_sdk_init_task()</span></code>, in <cite>src/sdk/sdk_init.c</cite>, runs the main boot sequence and invokes the hooks by calling:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">GS_A3200_CALL_HOOK</span><span class="p">(</span><span class="n">init_complete</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To add another hook to the boot sequence, add the function callback to <cite>gs_a3200_hooks_t</cite> and call it at the desired boot step - most
+likely in <cite>src/sdk/sdk_init.c</cite>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="limitations.html" class="btn btn-neutral float-right" title="1.3. Known Limitations" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral" title="1.1. Introduction" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020 GomSpace A/S..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2.12.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

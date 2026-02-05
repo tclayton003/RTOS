@@ -1,0 +1,63 @@
+/* Copyright (c) 2013 GomSpace A/S. All rights reserved. (AUTO GENERATED) */
+
+#include <gs/a3200_sdk/param/host/adsb_hk.h>
+#include <gs/util/pgm.h>
+
+const gs_param_table_row_t gs_a3200_sdk_adsb_hk_table[] = {
+    {.name = "cur_1v2",       .addr = GS_A3200_SDK_ADSB_HK_CUR_1V2,                      .type = GS_PARAM_UINT16,  .size =   2, .array_size =  1, .flags = 0},
+    {.name = "cur_2v5",       .addr = GS_A3200_SDK_ADSB_HK_CUR_2V5,                      .type = GS_PARAM_UINT16,  .size =   2, .array_size =  1, .flags = 0},
+    {.name = "cur_3v3_fpga",  .addr = GS_A3200_SDK_ADSB_HK_CUR_3V3_FPGA,                 .type = GS_PARAM_UINT16,  .size =   2, .array_size =  1, .flags = 0},
+    {.name = "cur_3v3_adc",   .addr = GS_A3200_SDK_ADSB_HK_CUR_3V3_ADC,                  .type = GS_PARAM_UINT16,  .size =   2, .array_size =  1, .flags = 0},
+    {.name = "cur_5v0_board", .addr = GS_A3200_SDK_ADSB_HK_CUR_5V0_BOARD,                .type = GS_PARAM_UINT16,  .size =   2, .array_size =  1, .flags = 0},
+    {.name = "cur_3v3_board", .addr = GS_A3200_SDK_ADSB_HK_CUR_3V3_BOARD,                .type = GS_PARAM_UINT16,  .size =   2, .array_size =  1, .flags = 0},
+    {.name = "cur_3v3_sd",    .addr = GS_A3200_SDK_ADSB_HK_CUR_3V3_SD,                   .type = GS_PARAM_UINT16,  .size =   2, .array_size =  1, .flags = 0},
+    {.name = "avg_fps_10sec", .addr = GS_A3200_SDK_ADSB_HK_AVG_FPS_10SEC,                .type = GS_PARAM_UINT16,  .size =   2, .array_size =  1, .flags = 0},
+    {.name = "avg_fps_1min",  .addr = GS_A3200_SDK_ADSB_HK_AVG_FPS_1MIN,                 .type = GS_PARAM_UINT16,  .size =   2, .array_size =  1, .flags = 0},
+    {.name = "avg_fps_5min",  .addr = GS_A3200_SDK_ADSB_HK_AVG_FPS_5MIN,                 .type = GS_PARAM_UINT16,  .size =   2, .array_size =  1, .flags = 0},
+    {.name = "plane_count",   .addr = GS_A3200_SDK_ADSB_HK_PLANE_COUNT,                  .type = GS_PARAM_UINT32,  .size =   4, .array_size =  1, .flags = 0},
+    {.name = "frame_count",   .addr = GS_A3200_SDK_ADSB_HK_FRAME_COUNT,                  .type = GS_PARAM_UINT32,  .size =   4, .array_size =  1, .flags = 0},
+    {.name = "crc_corrected", .addr = GS_A3200_SDK_ADSB_HK_CRC_CORRECTED,                .type = GS_PARAM_UINT32,  .size =   4, .array_size =  1, .flags = 0},
+    {.name = "last_icao24",   .addr = GS_A3200_SDK_ADSB_HK_LAST_ICAO24,                  .type = GS_PARAM_UINT32,  .size =   4, .array_size =  1, .flags = 0},
+    {.name = "last_lat",      .addr = GS_A3200_SDK_ADSB_HK_LAST_LAT,                     .type = GS_PARAM_FLOAT,   .size =   4, .array_size =  1, .flags = 0},
+    {.name = "last_lon",      .addr = GS_A3200_SDK_ADSB_HK_LAST_LON,                     .type = GS_PARAM_FLOAT,   .size =   4, .array_size =  1, .flags = 0},
+    {.name = "last_alt",      .addr = GS_A3200_SDK_ADSB_HK_LAST_ALT,                     .type = GS_PARAM_UINT32,  .size =   4, .array_size =  1, .flags = 0},
+    {.name = "last_ts",       .addr = GS_A3200_SDK_ADSB_HK_LAST_TS,                      .type = GS_PARAM_UINT32,  .size =   4, .array_size =  1, .flags = 0},
+    {.name = "bootcount",     .addr = GS_A3200_SDK_ADSB_HK_BOOTCOUNT,                    .type = GS_PARAM_UINT32,  .size =   4, .array_size =  1, .flags = 0},
+    {.name = "bootcause",     .addr = GS_A3200_SDK_ADSB_HK_BOOTCAUSE,                    .type = GS_PARAM_UINT16,  .size =   2, .array_size =  1, .flags = 0},
+    {.name = "current_time",  .addr = GS_A3200_SDK_ADSB_HK_CURRENT_TIME,                 .type = GS_PARAM_UINT32,  .size =   4, .array_size =  1, .flags = 0},
+    {.name = "tot_frames",    .addr = GS_A3200_SDK_ADSB_HK_TOT_FRAMES,                   .type = GS_PARAM_UINT32,  .size =   4, .array_size =  1, .flags = 0},
+    {.name = "tot_planes",    .addr = GS_A3200_SDK_ADSB_HK_TOT_PLANES,                   .type = GS_PARAM_UINT32,  .size =   4, .array_size =  1, .flags = 0},
+    {.name = "tot_crc_cor",   .addr = GS_A3200_SDK_ADSB_HK_TOT_CRC_COR,                  .type = GS_PARAM_UINT32,  .size =   4, .array_size =  1, .flags = 0},
+    {.name = "fpga_crc_cnt",  .addr = GS_A3200_SDK_ADSB_HK_FPGA_CRC_CNT,                 .type = GS_PARAM_UINT32,  .size =   4, .array_size =  1, .flags = 0},
+    {.name = "flash_lw",      .addr = GS_A3200_SDK_ADSB_HK_FLASH_LW,                     .type = GS_PARAM_UINT32,  .size =   4, .array_size =  1, .flags = 0},
+};
+
+const gs_a3200_sdk_adsb_hk_memory_t gs_a3200_sdk_adsb_hk_default_values GS_PGM_OBJECT = {
+    .cur_1v2 = GS_A3200_SDK_ADSB_HK_CUR_1V2_INVALID,
+    .cur_2v5 = GS_A3200_SDK_ADSB_HK_CUR_2V5_INVALID,
+    .cur_3v3_fpga = GS_A3200_SDK_ADSB_HK_CUR_3V3_FPGA_INVALID,
+    .cur_3v3_adc = GS_A3200_SDK_ADSB_HK_CUR_3V3_ADC_INVALID,
+    .cur_5v0_board = GS_A3200_SDK_ADSB_HK_CUR_5V0_BOARD_INVALID,
+    .cur_3v3_board = GS_A3200_SDK_ADSB_HK_CUR_3V3_BOARD_INVALID,
+    .cur_3v3_sd = GS_A3200_SDK_ADSB_HK_CUR_3V3_SD_INVALID,
+    .avg_fps_10sec = GS_A3200_SDK_ADSB_HK_AVG_FPS_10SEC_INVALID,
+    .avg_fps_1min = GS_A3200_SDK_ADSB_HK_AVG_FPS_1MIN_INVALID,
+    .avg_fps_5min = GS_A3200_SDK_ADSB_HK_AVG_FPS_5MIN_INVALID,
+    .plane_count = GS_A3200_SDK_ADSB_HK_PLANE_COUNT_INVALID,
+    .frame_count = GS_A3200_SDK_ADSB_HK_FRAME_COUNT_INVALID,
+    .crc_corrected = GS_A3200_SDK_ADSB_HK_CRC_CORRECTED_INVALID,
+    .last_icao24 = GS_A3200_SDK_ADSB_HK_LAST_ICAO24_INVALID,
+    .last_lat = GS_A3200_SDK_ADSB_HK_LAST_LAT_INVALID,
+    .last_lon = GS_A3200_SDK_ADSB_HK_LAST_LON_INVALID,
+    .last_alt = GS_A3200_SDK_ADSB_HK_LAST_ALT_INVALID,
+    .last_ts = GS_A3200_SDK_ADSB_HK_LAST_TS_INVALID,
+    .bootcount = GS_A3200_SDK_ADSB_HK_BOOTCOUNT_INVALID,
+    .bootcause = GS_A3200_SDK_ADSB_HK_BOOTCAUSE_INVALID,
+    .current_time = GS_A3200_SDK_ADSB_HK_CURRENT_TIME_INVALID,
+    .tot_frames = GS_A3200_SDK_ADSB_HK_TOT_FRAMES_INVALID,
+    .tot_planes = GS_A3200_SDK_ADSB_HK_TOT_PLANES_INVALID,
+    .tot_crc_cor = GS_A3200_SDK_ADSB_HK_TOT_CRC_COR_INVALID,
+    .fpga_crc_cnt = GS_A3200_SDK_ADSB_HK_FPGA_CRC_CNT_INVALID,
+    .flash_lw = GS_A3200_SDK_ADSB_HK_FLASH_LW_INVALID,
+};
+

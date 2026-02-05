@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.1.1. A3200 SDK &mdash; A3200 Command and Management SDK 2.12.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="A3200 Command and Management SDK 2.12.0 documentation" href="index.html"/>
+        <link rel="up" title="5.1. Software Changelogs" href="doc/appendix/changelogs.html"/>
+        <link rel="next" title="5.1.2. Product Interfaces" href="doc/appendix/changelogs_product_interfaces.html"/>
+        <link rel="prev" title="5.1. Software Changelogs" href="doc/appendix/changelogs.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="doc/index.html" class="icon icon-home"> A3200 Command and Management SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.12.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="doc/a3200-sdk/a3200-sdk.html">1. A3200 SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc/product_interfaces.html">2. Product Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc/libraries.html">3. Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc/tools.html">4. Tools</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="doc/appendix/appendix.html">5. Appendix</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="doc/appendix/changelogs.html">5.1. Software Changelogs</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">5.1.1. A3200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc/appendix/changelogs_product_interfaces.html">5.1.2. Product Interfaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc/appendix/changelogs_libraries.html">5.1.3. Libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc/appendix/changelogs_tools.html">5.1.4. Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="doc/appendix/api.html">5.2. API Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc/zrefs.html">6. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="doc/index.html">A3200 Command and Management SDK</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="doc/index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="doc/appendix/appendix.html">5. Appendix</a> &raquo;</li>
+      
+          <li><a href="doc/appendix/changelogs.html">5.1. Software Changelogs</a> &raquo;</li>
+      
+    <li>5.1.1. A3200 SDK</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="a3200-sdk">
+<h1>5.1.1. A3200 SDK<a class="headerlink" href="#a3200-sdk" title="Permalink to this headline">¶</a></h1>
+<p><strong>2.12.0 (2020-06-12)</strong></p>
+<ul class="simple">
+<li>Improvement: Updated libcsp to new 1.6.0 (libgscsp 2.x-&gt;3.x)</li>
+<li>Improvement: Updated libraries liba3200, libasf, libftp, libhk</li>
+<li>Feature: house-keeping tables for BPX, eps etc default to invalid values if read fails</li>
+</ul>
+<p><strong>2.11.2 (2020-04-22)</strong></p>
+<ul class="simple">
+<li>Improvement: Updated libs (libasf, libftp and more)</li>
+<li>Feature: Mission-lib is always included in SDK (No longer referred)</li>
+</ul>
+<p><strong>2.11.1 (2020-03-20)</strong></p>
+<ul class="simple">
+<li>Improvement: Changed size summary to sysv format to get details on section sizes.</li>
+<li>Bug: BPX temperatures are in degrees celcius (°C)</li>
+<li>Improvement: Updated libraries.</li>
+</ul>
+<p><strong>2.10.1 (2019-10-18)</strong></p>
+<ul class="simple">
+<li>Limitation: if enabling FreeRTOS configUSE_NEWLIB_REENTRANT (default), use AVR32 toolchain: 3.4.2_gs1 or later - otherwise crash occurs, when a task terminates (libembed).</li>
+<li>Limitation: Disabled FreeRTOS runtime stats until implemented for FreeRTOS 10.2.0.</li>
+<li>Improvement: Implement retargetable locks for newlib file operations. This allows for multi-threaded file operations. Requires toolchain 3.4.2_gs1 or later (libembed).</li>
+<li>Feature: Added generic scheduler for collecting telemetry from nodes, not supporting rparam internface.</li>
+<li>Bug: FreeRTOS: Enabled re-entrant per task/thread (configUSE_NEWLIB_REENTRANT=1 in FreeRTOSConfig.h) to prevent crashes when printing floats.</li>
+<li>Bug: Updated toolchain with patched newlib, that supports file-locking, prevent possible file corruption if multiple tasks accesses the file system.</li>
+<li>Improvement: Updated libraries and documentation.</li>
+<li>Breaking: Removed Health System (libhealth).</li>
+</ul>
+<p><strong>2.9.1 (2019-07-03)</strong></p>
+<ul class="simple">
+<li>Bug: Updated to FreeRTOS 10.2.0 to fix crash issue, when running from RAM image.</li>
+<li>Limitation: Disabled FreeRTOS runtime stats until implemented for FreeRTOS 10.2.0.</li>
+<li>Improvement: Updated libraries and documentation.</li>
+</ul>
+<p><strong>2.8.2 (2019-06-12)</strong></p>
+<ul class="simple">
+<li>Improvement: Updated libraries and documentation.</li>
+</ul>
+<p><strong>2.8.1 (2019-05-20)</strong></p>
+<ul class="simple">
+<li>Improvement: Updated libraries and documentation.</li>
+</ul>
+<p><strong>2.7.1 (2019-04-11)</strong></p>
+<ul class="simple">
+<li>Improvement: Updated libraries and documentation.</li>
+</ul>
+<p><strong>2.6.1 (2019-02-27)</strong></p>
+<ul class="simple">
+<li>Improvement: Updated libraries and documentation.</li>
+<li>Feature: Added technology preview of new Health System (libhealth).</li>
+</ul>
+<p><strong>2.5.1 (2019-01-30)</strong></p>
+<ul class="simple">
+<li>Improvement: Updated libraries and documentation. Log groups must be registered in order to change level.</li>
+</ul>
+<p><strong>2.4.2 (2018-12-20)</strong></p>
+<ul class="simple">
+<li>Improvement: Updated libraries and documentation.</li>
+</ul>
+<p><strong>2.4.1 (2018-11-23)</strong></p>
+<ul class="simple">
+<li>Bug: Missing avrisp.rules file was added to dist. tarball.</li>
+<li>Feature: Moved initialization of flight-planner to after file system mounted.</li>
+<li>Feature: Updated libraries.</li>
+</ul>
+<p><strong>2.3.1 (2018-08-14)</strong></p>
+<ul class="simple">
+<li>Feature: Updated libraries.</li>
+<li>Feature: Use gs_csp_service_dispatcher(), instead of server task in liba3200.</li>
+</ul>
+<p><strong>2.2.2 (2018-05-31)</strong></p>
+<ul class="simple">
+<li>Feature: Updated libraries.</li>
+</ul>
+<p><strong>2.1.1 (2018-04-18)</strong></p>
+<ul class="simple">
+<li>Feature: Changed param 4 store configuration to use stores defined in liba3200, libhk.</li>
+<li>Feature: Added Doxygen generated API documentation to html manual.</li>
+<li>Feature: Added default clients.</li>
+<li>Breaking: The format used to store paramters in FRAM has been changed, preventing load of existing data.</li>
+</ul>
+<p><strong>2.0.1 (2018-03-14)</strong></p>
+<ul class="simple">
+<li>Breaking: Removed libclients, replacing it very limited set of clients added.</li>
+<li>Breaking: updated  all libraries to latest version, e.g. libparam version 4.</li>
+</ul>
+<p><strong>2.0.0 (2017-09-06)</strong></p>
+<ul class="simple">
+<li>Feature: Use gsbuildtools for building and generate documentation.</li>
+</ul>
+<p><strong>1.1 (2017-03-08)</strong></p>
+<p><strong>1.0 (2017-01-10)</strong></p>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="doc/appendix/changelogs_product_interfaces.html" class="btn btn-neutral float-right" title="5.1.2. Product Interfaces" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="doc/appendix/changelogs.html" class="btn btn-neutral" title="5.1. Software Changelogs" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020 GomSpace A/S..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'2.12.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

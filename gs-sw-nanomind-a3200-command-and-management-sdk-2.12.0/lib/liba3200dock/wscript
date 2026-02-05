@@ -1,0 +1,50 @@
+#!/usr/bin/env python
+# encoding: utf-8
+# Copyright (c) 2013-2017 GomSpace A/S. All rights reserved.
+
+import gs_gcc
+import gs_doc
+import gs_dist
+
+APPNAME = 'a3200dock'
+
+
+def options(ctx):
+    ctx.load("gs_gcc")
+    gs_gcc.gs_recurse(ctx)
+
+
+def configure(ctx):
+    ctx.load("gs_gcc")
+
+    ctx.gs_add_doxygen()
+
+    gs_gcc.gs_recurse(ctx)
+
+
+def build(ctx):
+    gs_gcc.gs_recurse(ctx)
+
+    # Keep param files private --> src
+    ctx.gs_call_handler(handler='param_gen_4_3', name=APPNAME, prefix='a3200dock',
+                        header_root_path='src',
+                        generate_client=True, generate_host=True, update_source=True)
+
+    public_include = ctx.gs_include(includes=['include'], name=APPNAME)
+
+    ctx.gs_objects(source=ctx.path.ant_glob(['src/**/*.c']),
+                   includes='src',
+                   target=APPNAME,
+                   use=['param', 'a3200_client_h', 'embed', 'util', public_include])
+
+
+def doc(ctx):
+    gs_doc.library(ctx, keyvalues={
+        'gs_prod_name': 'lib'+APPNAME,
+        'gs_prod_desc': 'A3200 DOCK interface',
+        'gs_watermark_text': 'INTERNAL',
+    })
+
+
+def gs_dist(ctx):
+    ctx.add_default_files(source_module=True)

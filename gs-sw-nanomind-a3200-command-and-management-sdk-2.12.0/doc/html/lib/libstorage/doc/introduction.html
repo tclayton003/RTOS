@@ -1,0 +1,357 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.17.1. Introduction &mdash; A3200 Command and Management SDK 2.12.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="A3200 Command and Management SDK 2.12.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="3.17. Storage (libstorage)" href="libstorage.html"/>
+        <link rel="next" title="3.18. Thirdparty (libthirdparty)" href="../../libthirdparty/doc/libthirdparty.html"/>
+        <link rel="prev" title="3.17. Storage (libstorage)" href="libstorage.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../doc/index.html" class="icon icon-home"> A3200 Command and Management SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.12.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/a3200-sdk/a3200-sdk.html">1. A3200 SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/product_interfaces.html">2. Product Interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../doc/libraries.html">3. Libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../liba3200/doc/liba3200.html">3.1. A3200 (liba3200)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../liba3200dock/doc/liba3200dock.html">3.2. A3200 Dock (liba3200dock)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libasf/doc/libasf.html">3.3. ASF (libasf)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libgscsp/doc/libgscsp.html">3.4. GomSpace CSP (libgscsp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libembed/doc/libembed.html">3.5. Embed (libembed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libemul/doc/libemul.html">3.6. Emulation (libemul)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libfp/doc/libfp.html">3.7. Flight Planner (libfp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libftp/doc/libftp.html">3.8. FTP (libftp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libgosh/doc/libgosh.html">3.9. GOSH (libgosh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libgssb/doc/libgssb.html">3.10. GomSpace Sensor Bus (libgssb)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libhk/doc/libhk.html">3.11. Housekeeping (libhk)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libjson/doc/libjson.html">3.12. JSON parser (libjson)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../liblog/doc/liblog.html">3.13. Log (liblog)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libnanopb/doc/libnanopb.html">3.14. Nano Protobuf (libnanopb)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libparam/doc/libparam.html">3.15. Parameter System (libparam)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../librgosh/doc/librgosh.html">3.16. Remote GOSH (librgosh)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="libstorage.html">3.17. Storage (libstorage)</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.17.1. Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#vfs-virtual-file-systemm">3.17.1.1. VFS - Virtual File Systemm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#uffs-ultra-low-cost-flash-file-system">3.17.1.2. UFFS - Ultra low cost Flash File System</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#implementation">3.17.2. Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#commands">3.17.3. Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../libthirdparty/doc/libthirdparty.html">3.18. Thirdparty (libthirdparty)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libutil/doc/libutil.html">3.19. Utility (libutil)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/tools.html">4. Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/appendix/appendix.html">5. Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/zrefs.html">6. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../doc/index.html">A3200 Command and Management SDK</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../doc/index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../doc/libraries.html">3. Libraries</a> &raquo;</li>
+      
+          <li><a href="libstorage.html">3.17. Storage (libstorage)</a> &raquo;</li>
+      
+    <li>3.17.1. Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<h1>3.17.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>The Storage library contains implementations of embedded file systems (currently UFFS) and a Virtual File System layer (VFS) that provides an abstraction of the physically file system (e.g. UFFS).</p>
+<div class="section" id="vfs-virtual-file-systemm">
+<h2>3.17.1.1. VFS - Virtual File Systemm<a class="headerlink" href="#vfs-virtual-file-systemm" title="Permalink to this headline">¶</a></h2>
+<p>The VFS layer ensures that code using the file system can be written in a portable manner, using the standard C library file access primitives such as <code class="docutils literal"><span class="pre">fopen</span></code>, <code class="docutils literal"><span class="pre">fread</span></code>, and <code class="docutils literal"><span class="pre">fwrite</span></code>.</p>
+<p>A number of commands provides access to the file system, see <a class="reference internal" href="#libstorage-commands"><span class="std std-ref">Commands</span></a>.</p>
+<p>The figure below shows the call chain from standard C library functions to the physical file system layer.</p>
+<div class="figure align-center" id="id1">
+<img alt="../../../_images/vfs.png" src="../../../_images/vfs.png" />
+<p class="caption"><span class="caption-number">Fig. 3.15 </span><span class="caption-text">File System interfaces</span></p>
+</div>
+<p>The VFS can be extended with multiple file systems, by adding additional partitions in the file: <code class="docutils literal"><span class="pre">src/vfs/vfs_partitions.c</span></code>. The function <code class="docutils literal"><span class="pre">vfs_mount</span></code> handles all initialisation and mounting of the file systems.</p>
+</div>
+<div class="section" id="uffs-ultra-low-cost-flash-file-system">
+<span id="libstorage-uffs"></span><h2>3.17.1.2. UFFS - Ultra low cost Flash File System<a class="headerlink" href="#uffs-ultra-low-cost-flash-file-system" title="Permalink to this headline">¶</a></h2>
+<p>Ultra low cost Flash File system for embedded systems, designed for NAND and NOR flash called <a class="reference external" href="http://sites.google.com/site/gouffs/">UFFS</a>.</p>
+<p>UFFS manages all the pages and blocks on the flash directly and will ensure an even load of the flash pages. This makes it much more robust and it can theoretically survive a power-cut at any time.</p>
+<p>If a problem occurs during the writing of a flash page, UFFS will mark the entire block as a bad block, and not attempt writing to it again. The user must be aware that at some point, all blocks could be marked as bad and the file system will mount without any storage capacity. In such a case, user intervention is required in order to try to recover bad blocks. The easiest way to reset the bad blocks is to format the file system. In the event that all blocks are damaged, which will happen once the flash medium wears out, the file system will be unable to mount. In this case a reformat and reboot will put the system into a reboot-loop, and potentially render the OBC responseless. A safe mechanism to be able to execute without file system is therefore recommended.</p>
+<p>In order to use the UFFS file system directly, use the <code class="docutils literal"><span class="pre">uffs_open</span></code>, <code class="docutils literal"><span class="pre">uffs_read</span></code> etc. API functions. You can also use the Newlib C-library as a wrapper (and cache) with the <code class="docutils literal"><span class="pre">fopen</span></code>, <code class="docutils literal"><span class="pre">fread</span></code> etc. calls. If you wish to keep your code portable, the POSIX API is the best choice. The POSIX api is in <code class="docutils literal"><span class="pre">stdio.h</span></code> and the UFFS API in <code class="docutils literal"><span class="pre">uffs/uffs_fd.h</span></code></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The UFFS implementation has some limitations to the usage. The maximum number of open files are 10 and maximum dir handles 5. Furthermore the page cache of a file is kept per file handle, so two simultaneous file handles to the same file is not possible. Finally, if a file handle is shared between two tasks, external locking will be required since the UFFS is not thread safe when sharing handles. Generally sharing files should be avoided if possible.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The UFFS cache will not automatically flush data to the file system, so to ensure your data is written use <code class="docutils literal"><span class="pre">fsync()</span></code> or <code class="docutils literal"><span class="pre">uffs_sync()</span></code> after writing. Closing the file will also trigger a cache flush.</p>
+</div>
+</div>
+</div>
+<div class="section" id="implementation">
+<h1>3.17.2. Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h1>
+<p>Initialization of the storage layer and mounting of file systems takes place during startup of the system. It is recommended to perform the mounting of the file system in a separate task with low priority, to avoid blocking the system while booting.</p>
+<p>The time it takes to mount a file system depends on the usage of the partition, and can take several minutes if the device is full. Empty or sparsely used file systems usually mount in less than 30 seconds.</p>
+<p>For further details, please see the respective SDK, e.g. <cite>A3200 SDK</cite>.</p>
+</div>
+<div class="section" id="commands">
+<span id="libstorage-commands"></span><h1>3.17.3. Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h1>
+<p>The Storage library includes a number of commands for debugging the file system. Most commands are named to match the corresponding Linux shell commands, e.g <code class="docutils literal"><span class="pre">ls</span></code>, <code class="docutils literal"><span class="pre">rm</span></code>, <code class="docutils literal"><span class="pre">cp</span></code>.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Command</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>uffs</td>
+<td>UFFS specific commands</td>
+</tr>
+<tr class="row-odd"><td>testfs</td>
+<td>Test R/W-speeds</td>
+</tr>
+<tr class="row-even"><td>ls</td>
+<td>List files in directory</td>
+</tr>
+<tr class="row-odd"><td>rm</td>
+<td>Remove file</td>
+</tr>
+<tr class="row-even"><td>mv</td>
+<td>Move or rename file</td>
+</tr>
+<tr class="row-odd"><td>cp</td>
+<td>Copy file</td>
+</tr>
+<tr class="row-even"><td>mkdir</td>
+<td>Make directory</td>
+</tr>
+<tr class="row-odd"><td>touch</td>
+<td>Create empty file</td>
+</tr>
+<tr class="row-even"><td>cat</td>
+<td>Show the contents of a file</td>
+</tr>
+<tr class="row-odd"><td>append</td>
+<td>Append data (basic file editor)</td>
+</tr>
+<tr class="row-even"><td>chksum</td>
+<td>Calculate CRC32 checksum of a file</td>
+</tr>
+<tr class="row-odd"><td>hexdump</td>
+<td>Show the contents of a file in hex format</td>
+</tr>
+<tr class="row-even"><td>mkfs</td>
+<td>Recreate file system</td>
+</tr>
+<tr class="row-odd"><td>df</td>
+<td>Show file system usage</td>
+</tr>
+</tbody>
+</table>
+<p>Like all commands, the expected command arguments can be listed by entering the command name and pressing the <code class="docutils literal"><span class="pre">&lt;tab&gt;</span></code> key.</p>
+<p>The <code class="docutils literal"><span class="pre">df</span></code> command is used for showing the status of the mounted file systems:</p>
+<div class="highlight-none"><div class="highlight"><pre>nanomind # df
+File system    Size    Used   Avail  Use% Mounted on
+uffs          62.0M  992.0K   61.0M    1% /flash0
+uffs          62.0M    0.0B   62.0M    0% /flash1
+uffs          62.0M  992.0K   61.0M    1% /flash -&gt; flash0
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">mkfs</span></code> command can be used to recreate a file system. <strong>NOTE: this will permanently erase all stored files</strong>. To use it, simply run <code class="docutils literal"><span class="pre">mkfs</span> <span class="pre">&lt;partition&gt;</span></code>, where the partition string is the mountpoint without preceeding slash, i.e. <code class="docutils literal"><span class="pre">mkfs</span> <span class="pre">flash1</span></code> to recreate the UFFS file system on A3200. Be aware that recreating the file system can take up to 2 minutes:</p>
+<div class="highlight-none"><div class="highlight"><pre>nanomind # mkfs flash1 1
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">testfs</span></code> can be used to verify the performance of the file system. This test is run on an A3200, just after the file system has been recreated using <code class="docutils literal"><span class="pre">mkfs</span> <span class="pre">flash1</span> <span class="pre">1</span></code>:</p>
+<div class="highlight-none"><div class="highlight"><pre>nanomind # testfs /flash1/test1
+Wrote 100000 bytes in 1156 mS (86 KBytes/sec)
+Read 100000 bytes in 959 mS (104 KBytes/sec)
+
+nanomind # ls /flash1
+test1            97.7K
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../libthirdparty/doc/libthirdparty.html" class="btn btn-neutral float-right" title="3.18. Thirdparty (libthirdparty)" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="libstorage.html" class="btn btn-neutral" title="3.17. Storage (libstorage)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020 GomSpace A/S..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'2.12.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

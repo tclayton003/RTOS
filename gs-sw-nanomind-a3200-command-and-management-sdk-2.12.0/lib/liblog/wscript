@@ -1,0 +1,56 @@
+#!/usr/bin/env python
+# encoding: utf-8
+# Copyright (c) 2013-2018 GomSpace A/S. All rights reserved.
+
+import os
+import gs_gcc
+import gs_doc
+from waflib.Build import BuildContext
+
+APPNAME = 'log'
+
+
+def options(ctx):
+    ctx.load('gs_gcc')
+    gs_gcc.gs_recurse(ctx)
+
+
+def configure(ctx):
+    ctx.load('gs_gcc')
+
+    ctx.env.append_unique('USE_LOG', ['gscsp', 'util'])
+
+    ctx.env.append_unique('FILES_LOG', 'src/**/*.c')
+
+    ctx.gs_add_doxygen()
+
+    gs_gcc.gs_recurse(ctx)
+
+
+def build(ctx):
+    gs_gcc.gs_recurse(ctx)
+
+    public_include = ctx.gs_include(name=APPNAME, includes=['include'])
+
+    ctx.gs_objects(source=ctx.path.ant_glob(ctx.env.FILES_LOG),
+                   target=APPNAME,
+                   use=ctx.env.USE_LOG + [public_include])
+
+    ctx.gs_shlib(source=ctx.path.ant_glob(ctx.env.FILES_LOG),
+                 target=APPNAME,
+                 gs_use_shlib=ctx.env.USE_LOG + [public_include])
+
+
+def doc(ctx):
+    gs_doc.library(ctx, keyvalues={
+        'gs_prod_name': 'lib'+APPNAME,
+        'gs_prod_desc': 'Log Library',
+    })
+
+
+class Doc(BuildContext):
+    cmd = fun = 'doc'
+
+
+def gs_dist(ctx):
+    ctx.add_default_files(source_module=True)

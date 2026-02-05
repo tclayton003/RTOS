@@ -1,0 +1,377 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1.3. User Application &mdash; A3200 Board Support Package 2.6.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="A3200 Board Support Package 2.6.3 documentation" href="../index.html"/>
+        <link rel="up" title="1. A3200 BSP" href="a3200-bsp.html"/>
+        <link rel="next" title="2. Programming" href="a3200_toolchain.html"/>
+        <link rel="prev" title="1.1. Introduction" href="introduction.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> A3200 Board Support Package
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.6.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="a3200-bsp.html">1. A3200 BSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">1.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#getting-started">1.2. Getting started</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.3. User Application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#main">1.3.1. main()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hook-init-complete">1.3.2. hook_init_complete()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#led-and-watchdog">1.3.3. LED and Watchdog</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="a3200_toolchain.html">2. Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libraries.html">3. Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">4. Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/appendix.html">5. Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zrefs.html">6. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">A3200 Board Support Package</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="a3200-bsp.html">1. A3200 BSP</a> &raquo;</li>
+      
+    <li>1.3. User Application</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="user-application">
+<span id="id1"></span><h1>1.3. User Application<a class="headerlink" href="#user-application" title="Permalink to this headline">¶</a></h1>
+<p>This chapter provides a number of examples for building an application for the A3200 board:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#main"><span class="std std-ref">main()</span></a></li>
+<li><a class="reference internal" href="#hook-init-complete"><span class="std std-ref">hook_init_complete()</span></a></li>
+<li><a class="reference internal" href="#led-watchdog"><span class="std std-ref">LED and Watchdog</span></a></li>
+</ul>
+<p>See the NanoMind A3200 Datasheet <a class="reference internal" href="zrefs.html#ds-a3200-bib" id="id2">[1]</a> for further details on the A3200 board and the peripheral devices/sensors.</p>
+<div class="section" id="main">
+<span id="id3"></span><h2>1.3.1. main()<a class="headerlink" href="#main" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>main()</cite> function is the starting point, when the board is booted.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">static</span> <span class="k">const</span> <span class="n">gs_a3200_hooks_t</span> <span class="n">hooks</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">.</span><span class="n">init_complete</span> <span class="o">=</span> <span class="n">hook_init_complete</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Initiaize: clock, watchdog - use interal memory for heap.</span>
+    <span class="n">gs_a3200_init_set_heap</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+
+    <span class="c1">// Spawns a task to complete the initialization and launch application tasks through hooks.</span>
+    <span class="n">gs_a3200_run</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hooks</span><span class="p">);</span>
+
+    <span class="c1">// Will never get here, as gs_a3200_run() never returns</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><cite>gs_a3200_init()</cite> (located in <a class="reference internal" href="../lib/liba3200/doc/liba3200.html#liba3200"><span class="std std-ref">A3200 (liba3200)</span></a>) performs basic initialisation of the board. When it returns, it is safe to use functions like <cite>malloc()</cite>.</p>
+<p><cite>gs_a3200_run()</cite> (located in <a class="reference internal" href="../lib/liba3200/doc/liba3200.html#liba3200"><span class="std std-ref">A3200 (liba3200)</span></a>) performs initialisation of drivers and starts a FreeRTOS task. The <cite>hooks</cite> are called during this
+process, and allow custom code to be hooked into the boot process, without modifying code in the <a class="reference internal" href="../lib/liba3200/doc/liba3200.html#liba3200"><span class="std std-ref">A3200 (liba3200)</span></a>. The hooks will be called from
+a FreeRTOS task, so it is safe to create new tasks.</p>
+<p><cite>main()</cite> will never return from <cite>gs_a3200_run()</cite> as it calls the FreeRTOS scheduler, which never returns.</p>
+</div>
+<div class="section" id="hook-init-complete">
+<span id="id4"></span><h2>1.3.2. hook_init_complete()<a class="headerlink" href="#hook-init-complete" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">static</span> <span class="kt">void</span> <span class="nf">hook_init_complete</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Setup VMEM (virtuel memory) mapping</span>
+    <span class="n">gs_vmem_set_map</span><span class="p">(</span><span class="n">vmem_map</span><span class="p">);</span>
+
+    <span class="c1">// Initialize command (GOSH) framework with a stack-size of 10000 bytes.</span>
+    <span class="n">gs_command_init</span><span class="p">(</span><span class="mi">10000</span><span class="p">);</span>
+
+    <span class="c1">// Start LED task - toggles the LEDs and touches the watchdog to prevent reset</span>
+    <span class="k">extern</span> <span class="kt">void</span> <span class="n">led_init</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+    <span class="n">led_init</span><span class="p">();</span>
+
+    <span class="c1">// LM71 temperature sensors - initialized by gs_a3200_run()</span>
+    <span class="n">gs_a3200_lm71_register_commands</span><span class="p">();</span>
+
+    <span class="c1">// Flash</span>
+    <span class="n">configure_flash</span><span class="p">();</span>
+
+    <span class="c1">// Register commands for On-board devices and generel debug.</span>
+    <span class="c1">// Gyro</span>
+    <span class="n">gs_mpu3300_init</span><span class="p">(</span><span class="n">GS_MPU3300_BW_5</span><span class="p">,</span> <span class="n">GS_MPU3300_FSR_225</span><span class="p">);</span>
+    <span class="n">gs_mpu3300_register_commands</span><span class="p">();</span>
+
+    <span class="c1">// Magnetometer</span>
+    <span class="n">gs_hmc5843_init</span><span class="p">();</span>
+    <span class="n">gs_hmc5843_register_commands</span><span class="p">();</span>
+
+    <span class="c1">// FRAM - initialized by gs_a3200_run()</span>
+    <span class="n">gs_fm33256b_register_commands</span><span class="p">();</span>
+
+    <span class="c1">// ADC - initialized by gs_a3200_run()</span>
+    <span class="n">gs_a3200_adc_register_commands</span><span class="p">();</span>
+
+    <span class="c1">// PWM</span>
+    <span class="n">gs_a3200_pwm_register_commands</span><span class="p">();</span>
+
+    <span class="c1">// PWR switches</span>
+    <span class="n">gs_a3200_pwr_register_commands</span><span class="p">();</span>
+
+    <span class="c1">// Misc. commands - useful for debugging</span>
+    <span class="n">gs_embed_register_commands</span><span class="p">();</span>
+    <span class="n">gs_vmem_register_commands</span><span class="p">();</span>
+
+    <span class="c1">// Checkout test commands - used for production checkout</span>
+    <span class="n">gs_checkout_register_commands</span><span class="p">();</span>
+
+    <span class="c1">// Unlock FRAM and clear (zero) all content</span>
+    <span class="k">const</span> <span class="n">gs_vmem_t</span> <span class="o">*</span> <span class="n">fram</span> <span class="o">=</span> <span class="n">gs_vmem_get_by_name</span><span class="p">(</span><span class="s">&quot;fram&quot;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">fram</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">gs_vmem_lock_by_name</span><span class="p">(</span><span class="n">fram</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+        <span class="kt">uint8_t</span> <span class="n">wtmp</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">wtmp</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">wtmp</span><span class="p">));</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">fram</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">wtmp</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">gs_vmem_cpy</span><span class="p">(</span><span class="n">fram</span><span class="o">-&gt;</span><span class="n">virtmem</span><span class="p">.</span><span class="n">p</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">wtmp</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">wtmp</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="n">log_info</span><span class="p">(</span><span class="s">&quot;All FRAM set to zero (cleared)&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Start command console on standard I/O (uart).</span>
+    <span class="n">gs_console_start</span><span class="p">(</span><span class="n">GS_A3200_HOSTNAME</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+    <span class="c1">// Configure CSP</span>
+    <span class="k">extern</span> <span class="kt">void</span> <span class="n">configure_csp</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+    <span class="n">configure_csp</span><span class="p">();</span>
+<span class="p">}</span><span class="c1">//</span>
+</pre></div>
+</div>
+<p>Register commands and create tasks (threads).</p>
+<p>See <a class="reference internal" href="../lib/liba3200/doc/drivers_api.html#liba3200-a3200-drivers-api"><span class="std std-numref">Section 3.1.2</span></a> for further information about interfacing with the devices on the A3200 board.</p>
+</div>
+<div class="section" id="led-and-watchdog">
+<span id="led-watchdog"></span><h2>1.3.3. LED and Watchdog<a class="headerlink" href="#led-and-watchdog" title="Permalink to this headline">¶</a></h2>
+<p>The led task:</p>
+<blockquote>
+<div><ul class="simple">
+<li>toggles the 2 LEDs on the A3200 board every 1000 mS</li>
+<li>touches the watchdog to prevent reset.</li>
+</ul>
+</div></blockquote>
+<div class="highlight-c"><div class="highlight"><pre><span class="cm">/* Copyright (c) 2013-2019 GomSpace A/S. All rights reserved. */</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;gs/a3200/led.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;gs/a3200/a3200.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;gs/util/time.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;gs/util/thread.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;wdt.h&gt;  // libasf</span><span class="cp"></span>
+
+<span class="cm">/**</span>
+<span class="cm">   Toogle leds on/off every second.</span>
+<span class="cm">   Touch watchdog.</span>
+<span class="cm">*/</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="o">*</span> <span class="nf">task_led</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">param</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(;;)</span> <span class="p">{</span>
+        <span class="c1">// Touch watchdog to prevent reset.</span>
+        <span class="c1">// This should be tied into other tasks as well, to ensure everything is running.</span>
+        <span class="n">wdt_clear</span><span class="p">();</span>
+
+        <span class="n">gs_a3200_led_off</span><span class="p">(</span><span class="n">GS_A3200_LED_CPU_OK</span><span class="p">);</span>
+        <span class="n">gs_a3200_led_on</span><span class="p">(</span><span class="n">GS_A3200_LED_A</span><span class="p">);</span>
+        <span class="n">gs_time_sleep_ms</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+
+        <span class="n">gs_a3200_led_on</span><span class="p">(</span><span class="n">GS_A3200_LED_CPU_OK</span><span class="p">);</span>
+        <span class="n">gs_a3200_led_off</span><span class="p">(</span><span class="n">GS_A3200_LED_A</span><span class="p">);</span>
+        <span class="n">gs_time_sleep_ms</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Will never get here</span>
+    <span class="n">gs_thread_exit</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">led_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Initialize led (GPO)</span>
+    <span class="n">gs_a3200_led_init</span><span class="p">();</span>
+
+    <span class="n">gs_thread_create</span><span class="p">(</span><span class="s">&quot;LED&quot;</span><span class="p">,</span> <span class="n">task_led</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">gs_a3200_get_default_stack_size</span><span class="p">(),</span> <span class="n">GS_THREAD_PRIORITY_LOW</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><cite>gs_thread_create()</cite> is GomSpace cross-platform API for creating threads (or tasks). The <cite>gs_thread</cite> API is based on the Linux POSIX standard <cite>pthread</cite>, hence the name thread. FreeRTOS uses the term <cite>task</cite>, so when <cite>gs_thread_create()</cite> is called on a FreeRTOS platform, it will create a FreeRTOS task.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="a3200_toolchain.html" class="btn btn-neutral float-right" title="2. Programming" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral" title="1.1. Introduction" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023 GomSpace A/S..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.6.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

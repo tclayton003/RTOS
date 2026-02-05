@@ -1,0 +1,58 @@
+#!/usr/bin/env python
+# encoding: utf-8
+# Copyright (c) 2013-2017 GomSpace A/S. All rights reserved.
+
+import os
+import gs_gcc
+import gs_doc
+import gs_dist
+from waflib.Build import BuildContext
+
+APPNAME = 'gssb'
+
+
+def options(ctx):
+    ctx.load('gs_gcc gs_doc')
+    gs_gcc.gs_recurse(ctx)
+
+    gr = ctx.add_option_group('libgssb options')
+
+
+def configure(ctx):
+    ctx.load('gs_gcc gs_doc')
+
+    ctx.env.append_unique('USE_GSSB', ['util', 'gssb_client', 'gssb_client_h', 'gscsp_h'])
+
+    ctx.env.append_unique('FILES_GSSB', ['src/gssb_service.c'])
+
+    ctx.gs_add_doxygen()
+
+    gs_gcc.gs_recurse(ctx)
+
+
+def build(ctx):
+    gs_gcc.gs_recurse(ctx)
+
+    public_include = ctx.gs_include(includes=['include'], name=APPNAME)
+
+    if ctx.env.GS_ARCH not in ['avr8']:
+        ctx.gs_objects(source=ctx.path.ant_glob(ctx.env.FILES_GSSB),
+                       target=APPNAME,
+                       use=ctx.env.USE_GSSB + [public_include])
+
+
+def doc(ctx):
+    gs_doc.library(ctx, keyvalues={
+        'gs_prod_name': 'lib'+APPNAME,
+        'gs_prod_desc': 'GomSpace Sensor Bus',
+        'gs_watermark_text': 'INTERNAL',
+    })
+
+
+class Doc(BuildContext):
+    cmd = fun = 'doc'
+
+
+def gs_dist(ctx):
+    ctx.add_default_files(source_module=True)
+    ctx.recurse(['lib/libgssb_client'])

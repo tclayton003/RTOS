@@ -1,0 +1,318 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.1.2.1. A3200 (liba3200) &mdash; A3200 Board Support Package 2.6.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="A3200 Board Support Package 2.6.3 documentation" href="../../index.html"/>
+        <link rel="up" title="5.1.2. Libraries" href="../../doc/appendix/changelogs_libraries.html"/>
+        <link rel="next" title="5.1.2.1.1. A3200 (liba3200_client)" href="lib/liba3200_client/CHANGELOG.html"/>
+        <link rel="prev" title="5.1.2. Libraries" href="../../doc/appendix/changelogs_libraries.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../doc/index.html" class="icon icon-home"> A3200 Board Support Package
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.6.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../doc/a3200-bsp.html">1. A3200 BSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc/a3200_toolchain.html">2. Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc/libraries.html">3. Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc/tools.html">4. Tools</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../doc/appendix/appendix.html">5. Appendix</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../doc/appendix/changelogs.html">5.1. Software Changelogs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../CHANGELOG.html">5.1.1. A3200 BSP</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../doc/appendix/changelogs_libraries.html">5.1.2. Libraries</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">5.1.2.1. A3200 (liba3200)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../libasf/CHANGELOG.html">5.1.2.2. ASF (libasf)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../libgscsp/CHANGELOG.html">5.1.2.3. Gomspace CSP extension (libgscsp)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../libembed/CHANGELOG.html">5.1.2.4. Embed (libembed)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../libthirdparty/CHANGELOG.html">5.1.2.5. Thirdparty (libthirdparty)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../libutil/CHANGELOG.html">5.1.2.6. Utility (libutil)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../doc/appendix/changelogs_tools.html">5.1.3. Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/appendix/api.html">5.2. API Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc/zrefs.html">6. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../doc/index.html">A3200 Board Support Package</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../doc/index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../doc/appendix/appendix.html">5. Appendix</a> &raquo;</li>
+      
+          <li><a href="../../doc/appendix/changelogs.html">5.1. Software Changelogs</a> &raquo;</li>
+      
+          <li><a href="../../doc/appendix/changelogs_libraries.html">5.1.2. Libraries</a> &raquo;</li>
+      
+    <li>5.1.2.1. A3200 (liba3200)</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="a3200-liba3200">
+<h1>5.1.2.1. A3200 (liba3200)<a class="headerlink" href="#a3200-liba3200" title="Permalink to this headline">¶</a></h1>
+<p><strong>3.8.1 (2019-12-17)</strong></p>
+<ul class="simple">
+<li>Feature: Added commands for onboard power switches.</li>
+<li>Bug: hmc5843 selftest was dependent on prior command sent to hmc5843.</li>
+</ul>
+<p><strong>3.7.1 (2019-10-16)</strong></p>
+<ul class="simple">
+<li>Improvement: Increase delay between read in gyro self test to allow gyro to stabilize.</li>
+<li>Improvement: Fail gyro self test if FT value is zero.</li>
+<li>Improvement: Added hmc5843 selftest</li>
+<li>Improvement: Added configUSE_NEWLIB_REENTRANT=1 in conf/FreeRTOSConfig.h to prevent crash from multiple tasks/thread sprintf floats.</li>
+<li>Improvement: Added gs_a3200_init_set_heap(), which controls location of heap (internal or external).</li>
+<li>Feature: Added commands for reading LM71.</li>
+<li>Improvement: Added gs_a3200_get_default_stack_size() as weak function, to allow stack size tuning in order to run in internal memory.</li>
+<li>Improvement: Generalized gs_a3200_init_twi() and gs_a3200_init_can() and made them public.</li>
+</ul>
+<p><strong>3.6.1 (2019-07-03)</strong></p>
+<ul class="simple">
+<li>Feature: Append “(RAM)” to model, when compiling RAM image.</li>
+<li>Limitation: Disabled FreeRTOS runtime stats until implemented for FreeRTOS 10.2.0.</li>
+<li>Improvement: Improved FileSystem logging during boot/mount (logs goes to FRAM if enabled).</li>
+<li>Breaking: Removed gs_s3200_driver_register_commands(), replaced by libembed gs_embed_register_driver_commands().</li>
+</ul>
+<p><strong>3.5.2 (2019-06-12)</strong></p>
+<ul class="simple">
+<li>Feature: Only initialize KISS UART, if KISS is enabled (in the board table).</li>
+<li>Improvement: Always build commands.</li>
+</ul>
+<p><strong>3.5.1 (2019-04-09)</strong></p>
+<ul class="simple">
+<li>Feature: Added support for configuring log groups/appenders, using the “log_mask” parameter in the “configuration” table.</li>
+</ul>
+<p><strong>3.4.1 (2019-02-26)</strong></p>
+<ul class="simple">
+<li>Breaking: Renamed LM70 to LM71.</li>
+</ul>
+<p><strong>3.3.6 (2018-01-30)</strong></p>
+<ul class="simple">
+<li>Breaking: Removed A3200_DOCK_TABLE from A3200 protected storage.</li>
+<li>Improvement: Re-arranged boot order to enable persistent logging earlier.</li>
+</ul>
+<p><strong>3.3.5 (2018-12-19)</strong></p>
+<ul class="simple">
+<li>Improvement: Updated documentation.</li>
+</ul>
+<p><strong>3.3.4 (2018-11-21)</strong></p>
+<ul class="simple">
+<li>Improvement: Reflect actual Flash mounting status in telemetry.</li>
+</ul>
+<p><strong>3.3.3 (2018-09-21)</strong></p>
+<ul class="simple">
+<li>Feature: Integrated latest liba3200dock and libthirdparty.</li>
+</ul>
+<p><strong>3.3.1 (2018-08-13)</strong></p>
+<ul class="simple">
+<li>Breaking: dock_type in board table change from uint8_t to string.</li>
+<li>Improvement: spn_fl512s_read_data clears return buffer in case of SPI timeout instead of returning random data.</li>
+<li>Breaking: Cleaned up options and re-organized code to better support BSP and SDK builds (minor code changes).</li>
+<li>Breaking: Moved linker-scripts to conf (standard).</li>
+<li>Breaking: Removed server task - moved to a3200-sdk.</li>
+<li>Feature: Removed KEEP from linker-scrips..</li>
+<li>Breaking: Restructured - moved fl512s driver to libthirdparty and moved UFFS mounting procedure to libstorage.</li>
+</ul>
+<p><strong>3.2.1 (2018-05-30)</strong></p>
+<ul class="simple">
+<li>Breaking: Refactored hmc5843 API, prefixed with <cite>gs</cite> and return gs_error_t error codes.</li>
+<li>Breaking: In the telemetry table boot_count and boot_cause is renamed to bootcount and bootcause to adhere to standard</li>
+<li>Breaking: In the configuration table fs_disable flag is removed, this invalidates FRAM copies of this table.</li>
+<li>Breaking: Changed spn_fl512s return codes to gs_error_t.</li>
+</ul>
+<p><strong>3.1.1 (2018-04-18)</strong></p>
+<ul class="simple">
+<li>Breaking: Changed uptime in telemetry from mS to seconds.</li>
+<li>Feature: Added param 4 store configuration.</li>
+</ul>
+<p><strong>3.0.1 (2018-03-14)</strong></p>
+<ul class="simple">
+<li>Breaking: Changed table layout.</li>
+<li>Breaking: Changed hook interface - provide callbacks before and after file system is mounted.</li>
+<li>Feature: Use gsbuildtools.</li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lib/liba3200_client/CHANGELOG.html">5.1.2.1.1. A3200 (liba3200_client)</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="lib/liba3200_client/CHANGELOG.html" class="btn btn-neutral float-right" title="5.1.2.1.1. A3200 (liba3200_client)" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../doc/appendix/changelogs_libraries.html" class="btn btn-neutral" title="5.1.2. Libraries" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023 GomSpace A/S..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2.6.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+
+------------------------------------------------
+Wrong file name_len in uffs page read causes buffer overflow
+
+	uffs_FlashReadPage(dev, block, page, buf);
+	info = (uffs_FileInfo *) (buf->data);
+	if (info->name_len > MAX_FILENAME_LENGTH) {
+		uffs_BufFreeClone(dev, buf);
+		uffs_Perror(UFFS_ERR_SERIOUS, "info->name_len > MAX_FILENAME_LENGTH!\r\n");
+		goto process_invalid_block;
+	}
+	data_sum = uffs_MakeSum16(info->name, info->name_len);
+	
+------------------------------------------------
+Bumped page_id to 10-bit to accomodate flashes with more than 64 pages.
+
+diff --git a/include/uffs/uffs_public.h b/include/uffs/uffs_public.h
+index c39ec9b..3e6ad0e 100644
+--- a/include/uffs/uffs_public.h
++++ b/include/uffs/uffs_public.h
+@@ -116,8 +116,7 @@ struct uffs_TagStoreSt {
+	u32 serial:14;          //!< serial number
+
+	u32 parent:10;          //!< parent's serial number
+	-       u32 page_id:6;          //!< page id
+	-       u32 reserved:4;         //!< reserved, for UFFS2
+	+       u32 page_id:10;         //!< page id
+	u32 tag_ecc:12;         //!< tag ECC
+};
+
+index 1e9ff7a..a0fc3f5 100644
+--- a/src/uffs/fs/uffs_buf.c
++++ b/src/uffs/fs/uffs_buf.c
+@@ -664,7 +664,7 @@ retry:
+TAG_PARENT(tag) = parent;
+TAG_SERIAL(tag) = serial;
+TAG_TYPE(tag) = type;
+-               TAG_PAGE_ID(tag) = (u8)(i & 0xFF);      // now, page_id = page.
+-                                                                       // FIX ME!! if more than 256 pages in a block
++               TAG_PAGE_ID(tag) = (u16)(i & 0x3FF);    // now, page_id = page.
+
+SEAL_TAG(tag);
+@@ -1027,7 +1027,7 @@ URET
+TAG_TYPE(tag) = buf->type;
+TAG_PARENT(tag) = buf->parent;
+TAG_SERIAL(tag) = buf->serial;
+-               TAG_PAGE_ID(tag) = (u8)(buf->page_id);
++               TAG_PAGE_ID(tag) = (u16)(buf->page_id & 0x3FF);
+
+SEAL_TAG(tag);
+

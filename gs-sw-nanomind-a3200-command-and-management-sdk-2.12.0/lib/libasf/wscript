@@ -1,0 +1,401 @@
+#!/usr/bin/env python
+# encoding: utf-8
+# Copyright (c) 2013-2017 GomSpace A/S. All rights reserved.
+
+import os
+import re
+import gs_gcc
+import gs_doc
+from waflib.Build import BuildContext
+from waflib.Configure import conf
+
+APPNAME = 'asf'
+
+
+def get_freertos(ctx, default='8'):
+    if ctx.options.freertos_version:
+        version = str(ctx.options.freertos_version)
+    else:
+        version = default
+
+    if version in ['8']:
+        version = '8.0.1'
+    elif version in ['10']:
+        version = '10.2.0'
+    else:
+        ctx.fatal("ASF: Unsupported FreeRTOS version: " + str(version))
+
+    # This is used by libasf
+    ctx.env.append_unique('DEFINES', ['FREERTOS_USED=1'])
+    # Legacy - use tskKERNEL from FreeRTOS header file task.h
+    ctx.env.append_unique('DEFINES', ['FREERTOS_VERSION=' + re.findall(r'^(\d+)\.*', version)[0]])
+
+    # Source and include
+    dir = 'thirdparty/freertos/freertos-' + version
+    ctx.env.append_unique('FILES_ASF',      [dir + '/Source/list.c'])
+    ctx.env.append_unique('FILES_ASF',      [dir + '/Source/queue.c'])
+    ctx.env.append_unique('FILES_ASF',      [dir + '/Source/tasks.c'])
+    ctx.env.append_unique('FILES_ASF',      [dir + '/Source/timers.c'])
+    ctx.env.append_unique('FILES_ASF',      [dir + '/Source/portable/MemMang/heap_3.c'])
+    ctx.env.append_unique('INCLUDES_ASF',   [dir + '/Source/include'])
+
+    ctx.msg("FreeRTOS version", version)
+    return dir
+
+
+def options(ctx):
+    ctx.load('gs_gcc gs_doc')
+    gs_gcc.gs_recurse(ctx)
+
+    # Group options
+    gr = ctx.add_option_group('libasf options')
+    gr.add_option('--sleep-mode', default='IDLE',
+                  help='Select MCU sleep mode [IDLE, FROZEN, STANDBY]. Usart will not work in STANDBY.')
+    gr.add_option('--enable-asf-fat', action='store_true', help='Enable FAT filesystem')
+
+    gr.add_option('--embed-compile-check', action='store_true',
+                  help='Compile check mode - adds required module configuration')
+
+    gr = ctx.add_option_group('FreeRTOS options')
+    gr.add_option('--freertos-config', action='store', help='FreeRTOS configuration, absolute path')
+    gr.add_option('--freertos-version', action='store', help='FreeRTOS major version')
+
+
+def configure(ctx):
+    ctx.load('gs_gcc gs_doc')
+
+    freertos_dir = None
+
+    if ctx.options.arch in ['ucr3fp']:
+
+        # Startup
+        ctx.env.append_unique('FILES_ASF',          ['avr32/utils/startup/startup_uc3.S'])
+        ctx.env.append_unique('LINKFLAGS',          ['-nostartfiles'])
+
+        # Drivers that include all
+        drivers = ['tc', 'intc', 'gpio', 'pdca', 'usart', 'flashc', 'spi', 'twim', 'cpu', 'ast', 'canif']
+        if ctx.options.part == 'uc3c0512c':
+            drivers += ['ebi/sdramc']
+        if 'ucr3' in ctx.options.arch:
+            drivers += ['adcifa']
+        else:
+            drivers += ['adc']
+        for driver in drivers:
+            ctx.env.append_unique('FILES_ASF',      ['avr32/drivers/' + driver + '/*.c'])
+            ctx.env.append_unique('INCLUDES_ASF',   ['avr32/drivers/' + driver])
+
+        # PWM
+        if 'ucr3' in ctx.options.arch:
+            ctx.env.append_unique('FILES_ASF',      ['avr32/drivers/pwm/pwm4.c'])
+        else:
+            ctx.env.append_unique('FILES_ASF',      ['avr32/drivers/pwm/pwm.c'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['avr32/drivers/pwm'])
+
+        # WDT
+        if 'ucr3' in ctx.options.arch:
+            ctx.env.append_unique('FILES_ASF',      ['avr32/drivers/wdt/wdt4.c'])
+        else:
+            ctx.env.append_unique('FILES_ASF',      ['avr32/drivers/wdt/wdt.c'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['avr32/drivers/wdt'])
+
+        # PM
+        if 'uc3c' in ctx.options.part:
+            ctx.env.append_unique('FILES_ASF',      ['avr32/drivers/pm/pm_uc3c.c'])
+            ctx.env.append_unique('FILES_ASF',      ['avr32/drivers/pm/power_clocks_lib.c'])
+            ctx.env.append_unique('FILES_ASF',      ['avr32/drivers/scif/scif_uc3c.c'])
+            ctx.env.append_unique('INCLUDES_ASF',   ['avr32/drivers/scif'])
+        else:
+            ctx.env.append_unique('FILES_ASF',      ['avr32/drivers/pm/pm.c'])
+            ctx.env.append_unique('FILES_ASF',      ['avr32/drivers/pm/pm_conf_clocks.c'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['avr32/drivers/pm'])
+
+        # SDRAM component include
+        ctx.env.append_unique('INCLUDES_ASF',   ['avr32/components/memory/sdram'])
+
+        # Includes
+        ctx.env.append_unique('INCLUDES_ASF',   ['avr32/utils'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['avr32/utils/preprocessor'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['avr32/boards'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['common/boards'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['common/utils'])
+
+        # FreeRTOS base
+        freertos_dir = get_freertos(ctx)
+
+        # FreeRTOS port
+        ctx.env.append_unique('INCLUDES_ASF',   ['gomspace/include/gs/asf/avr32/freertos'])
+        ctx.env.append_unique('FILES_ASF',      ['gomspace/src/avr32/freertos/*.c'])
+        ctx.env.append_unique('FILES_ASF',      ['gomspace/src/avr32/freertos/*.S'])
+
+        # Service: Sysclk
+        ctx.env.append_unique('FILES_ASF',      ['common/services/clock/uc3c/*.c'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['common/services/clock'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['common/services/delay'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['avr32/drivers/cpu/cycle_counter'])
+
+        # Service: CPU
+        ctx.env.append_unique('INCLUDES_ASF',   ['common/services/cpu'])
+
+        # Service: SPI master, ioport
+        ctx.env.append_unique('FILES_ASF',      ['common/services/spi/uc3_spi/spi_master.c'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['common/services/spi'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['common/services/ioport'])
+
+        if ctx.options.enable_asf_fat:
+
+            ctx.define('ENABLE_ASF_FAT', True)
+
+            # Service: SPI master, SD_MMC, ioport. (Required for SD-Card)
+            ctx.env.append_unique('FILES_ASF',      ['common/components/memory/sd_mmc/sd_mmc.c'])
+            ctx.env.append_unique('FILES_ASF',      ['common/components/memory/sd_mmc/sd_mmc_spi.c'])
+            ctx.env.append_unique('FILES_ASF',      ['common/components/memory/sd_mmc/sd_mmc_mem.c'])
+            ctx.env.append_unique('INCLUDES_ASF',   ['common/components/memory/sd_mmc/'])
+
+            # Service: ctrl_access
+            ctx.env.append_unique('INCLUDES_ASF',   ['common/services/storage/ctrl_access'])
+            ctx.env.append_unique('FILES_ASF',      ['common/services/storage/ctrl_access/ctrl_access.c'])
+
+            # Thirdparty: FATFS
+            ctx.env.append_unique('FILES_ASF',      ['thirdparty/fatfs/fatfs-port-r0.09/diskio.c'])
+            ctx.env.append_unique('FILES_ASF',      ['thirdparty/fatfs/fatfs-port-r0.09/uc3/fattime_rtc.c'])
+            ctx.env.append_unique('FILES_ASF',      ['thirdparty/fatfs/fatfs-r0.09/src/ff.c'])
+            ctx.env.append_unique('FILES_ASF',      ['thirdparty/fatfs/fatfs-r0.09/src/ff_lock.c'])
+            ctx.env.append_unique('INCLUDES_ASF',   ['thirdparty/fatfs/fatfs-r0.09/src/'])
+
+        sleep_modes = {'IDLE': 0, 'FROZEN': 1, 'STANDBY': 2}
+        sleep_mode_str = 'AVR32_PM_SMODE_'
+        if ctx.options.sleep_mode in sleep_modes:
+            ctx.define('MCU_SLEEP_MODE', sleep_modes[ctx.options.sleep_mode])
+        else:
+            ctx.define('MCU_SLEEP_MODE', sleep_modes['IDLE'])
+            print "Sleep mode {0} unknown, setting it to IDLE".format(ctx.options.sleep_mode)
+
+        if ctx.options.embed_compile_check:
+            ctx.env.append_unique('INCLUDES_ASF',   ['avr32/drivers/canif/module_config'])
+            ctx.env.append_unique('INCLUDES_ASF',   ['common/services/clock/uc3c/module_config'])
+            ctx.env.append_unique('INCLUDES_ASF',   ['common/services/spi/uc3_spi/module_config'])
+            ctx.options.freertos_config = 'gomspace/conf/avr32/compilecheck'
+
+    elif ctx.options.arch in ['avr8']:
+
+        # FreeRTOS base
+        freertos_dir = get_freertos(ctx)
+
+        # FreeRTOS port
+        ctx.env.append_unique('INCLUDES_ASF',   ['gomspace/include/gs/asf/avr8/freertos'])
+        ctx.env.append_unique('FILES_ASF',      ['gomspace/src/avr8/freertos/*.c'])
+        if ctx.options.mcu == 'atmega128':
+            ctx.env.append_unique('FILES_ASF',  ['gomspace/src/avr8/freertos/atmega128/*.c'])
+        else:
+            ctx.env.append_unique('FILES_ASF',  ['gomspace/src/avr8/freertos/common/*.c'])
+
+        if ctx.options.embed_compile_check:
+            ctx.options.freertos_config = 'gomspace/conf/avr8/compilecheck'
+
+    elif ctx.options.arch in ['sam0']:
+
+        sam = ''
+
+        if ctx.options.part == 'samd21j18a':
+            sam = 'samd21'
+        elif ctx.options.part == 'samd21e18a':
+            sam = 'samd21'
+        elif ctx.options.part == 'samc21e18a':
+            sam = 'samc21'
+        else:
+            ctx.fatal("%s: Unsupported part, target: %s" % (APPNAME, ctx.gs_get_target_info()))
+
+        ctx.env.append_unique('DEFINES', ['__' + ctx.options.part.upper() + '__'])
+
+        ctx.env.append_unique('FILES_ASF',  ['sam0/utils/cmsis/'+sam+'/source/gcc/startup_'+sam+'.c'])
+
+        ctx.env.append_unique('INCLUDES_ASF',   ['.'])
+
+        # Drivers / Modules
+        ctx.env.append_unique('FILES_ASF',      ['sam0/drivers/port/port.c'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['sam0/drivers/port'])
+        ctx.env.append_unique('FILES_ASF',      ['sam0/boards/*.c'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['sam0/boards'])
+        ctx.env.append_unique('FILES_ASF',      ['common/boards/*.c'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['common/boards'])
+        ctx.env.append_unique('FILES_ASF',      ['common/utils/*.c'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['common/utils'])
+        ctx.env.append_unique('FILES_ASF',      ['common/utils/interrupt/*.c'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['common/utils/interrupt'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['thirdparty/CMSIS/Include'])
+        if sam == 'samc21':
+            ctx.env.append_unique('FILES_ASF',      ['sam0/drivers/tc/tc_sam_l_c/*.c'])
+            ctx.env.append_unique('FILES_ASF',      ['sam0/drivers/events/events_sam_l_c/*.c'])
+        if sam == 'samd21':
+            ctx.env.append_unique('FILES_ASF',      ['sam0/drivers/tc/tc_sam_d_r/*.c'])
+            ctx.env.append_unique('FILES_ASF',      ['sam0/drivers/events/events_sam_d_r/*.c'])
+
+        # Delay
+        ctx.env.append_unique('FILES_ASF',      ['common2/services/delay/sam0/cycle_counter.c'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['common2/services/delay'])
+        ctx.env.append_unique('DEFINES',        ['CYCLE_MODE=1'])
+
+        # USART
+        ctx.env.append_unique('INCLUDES_ASF',   ['common/services/serial'])
+        ctx.env.append_unique('FILES_ASF',      ['sam0/drivers/sercom/usart/*.c'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['sam0/drivers/sercom/usart'])
+
+        # I2C
+        ctx.env.append_unique('FILES_ASF',      ['sam0/drivers/sercom/i2c/i2c_sam0/*.c'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['sam0/drivers/sercom/i2c'])
+
+        # SPI
+        ctx.env.append_unique('FILES_ASF',      ['sam0/drivers/sercom/spi/*.c'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['sam0/drivers/sercom/spi'])
+        ctx.env.append_unique('INCLUDES_ASF',   ['sam0/drivers/sercom/spi/module_config'])
+
+        if sam == 'samc21':
+            # Internal temperature sensor
+            ctx.env.append_unique('FILES_ASF',      ['sam0/drivers/tsens/tsens.c'])
+
+            # DAC
+            ctx.env.append_unique('FILES_ASF',      ['sam0/drivers/dac/dac_sam_d_c/dac.c'])
+            ctx.env.append_unique('INCLUDES_ASF',   ['sam0/drivers/dac'])
+            ctx.env.append_unique('INCLUDES_ASF',   ['sam0/drivers/dac/dac_sam_d_c'])
+
+            # NVM
+            ctx.env.append_unique('FILES_ASF',      ['sam0/drivers/nvm/nvm.c'])
+
+            # WDT, watchdog
+            ctx.env.append_unique('FILES_ASF',      ['sam0/drivers/wdt/wdt.c'])
+
+            # BOD
+            ctx.env.append_unique('INCLUDES_ASF',   ['sam0/drivers/bod', 'sam0/drivers/bod/bod_sam_c'])
+            ctx.env.append_unique('FILES_ASF',      ['sam0/drivers/bod/bod_sam_c/bod.c'])
+
+        # FreeRTOS base
+        freertos_dir = get_freertos(ctx)
+
+        # FreeRTOS port
+        ctx.env.append_unique('INCLUDES_ASF',   ['gomspace/include/gs/asf/sam0/freertos'])
+        ctx.env.append_unique('FILES_ASF',      ['gomspace/src/sam0/**/*.c'])
+
+        # System Drivers
+        systems = ['sam0/drivers/system',
+                   'sam0/drivers/system/pinmux',
+                   'sam0/drivers/system/power',
+                   'sam0/drivers/system/clock',
+                   'sam0/drivers/system/interrupt']
+        if sam == 'samc21':
+            systems.extend(['sam0/drivers/system/power/power_sam_c',
+                            'sam0/drivers/system/reset/reset_sam_c',
+                            'sam0/drivers/system/clock/clock_samc20_c21',
+                            'sam0/drivers/system/clock/clock_samc20_c21/module_config',
+                            'sam0/drivers/system/interrupt/system_interrupt_samc20_c21'])
+        if sam == 'samd21':
+            systems.extend(['sam0/drivers/system/power/power_sam_d_r',
+                            'sam0/drivers/system/reset/reset_sam_d_r',
+                            'sam0/drivers/system/clock/clock_samd21_r21_da',
+                            'sam0/drivers/system/clock/clock_samd21_r21_da/module_config',
+                            'sam0/drivers/system/interrupt/system_interrupt_samd21'])
+
+        for path in systems:
+            ctx.env.append_unique('FILES_ASF',    path + '/*.c')
+            ctx.env.append_unique('INCLUDES_ASF', path)
+
+        # Other Drivers
+        drivers = ['sam0/drivers/sercom',
+                   'sam0/drivers/extint',
+                   'sam0/drivers/extint/module_config',
+                   'sam0/drivers/adc',
+                   'sam0/drivers/tcc',
+                   'sam0/drivers/tc',
+                   'sam0/drivers/events',
+                   'sam0/drivers/dma',
+                   'sam0/drivers/dma/module_config']
+        if sam == 'samc21':
+            drivers.extend(['sam0/drivers/extint/extint_sam_l_c',
+                            'sam0/drivers/adc/adc_sam_l_c',
+                            'sam0/drivers/can',
+                            'sam0/drivers/can/module_config'])
+        if sam == 'samd21':
+            drivers.extend(['sam0/drivers/extint/extint_sam_d_r',
+                            'sam0/drivers/adc/adc_sam_d_r'])
+        for path in drivers:
+            ctx.env.append_unique('FILES_ASF',    path + '/*.c')
+            ctx.env.append_unique('INCLUDES_ASF', path)
+
+        # Utils
+        for path in ['sam0/utils',
+                     'sam0/utils/header_files',
+                     'sam0/utils/preprocessor',
+                     'sam0/utils/cmsis/'+sam+'/include',
+                     'sam0/utils/cmsis/'+sam+'/source']:
+            ctx.env.append_unique('FILES_ASF',    path + '/*.c')
+            ctx.env.append_unique('INCLUDES_ASF', path)
+
+        ctx.env.append_unique('DEFINES', ['ADC_CALLBACK_MODE=true'])
+        ctx.env.append_unique('DEFINES', ['USART_CALLBACK_MODE=true'])
+        ctx.env.append_unique('DEFINES', ['EXTINT_CALLBACK_MODE=true'])
+        ctx.env.append_unique('DEFINES', ['EVENTS_INTERRUPT_HOOKS_MODE=true'])
+        ctx.env.append_unique('DEFINES', ['I2C_MASTER_CALLBACK_MODE=true'])
+        ctx.env.append_unique('DEFINES', ['I2C_SLAVE_CALLBACK_MODE=true'])
+        ctx.env.append_unique('DEFINES', ['TCC_ASYNC=true'])
+        ctx.env.append_unique('DEFINES', ['TC_ASYNC=true'])
+        ctx.env.append_unique('DEFINES', ['SPI_CALLBACK_MODE=true'])
+
+        if ctx.options.embed_compile_check:
+            ctx.options.freertos_config = 'gomspace/conf/sam0/compilecheck'
+
+    ctx.env.append_unique('INCLUDES_ASF', ['gomspace/include'])
+
+    if ctx.env.FILES_ASF:
+        ctx.env.append_unique('DEFINES', ['BOARD=USER_BOARD'])
+        if not ctx.options.freertos_config:
+            ctx.fatal("ASF: No FreeRTOS configuration folder configured - use option --freertos-config")
+        ctx.env.append_unique('INCLUDES_ASF', ctx.options.freertos_config)
+        ctx.msg("FreeRTOS configuration", ctx.options.freertos_config)
+
+        ctx.gs_write_config_header('include/conf_asf.h', remove=True)
+
+        ctx.env.append_unique('USE_ASF', ['util'])
+
+    gs_gcc.gs_recurse(ctx)
+
+
+def build(ctx):
+    gs_gcc.gs_recurse(ctx)
+
+    public_include = ctx.gs_include(includes=ctx.env.INCLUDES_ASF, name=APPNAME)
+
+    if ctx.env.FILES_ASF:
+        ctx.gs_include(includes=ctx.env.INCLUDES_ASF, name='freertos')  # used by libcsp to locate freertos
+
+        regex_gomspace = re.compile(r'^gomspace.*')
+        FILES_ASF_GOMSPACE = filter(regex_gomspace.search, ctx.env.FILES_ASF)
+        APPNAME_3RD = APPNAME + '_3rd'
+
+        ctx.gs_objects(source=ctx.path.ant_glob(ctx.env.FILES_ASF, excl=(ctx.env.EXCLUDES_ASF + FILES_ASF_GOMSPACE)),
+                       target=APPNAME_3RD,
+                       use=ctx.env.USE_ASF + [public_include],
+                       cflags=['-Wno-shadow'])
+
+        ctx.gs_objects(source=ctx.path.ant_glob(FILES_ASF_GOMSPACE, excl=ctx.env.EXCLUDES_ASF),
+                       target=APPNAME,
+                       use=ctx.env.USE_ASF + [public_include, APPNAME_3RD])
+
+
+def doc(ctx):
+    gs_doc.library(ctx, keyvalues={
+        'gs_prod_name': 'lib'+APPNAME,
+        'gs_prod_desc': 'Atmel Software Library (ASF)',
+    })
+
+
+class Doc(BuildContext):
+    cmd = fun = 'doc'
+
+
+@conf
+def gs_dist(ctx):
+    ctx.add_default_files(source_module=True)
+    ctx.add_files(ctx.path.ant_glob(['avr32/**/*', 'common/**/*', 'common2/**/*', 'gomspace/**/*', 'thirdparty/**/*']))
+    ctx.add_license_file("asf/freertos/8.0.1", 'thirdparty/freertos/freertos-8.0.1/License/license.txt')
+    ctx.add_license_file("asf/freertos/10.2.0", 'thirdparty/freertos/freertos-10.2.0/License/license.txt')
+    ctx.add_license_file("asf/fatfs", "thirdparty/fatfs/license.txt")
+    ctx.add_license_file("asf/CMSIS", "thirdparty/CMSIS/license.txt")

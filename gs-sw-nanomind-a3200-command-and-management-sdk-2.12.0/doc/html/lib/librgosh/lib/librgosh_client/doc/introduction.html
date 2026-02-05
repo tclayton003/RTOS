@@ -1,0 +1,231 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.16.1. Introduction &mdash; A3200 Command and Management SDK 2.12.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../../search.html"/>
+    <link rel="top" title="A3200 Command and Management SDK 2.12.0 documentation" href="../../../../../index.html"/>
+        <link rel="up" title="3.16. Remote GOSH (librgosh)" href="../../../doc/librgosh.html"/>
+        <link rel="next" title="3.17. Storage (libstorage)" href="../../../../libstorage/doc/libstorage.html"/>
+        <link rel="prev" title="3.16. Remote GOSH (librgosh)" href="../../../doc/librgosh.html"/> 
+
+  
+  <script src="../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../../doc/index.html" class="icon icon-home"> A3200 Command and Management SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.12.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../doc/a3200-sdk/a3200-sdk.html">1. A3200 SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../doc/product_interfaces.html">2. Product Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../doc/libraries.html">3. Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../doc/tools.html">4. Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../doc/appendix/appendix.html">5. Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../doc/zrefs.html">6. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../../doc/index.html">A3200 Command and Management SDK</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../doc/index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../../doc/libraries.html">3. Libraries</a> &raquo;</li>
+      
+          <li><a href="../../../doc/librgosh.html">3.16. Remote GOSH (librgosh)</a> &raquo;</li>
+      
+    <li>3.16.1. Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<h1>3.16.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>Every GomSpace product comes with GOSH (GOmspace SHell). GOSH provides a simple text based
+command interface and is usually accessed through a direct serial connection.</p>
+<p>Remote GOSH enables a user to access the GOSH commands interface through a CSP
+connection instead of a direct serial connection. This enables a user to directly run commands
+and get returned results over the normal CSP network via CAN, I2C, UHF/VHF, etc.</p>
+<p>By means of Remote GOSH (client) library the user is able to access all the provided GOSH commands of
+the product and use those in cases where dedicated client libraries are not available.</p>
+<p>An overview of components involved in a Remote GOSH application is shown in <a class="reference internal" href="#rgosh-block-diagram"><span class="std std-ref">Using Remote GOSH for commands execution &amp; feedback</span></a>.</p>
+<div class="figure" id="id1">
+<span id="rgosh-block-diagram"></span><a class="reference internal image-reference" href="../../../../../_images/rgosh_block_diagram.png"><img alt="../../../../../_images/rgosh_block_diagram.png" src="../../../../../_images/rgosh_block_diagram.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.13 </span><span class="caption-text">Using Remote GOSH for commands execution &amp; feedback</span></p>
+</div>
+<p>Communication between a Remote GOSH client application and a Remote GOSH server is described in
+the <a class="reference internal" href="#rgosh-sequence-diagram"><span class="std std-ref">Sequence diagram showing the use of Remote GOSH.</span></a>.</p>
+<div class="figure" id="id2">
+<span id="rgosh-sequence-diagram"></span><a class="reference internal image-reference" href="../../../../../_images/rgosh_sequence_diagram.png"><img alt="../../../../../_images/rgosh_sequence_diagram.png" src="../../../../../_images/rgosh_sequence_diagram.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.14 </span><span class="caption-text">Sequence diagram showing the use of Remote GOSH.</span></p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../../../libstorage/doc/libstorage.html" class="btn btn-neutral float-right" title="3.17. Storage (libstorage)" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../../doc/librgosh.html" class="btn btn-neutral" title="3.16. Remote GOSH (librgosh)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020 GomSpace A/S..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../',
+            VERSION:'2.12.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

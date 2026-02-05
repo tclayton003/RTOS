@@ -1,0 +1,320 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.1.2.4. Embed (libembed) &mdash; A3200 Board Support Package 2.6.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="A3200 Board Support Package 2.6.3 documentation" href="../../index.html"/>
+        <link rel="up" title="5.1.2. Libraries" href="../../doc/appendix/changelogs_libraries.html"/>
+        <link rel="next" title="5.1.2.5. Thirdparty (libthirdparty)" href="../libthirdparty/CHANGELOG.html"/>
+        <link rel="prev" title="5.1.2.3.1. Software changelog (libcsp)" href="../libgscsp/CSP_CHANGELOG.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../doc/index.html" class="icon icon-home"> A3200 Board Support Package
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.6.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../doc/a3200-bsp.html">1. A3200 BSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc/a3200_toolchain.html">2. Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc/libraries.html">3. Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc/tools.html">4. Tools</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../doc/appendix/appendix.html">5. Appendix</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../doc/appendix/changelogs.html">5.1. Software Changelogs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../CHANGELOG.html">5.1.1. A3200 BSP</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../doc/appendix/changelogs_libraries.html">5.1.2. Libraries</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../liba3200/CHANGELOG.html">5.1.2.1. A3200 (liba3200)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../libasf/CHANGELOG.html">5.1.2.2. ASF (libasf)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../libgscsp/CHANGELOG.html">5.1.2.3. Gomspace CSP extension (libgscsp)</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">5.1.2.4. Embed (libembed)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../libthirdparty/CHANGELOG.html">5.1.2.5. Thirdparty (libthirdparty)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../libutil/CHANGELOG.html">5.1.2.6. Utility (libutil)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../doc/appendix/changelogs_tools.html">5.1.3. Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/appendix/api.html">5.2. API Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc/zrefs.html">6. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../doc/index.html">A3200 Board Support Package</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../doc/index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../doc/appendix/appendix.html">5. Appendix</a> &raquo;</li>
+      
+          <li><a href="../../doc/appendix/changelogs.html">5.1. Software Changelogs</a> &raquo;</li>
+      
+          <li><a href="../../doc/appendix/changelogs_libraries.html">5.1.2. Libraries</a> &raquo;</li>
+      
+    <li>5.1.2.4. Embed (libembed)</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="embed-libembed">
+<h1>5.1.2.4. Embed (libembed)<a class="headerlink" href="#embed-libembed" title="Permalink to this headline">¶</a></h1>
+<p><strong>1.8.1 (2019-10-16)</strong></p>
+<ul class="simple">
+<li>Limitation: if enabling FreeRTOS configUSE_NEWLIB_REENTRANT, use AVR32 toolchain: 3.4.2_gs1 or later - otherwise crash occurs, when a task terminates.</li>
+<li>Improvement: Updated dependencies and documentation.</li>
+<li>Improvement: Close stdin/stdout/stderr to prevent memory leak in gs_thread_exit() (if configUSE_NEWLIB_REENTRANT)</li>
+<li>Breaking: AVR32: gs_mcu_flash API: Disable write to internal flash, if not running from MCU flash image.</li>
+<li>Improvement: AVR32: Changed gs_delay_us() to use cpu_delay_us()</li>
+<li>Improvement: Implement retargetable locks for newlib file operations. This allows for multi-threaded file operations. Requires toolchain 3.4.2_gs1 or later.</li>
+<li>Breaking: Consolidated newlib stubs for stm32, AVR32 and samc -&gt; src/newlib/syscalls.</li>
+</ul>
+<p><strong>1.7.4 (2019-07-03)</strong></p>
+<ul class="simple">
+<li>Feature: Added support for FreeRTOS 10.</li>
+<li>Bug: fixed minor issues in AVR32 CAN driver, e.g. return codes, ISR logging.</li>
+<li>Improvement: AV32 CAN driver statistics, command: <code class="docutils literal"><span class="pre">driver</span> <span class="pre">can</span> <span class="pre">&lt;device&gt;</span></code>.</li>
+</ul>
+<p><strong>1.7.3 (2019-06-13)</strong></p>
+<ul class="simple">
+<li>Bug: Disabling and clearing GPIO interrupts before booting RAM image</li>
+</ul>
+<p><strong>1.7.2 (2019-05-23)</strong></p>
+<ul class="simple">
+<li>Bug: Fixed bug in UART RX queue handling, which potentially could result in lost characters (present in all versions). Not present if using callbacks.</li>
+</ul>
+<p><strong>1.7.1 (2019-05-16)</strong></p>
+<ul class="simple">
+<li>Improvement: stm32: Rewritten I2C driver to make it work under higher load on the MCU.</li>
+<li>Improvement: Include source code in distribution.</li>
+</ul>
+<p><strong>1.6.1 (2019-04-08)</strong></p>
+<ul class="simple">
+<li>Improvement: Updated dependencies and documentation.</li>
+</ul>
+<p><strong>1.5.5 (2019-03-21)</strong></p>
+<ul class="simple">
+<li>Bug: stm32: Fixed race condition in CAN driver.</li>
+<li>Improvement: stm32: SPI driver handles slaves faster and does not init GPIO when using chip select callback.</li>
+</ul>
+<p><strong>1.5.4 (2019-02-26)</strong></p>
+<ul class="simple">
+<li>Bug: Removed AVR32 GPIO definitions due to some clashes with gpio.h in libasf.</li>
+<li>Improvement: STM32 linker-scripts: Removed KEEP for log groups.</li>
+</ul>
+<p><strong>1.5.3 (2019-01-29)</strong></p>
+<ul class="simple">
+<li>Improvement: Register all used log group.</li>
+<li>Feature: Replaced log group “reset” with “default” group.</li>
+<li>Feature: SAMC: set default minimum stack size to 2000 bytes.</li>
+<li>Bug: stm32: Made I2C slave driver capable of receiving pure master-writes.</li>
+</ul>
+<p><strong>1.5.2 (2018-12-19)</strong></p>
+<ul class="simple">
+<li>Improvement: Updated documentation.</li>
+</ul>
+<p><strong>1.5.1 (2018-11-21)</strong></p>
+<ul class="simple">
+<li>Bug: Made gs_time_uptime() thread safe (added call in gs_thread_create() for initialization of mutex).</li>
+<li>Breaking: Removed gs_time_rel_s() and gs_time_rel_s_isr().</li>
+<li>Improvement: stm32: Made support for 20 SPI slaves instead of 8.</li>
+</ul>
+<p><strong>1.4.1 (2018-09-20)</strong></p>
+<ul class="simple">
+<li>Feature: Add gs_thread_create_with_stack to manually place stack buffer.</li>
+<li>Feature: avr32: Add support for using GPIO as SPI chipselect.</li>
+</ul>
+<p><strong>1.3.1 (2018-08-13)</strong></p>
+<ul class="simple">
+<li>Feature: avr32: added support for gs_getcwd().</li>
+<li>Feature: avr32: added avr32_reset_all_interrupt_settings to use when booting from RAM.</li>
+<li>Improvement: avr32: Optimized gs_spi_master_transactions().</li>
+</ul>
+<p><strong>1.2.1 (2018-05-30)</strong></p>
+<ul class="simple">
+<li>Breaking: Updated reset cause and system reset API.</li>
+<li>Feature: Added support for microsecond delays on stm32</li>
+<li>Improvement: Use standard log groups for I2C, SPI and CAN.</li>
+<li>Feature: split “free” (memory) comamnd into intern/extern for improved error handling.</li>
+<li>Breaking: SAMC21 - refactored APIs to comply with standard APIs.</li>
+</ul>
+<p><strong>1.1.2 (2018-04-17)</strong></p>
+<ul class="simple">
+<li>Feature: Support for different SPI clock polarity/phase.</li>
+<li>Feature: Adde gs_freertos_convert_ms_to_ticks().</li>
+<li>Breaking: Changed I2C API to comply with standard.</li>
+<li>Feature: Added VMEM driver for MCU flash.</li>
+<li>Feature: SAMC21 changed UART driver from polled to interrupt.</li>
+</ul>
+<p><strong>1.0.1 (2018-03-09)</strong></p>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../libthirdparty/CHANGELOG.html" class="btn btn-neutral float-right" title="5.1.2.5. Thirdparty (libthirdparty)" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../libgscsp/CSP_CHANGELOG.html" class="btn btn-neutral" title="5.1.2.3.1. Software changelog (libcsp)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023 GomSpace A/S..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2.6.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

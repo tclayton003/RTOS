@@ -1,0 +1,798 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.1.4. Parameters &mdash; A3200 Board Support Package 2.6.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="A3200 Board Support Package 2.6.3 documentation" href="../../../index.html"/>
+        <link rel="up" title="3.1. A3200 (liba3200)" href="liba3200.html"/>
+        <link rel="next" title="3.2. ASF (libasf)" href="../../libasf/doc/libasf.html"/>
+        <link rel="prev" title="3.1.3. Software Update in Orbit" href="software_update.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../doc/index.html" class="icon icon-home"> A3200 Board Support Package
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.6.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/a3200-bsp.html">1. A3200 BSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/a3200_toolchain.html">2. Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/libraries.html">3. Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/tools.html">4. Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/appendix/appendix.html">5. Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/zrefs.html">6. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../doc/index.html">A3200 Board Support Package</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../doc/index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../doc/libraries.html">3. Libraries</a> &raquo;</li>
+      
+          <li><a href="liba3200.html">3.1. A3200 (liba3200)</a> &raquo;</li>
+      
+    <li>3.1.4. Parameters</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parameters">
+<span id="liba3200-a3200-board"></span><h1>3.1.4. Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h1>
+<p>The A3200 Library includes three parameter tables specific to NanoMind A3200 board:
+- board (<a class="reference internal" href="#table-gs-a3200-board"><span class="std std-ref">Parameter Table ‘board’</span></a>)
+- configuration (<a class="reference internal" href="#table-gs-a3200-configuration"><span class="std std-ref">Parameter Table ‘configuration’</span></a>)
+- telemetry (<a class="reference internal" href="#table-gs-a3200-telemetry"><span class="std std-ref">Parameter Table ‘telemetry’</span></a>)</p>
+<p>For more information on table stores and general information on how to use the Parameter System, please refer to <span class="xref std std-ref">libparam</span>.</p>
+<div class="section" id="board-table">
+<h2>3.1.4.1. Board Table<a class="headerlink" href="#board-table" title="Permalink to this headline">¶</a></h2>
+<p>The Board Table contains various module configuration that is only supposed to be altered in-orbit in case of emergency or failure. The table has both a Persistent and a Protected store, both located in the onboard FRAM.</p>
+<p>On boot the table is loaded from the Persistent Store, if the copy in the Persistent Store is corrupted the table is loaded from the Protected Store.</p>
+<span id="table-gs-a3200-board"></span><table border="1" class="longtable docutils" id="id1">
+<caption><span class="caption-number">Table 3.1 </span><span class="caption-text">Parameter Table ‘board’</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Addr.</th>
+<th class="head">Type</th>
+<th class="head">&#160;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-board-uid">uid</p>
+</td>
+<td>0x00</td>
+<td>string</td>
+<td><p class="first">Unit IDentification</p>
+<p class="last">If UID consists of printable characters, it will be used as <cite>hostname</cite> for GOSH and <cite>cmp ident</cite></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-board-type">type</p>
+</td>
+<td>0x10</td>
+<td>uint8</td>
+<td><p class="first">Type</p>
+<p>Optional/future, not used by standard SDK</p>
+<p class="last">Default: <code class="docutils literal"><span class="pre">0</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-board-rev">rev</p>
+</td>
+<td>0x11</td>
+<td>uint8</td>
+<td><p class="first">Revision</p>
+<p>Optional/future, not used by standard SDK</p>
+<p class="last">Default: <code class="docutils literal"><span class="pre">0</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-board-dock-type">dock_type</p>
+</td>
+<td>0x12</td>
+<td>string</td>
+<td><p class="first">Dock type</p>
+<p class="last">Type of DOCK used for the A3200</p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-board-csp-addr">csp_addr</p>
+</td>
+<td>0x22</td>
+<td>uint8</td>
+<td><p class="first">CSP address</p>
+<p>CSP address of this node</p>
+<p>Default: <code class="docutils literal"><span class="pre">1</span></code></p>
+<p>Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+<p class="last">Valid Range: <code class="docutils literal"><span class="pre">1</span> <span class="pre">&lt;=</span> <span class="pre">csp_addr</span> <span class="pre">&lt;=</span> <span class="pre">31</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-board-csp-rtable">csp_rtable</p>
+</td>
+<td>0x23</td>
+<td>string</td>
+<td><p class="first">CSP routing table</p>
+<p>Format: &lt;address&gt;/&lt;mask&gt; &lt;interface&gt; [MAC] (CSV list).</p>
+<p>Example: <code class="docutils literal"><span class="pre">2/5</span> <span class="pre">I2C,16/1</span> <span class="pre">CAN</span> <span class="pre">5,0/0</span> <span class="pre">CAN</span></code></p>
+<p>Default: `` ``</p>
+<p class="last">Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-board-gosh-en">gosh_en</p>
+</td>
+<td>0x83</td>
+<td>bool</td>
+<td><p class="first">GOSH enabled</p>
+<p>Enable GOSH console (prompt) on the UART specified by <code class="docutils literal"><span class="pre">gosh_uart</span></code></p>
+<p>Default: <code class="docutils literal"><span class="pre">True</span></code></p>
+<p class="last">Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-board-gosh-uart">gosh_uart</p>
+</td>
+<td>0x84</td>
+<td>uint8</td>
+<td><p class="first">GOSH UART</p>
+<p>UART used for the GOSH console, if enabled by <code class="docutils literal"><span class="pre">gosh_en</span></code></p>
+<p>Default: <code class="docutils literal"><span class="pre">2</span></code></p>
+<p>Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+<p>Valid Values:</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>2:</dt>
+<dd>UART2 in connector P1</dd>
+<dt>4:</dt>
+<dd>UART4 in connector X1</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-board-can-en">can_en</p>
+</td>
+<td>0x85</td>
+<td>bool</td>
+<td><p class="first">CAN enabled</p>
+<p>Enable CSP via the CAN interface in connector X1</p>
+<p>Default: <code class="docutils literal"><span class="pre">True</span></code></p>
+<p class="last">Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-board-can-brate">can_brate</p>
+</td>
+<td>0x88</td>
+<td>uint32</td>
+<td><p class="first">CAN bitrate</p>
+<p>Bitrate for CAN interface</p>
+<p>Default: <code class="docutils literal"><span class="pre">1000000</span></code></p>
+<p>Unit: <code class="docutils literal"><span class="pre">bit/second</span></code></p>
+<p>Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+<p>Valid Values:</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>1000000:</dt>
+<dd>1M</dd>
+<dt>500000:</dt>
+<dd>500K</dd>
+<dt>250000:</dt>
+<dd>250K</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-board-i2c-en">i2c_en</p>
+</td>
+<td>0x8c</td>
+<td>bool</td>
+<td><p class="first">I2C enabled</p>
+<p>Enable CSP via the I2C interface in connector X1</p>
+<p>Default: <code class="docutils literal"><span class="pre">True</span></code></p>
+<p class="last">Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-board-i2c-brate">i2c_brate</p>
+</td>
+<td>0x90</td>
+<td>uint32</td>
+<td><p class="first">I2C bitrate</p>
+<p>Bitrate for I2C interface</p>
+<p>Default: <code class="docutils literal"><span class="pre">400000</span></code></p>
+<p>Unit: <code class="docutils literal"><span class="pre">bit/second</span></code></p>
+<p class="last">Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-board-kiss-en">kiss_en</p>
+</td>
+<td>0x94</td>
+<td>bool</td>
+<td><p class="first">KISS enabled</p>
+<p>Enable CSP via the KISS (serial) interface set by <code class="docutils literal"><span class="pre">kiss_uart</span></code></p>
+<p>Default: <code class="docutils literal"><span class="pre">False</span></code></p>
+<p class="last">Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-board-kiss-brate">kiss_brate</p>
+</td>
+<td>0x98</td>
+<td>uint32</td>
+<td><p class="first">KISS baudrate</p>
+<p>Baudrate for the KISS interface</p>
+<p>Default: <code class="docutils literal"><span class="pre">500000</span></code></p>
+<p>Unit: <code class="docutils literal"><span class="pre">baud</span></code></p>
+<p class="last">Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-board-kiss-uart">kiss_uart</p>
+</td>
+<td>0x9c</td>
+<td>uint8</td>
+<td><p class="first">KISS UART</p>
+<p>UART used for the KISS interface</p>
+<p>Default: <code class="docutils literal"><span class="pre">4</span></code></p>
+<p>Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+<p>Valid Values:</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>2:</dt>
+<dd>UART2 in connector P1</dd>
+<dt>4:</dt>
+<dd>UART4 in connector X1</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="configuration-table">
+<h2>3.1.4.2. Configuration Table<a class="headerlink" href="#configuration-table" title="Permalink to this headline">¶</a></h2>
+<p>The Configuration table contains various module configuration that might change during the mission. The table has both a Persistent and a Protected store, both located in the onboard FRAM.</p>
+<p>On boot the table is loaded from the Persistent Store, if the copy in the Persistent Store is corrupted the table is loaded from the Protected Store.</p>
+<span id="table-gs-a3200-configuration"></span><table border="1" class="longtable docutils" id="id2">
+<caption><span class="caption-number">Table 3.2 </span><span class="caption-text">Parameter Table ‘configuration’</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Addr.</th>
+<th class="head">Type</th>
+<th class="head">&#160;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-configuration-gssb1-pwr-en">gssb1_pwr_en</p>
+</td>
+<td>0x00</td>
+<td>bool</td>
+<td><p class="first">GSSB1 power</p>
+<p>Enable power on pin <code class="docutils literal"><span class="pre">GSSB_VCC</span></code> in connector P7</p>
+<p class="last">Default: <code class="docutils literal"><span class="pre">False</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-configuration-gssb2-pwr-en">gssb2_pwr_en</p>
+</td>
+<td>0x01</td>
+<td>bool</td>
+<td><p class="first">GSSB2 power</p>
+<p>Enable power on pin <code class="docutils literal"><span class="pre">GSSB2_VCC</span></code> in connector P7</p>
+<p class="last">Default: <code class="docutils literal"><span class="pre">False</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-configuration-flash-pwr-en">flash_pwr_en</p>
+</td>
+<td>0x02</td>
+<td>bool</td>
+<td><p class="first">Flash power</p>
+<p>Enable power to onboard Flash</p>
+<p class="last">Default: <code class="docutils literal"><span class="pre">False</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-configuration-pwm-pwr-en">pwm_pwr_en</p>
+</td>
+<td>0x03</td>
+<td>bool</td>
+<td><p class="first">PWM power</p>
+<p>Enable power to PWM (Pulse Width Modulation)</p>
+<p class="last">Default: <code class="docutils literal"><span class="pre">False</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-configuration-swload-img1">swload_img1</p>
+</td>
+<td>0x04</td>
+<td>string</td>
+<td><p class="first">Primary program image</p>
+<p>Filename for primary program image to load and boot from memory. Only tried if <code class="docutils literal"><span class="pre">swload_cnt1</span></code> is greater than 0 (zero)</p>
+<p>Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+<p class="last">Auto Persist: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-configuration-swload-cnt1">swload_cnt1</p>
+</td>
+<td>0x24</td>
+<td>uint16</td>
+<td><p class="first">Primary program image boot count</p>
+<p>Number of times to try and boot primary program image, configured in <code class="docutils literal"><span class="pre">swload_img1</span></code></p>
+<p>Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+<p>Auto Persist: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+<p class="last">Valid Range: <code class="docutils literal"><span class="pre">0</span> <span class="pre">&lt;=</span> <span class="pre">swload_cnt1</span> <span class="pre">&lt;=</span> <span class="pre">100</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-configuration-swload-img2">swload_img2</p>
+</td>
+<td>0x26</td>
+<td>string</td>
+<td><p class="first">Secondary program image</p>
+<p>Filename for secondary program image to load and boot from memory. Only tried if <code class="docutils literal"><span class="pre">swload_cnt2</span></code> is greater than 0 (zero)</p>
+<p>Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+<p class="last">Auto Persist: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-configuration-swload-cnt2">swload_cnt2</p>
+</td>
+<td>0x46</td>
+<td>uint16</td>
+<td><p class="first">Secondary program image boot count</p>
+<p>Number of times to try and boot secondary program image, configured in <code class="docutils literal"><span class="pre">swload_img2</span></code></p>
+<p>Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+<p>Auto Persist: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+<p class="last">Valid Range: <code class="docutils literal"><span class="pre">0</span> <span class="pre">&lt;=</span> <span class="pre">swload_cnt2</span> <span class="pre">&lt;=</span> <span class="pre">100</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-configuration-fs-default">fs_default</p>
+</td>
+<td>0x48</td>
+<td>uint8</td>
+<td><p class="first">Default partition</p>
+<p>Flash partition to use as default, mounted as <code class="docutils literal"><span class="pre">/flash</span></code>. The specified partition must be enabled by parameters: <code class="docutils literal"><span class="pre">fs_en_p0</span></code>, <code class="docutils literal"><span class="pre">fs_en_p1</span></code></p>
+<p>Default: <code class="docutils literal"><span class="pre">0</span></code></p>
+<p>Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+<p>Valid Values:</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>0:</dt>
+<dd>Partition 0</dd>
+<dt>1:</dt>
+<dd>Partition 1</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-configuration-fs-en-p0">fs_en_p0</p>
+</td>
+<td>0x49</td>
+<td>bool</td>
+<td><p class="first">Enable /flash0</p>
+<p>Enable mounting of the /flash0 partition</p>
+<p>Default: <code class="docutils literal"><span class="pre">True</span></code></p>
+<p class="last">Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-configuration-fs-en-p1">fs_en_p1</p>
+</td>
+<td>0x4a</td>
+<td>bool</td>
+<td><p class="first">Enable /flash1</p>
+<p>Enable mounting of the /flash1 partition</p>
+<p>Default: <code class="docutils literal"><span class="pre">True</span></code></p>
+<p class="last">Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-configuration-log-fram-en">log_fram_en</p>
+</td>
+<td>0x4b</td>
+<td>bool</td>
+<td><p class="first">Log to FRAM</p>
+<p>If enabled and using default settings, logs of type: <code class="docutils literal"><span class="pre">error</span></code>, <code class="docutils literal"><span class="pre">warning</span></code> and <code class="docutils literal"><span class="pre">notice</span></code> will be logged to the FRAM.</p>
+<p>Default: <code class="docutils literal"><span class="pre">True</span></code></p>
+<p class="last">Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-configuration-log-mask">log_mask</p>
+</td>
+<td>0x4c</td>
+<td>string</td>
+<td><p class="first">Log mask/level settings</p>
+<p>Settings applied to log groups and appenders during boot, overwriting the default levels set in the code.</p>
+<p>Format: &lt;group|appender&gt;=&lt;level&gt; (CSV list).</p>
+<p>Wildcard * is supported as the last character in the name.</p>
+<p>Level: 0 (off), e (error), w (warning), n (notice), d (debug), t (trace)</p>
+<p>Example: <code class="docutils literal"><span class="pre">hk_*=0,csp=t</span></code></p>
+<p class="last">Default: `` ``</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-configuration-tsync-node">tsync_node</p>
+</td>
+<td>0x8c</td>
+<td>uint8</td>
+<td><p class="first">TSYNC CSP Addr</p>
+<p>CSP address of the node to synchronize time against</p>
+<p class="last">Valid Range: <code class="docutils literal"><span class="pre">1</span> <span class="pre">&lt;=</span> <span class="pre">tsync_node</span> <span class="pre">&lt;=</span> <span class="pre">31</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-configuration-tsync-intv">tsync_intv</p>
+</td>
+<td>0x8e</td>
+<td>uint16</td>
+<td><p class="first">TSYNC Interval</p>
+<p>Interval for time synchronization, 0 disables time synchronization</p>
+<p>Default: <code class="docutils literal"><span class="pre">60</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">second</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-configuration-spi0-cs-mode">spi0_cs_mode</p>
+</td>
+<td>0x90</td>
+<td>uint8</td>
+<td><p class="first">SPI0 CS Mode</p>
+<p>Defines how the chip select pins works on the <code class="docutils literal"><span class="pre">SPI0</span></code> device</p>
+<p>Default: <code class="docutils literal"><span class="pre">0</span></code></p>
+<p>Reboot Required: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+<p>Valid Values:</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>0:</dt>
+<dd>Normal (0-3)</dd>
+<dt>1:</dt>
+<dd>Decode (0-15)</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="telemetry-table">
+<h2>3.1.4.3. Telemetry Table<a class="headerlink" href="#telemetry-table" title="Permalink to this headline">¶</a></h2>
+<p>The Telemetry table contains diagnostics, e.g. temperatures, status counters.</p>
+<span id="table-gs-a3200-telemetry"></span><table border="1" class="longtable docutils" id="id3">
+<caption><span class="caption-number">Table 3.3 </span><span class="caption-text">Parameter Table ‘telemetry’</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Addr.</th>
+<th class="head">Type</th>
+<th class="head">&#160;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-telemetry-fs-mounted">fs_mounted</p>
+</td>
+<td>0x00</td>
+<td>bool</td>
+<td><p class="first">Filesystem mounted</p>
+<p class="last">Is flash filesystem mounted?</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-telemetry-ram-image">ram_image</p>
+</td>
+<td>0x01</td>
+<td>bool</td>
+<td><p class="first">Is RAM image</p>
+<p class="last">Is the program running from a RAM image?</p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-telemetry-temp-mcu">temp_mcu</p>
+</td>
+<td>0x02</td>
+<td>int16</td>
+<td><p class="first">MCU Temperature</p>
+<p>Temperature sensor on A3200 board, near the MCU.</p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">decidegC</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-telemetry-temp-ram">temp_ram</p>
+</td>
+<td>0x04</td>
+<td>int16</td>
+<td><p class="first">RAM Temperature</p>
+<p>Temperature sensor on A3200 board, near the external RAM</p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">decidegC</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-telemetry-i-gssb1">i_GSSB1</p>
+</td>
+<td>0x06</td>
+<td>uint16</td>
+<td><p class="first">GSSB1 current</p>
+<p>Current consumption on GSSB1</p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">milliampere</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-telemetry-i-gssb2">i_GSSB2</p>
+</td>
+<td>0x08</td>
+<td>uint16</td>
+<td><p class="first">GSSB2 current</p>
+<p>Current consumption on GSSB2</p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">milliampere</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-telemetry-i-flash">i_Flash</p>
+</td>
+<td>0x0a</td>
+<td>uint16</td>
+<td><p class="first">Flash current</p>
+<p>Current consumption by Flash device</p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">milliampere</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-telemetry-i-pwm">i_PWM</p>
+</td>
+<td>0x0c</td>
+<td>uint16</td>
+<td><p class="first">PWM current</p>
+<p>Current consumption by PWM</p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">milliampere</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-telemetry-resetcause">resetcause</p>
+</td>
+<td>0x10</td>
+<td>uint32</td>
+<td><p class="first">Reset cause</p>
+<p>If <code class="docutils literal"><span class="pre">bootcause</span></code> is 4 (software reset), this parameter may hold a more detailed cause.</p>
+<p>Valid Values:</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>0:</dt>
+<dd>Unknown</dd>
+<dt>3:</dt>
+<dd>Stack overflow. A task exceeded its stack space</dd>
+<dt>4:</dt>
+<dd>Software exception, e.g. access unaligned memory address, performed illegal operation</dd>
+<dt>5:</dt>
+<dd>Reset initiated by GOSH command</dd>
+<dt>6:</dt>
+<dd>Reset initiated by a request (message) on the CSP interface</dd>
+<dt>7:</dt>
+<dd>Reset due to filesystem been rebuild/created.</dd>
+<dt>8:</dt>
+<dd>Reset due to insufficient memory</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-telemetry-bootcause">bootcause</p>
+</td>
+<td>0x14</td>
+<td>uint32</td>
+<td><p class="first">Bootcause</p>
+<p>The cause of the last boot</p>
+<p>Valid Values:</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>0:</dt>
+<dd>Unknown</dd>
+<dt>1:</dt>
+<dd>Brown out detection</dd>
+<dt>2:</dt>
+<dd>Power on</dd>
+<dt>3:</dt>
+<dd>Watchdog</dd>
+<dt>4:</dt>
+<dd>Software triggered boot, see <code class="docutils literal"><span class="pre">resetcause</span></code> for detailed reason</dd>
+<dt>5:</dt>
+<dd>Reset by the external reset pin</dd>
+<dt>6:</dt>
+<dd>Woken from sleep/standby mode</dd>
+<dt>7:</dt>
+<dd>Reset due to CPU error, eg illegal addressing</dd>
+<dt>8:</dt>
+<dd>Reset by JTAG (programmer)</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-telemetry-bootcount">bootcount</p>
+</td>
+<td>0x18</td>
+<td>uint16</td>
+<td><p class="first">Bootcount</p>
+<p>The number of times the board has booted</p>
+<p class="last">Auto Persist: <code class="docutils literal"><span class="pre">Yes</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="param-gs-a3200-telemetry-clock">clock</p>
+</td>
+<td>0x1c</td>
+<td>uint32</td>
+<td><p class="first">Clock time</p>
+<p>Current time in seconds since Unix Epoch</p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">second</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="param-gs-a3200-telemetry-uptime">uptime</p>
+</td>
+<td>0x20</td>
+<td>uint32</td>
+<td><p class="first">Uptime</p>
+<p>Time since last boot</p>
+<p>Default: <code class="docutils literal"><span class="pre">0</span></code></p>
+<p class="last">Unit: <code class="docutils literal"><span class="pre">second</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../libasf/doc/libasf.html" class="btn btn-neutral float-right" title="3.2. ASF (libasf)" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="software_update.html" class="btn btn-neutral" title="3.1.3. Software Update in Orbit" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023 GomSpace A/S..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'2.6.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.15.1. Introduction &mdash; A3200 Command and Management SDK 2.12.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="A3200 Command and Management SDK 2.12.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="3.15. Parameter System (libparam)" href="libparam.html"/>
+        <link rel="next" title="3.15.4. Commands" href="commands.html"/>
+        <link rel="prev" title="3.15. Parameter System (libparam)" href="libparam.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../doc/index.html" class="icon icon-home"> A3200 Command and Management SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.12.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/a3200-sdk/a3200-sdk.html">1. A3200 SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/product_interfaces.html">2. Product Interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../doc/libraries.html">3. Libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../liba3200/doc/liba3200.html">3.1. A3200 (liba3200)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../liba3200dock/doc/liba3200dock.html">3.2. A3200 Dock (liba3200dock)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libasf/doc/libasf.html">3.3. ASF (libasf)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libgscsp/doc/libgscsp.html">3.4. GomSpace CSP (libgscsp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libembed/doc/libembed.html">3.5. Embed (libembed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libemul/doc/libemul.html">3.6. Emulation (libemul)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libfp/doc/libfp.html">3.7. Flight Planner (libfp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libftp/doc/libftp.html">3.8. FTP (libftp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libgosh/doc/libgosh.html">3.9. GOSH (libgosh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libgssb/doc/libgssb.html">3.10. GomSpace Sensor Bus (libgssb)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libhk/doc/libhk.html">3.11. Housekeeping (libhk)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libjson/doc/libjson.html">3.12. JSON parser (libjson)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../liblog/doc/liblog.html">3.13. Log (liblog)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libnanopb/doc/libnanopb.html">3.14. Nano Protobuf (libnanopb)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="libparam.html">3.15. Parameter System (libparam)</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.15.1. Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#basic-principle-of-operation">3.15.1.1. Basic Principle of operation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameter-tables">3.15.1.2. Parameter tables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#network-service">3.15.1.3. Network service</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#table-storage">3.15.2. Table storage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#logical-stores-and-initialization-sources">3.15.2.1. Logical stores and initialization sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fallback-examples-and-recommendations">3.15.2.2. Fallback examples and recommendations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#telemetry-store">3.15.2.3. Telemetry Store</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#system-overview">3.15.3. System overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands.html">3.15.4. Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../librgosh/doc/librgosh.html">3.16. Remote GOSH (librgosh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libstorage/doc/libstorage.html">3.17. Storage (libstorage)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libthirdparty/doc/libthirdparty.html">3.18. Thirdparty (libthirdparty)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libutil/doc/libutil.html">3.19. Utility (libutil)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/tools.html">4. Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/appendix/appendix.html">5. Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/zrefs.html">6. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../doc/index.html">A3200 Command and Management SDK</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../doc/index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../doc/libraries.html">3. Libraries</a> &raquo;</li>
+      
+          <li><a href="libparam.html">3.15. Parameter System (libparam)</a> &raquo;</li>
+      
+    <li>3.15.1. Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<h1>3.15.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>The Parameter System is a light-weight parameter system designed for GomSpace satellite subsystems.
+It is based around a logical memory architecture, where every parameter is referenced directly by its logical address.
+A backend system takes care of translating addresses into physical addresses.</p>
+<p>The features of this system includes:</p>
+<ul class="simple">
+<li>Direct memory access for quick parameter reads.</li>
+<li>Simple data types: uint, int, float, double, string.</li>
+<li>Arrays of simple data types.</li>
+<li>Supports multiple stores per table, e.g. FRAM, MCU flash, file (binary or text).</li>
+<li>Remote client with support for most features (rparam).</li>
+<li>Packed GET, SET queries, supporting multiple parameter set/get in a single request.</li>
+<li>Data serialization and deserialization.</li>
+<li>Supports both little and big-endian systems.</li>
+<li>Commands for both local (param) and remote access (rparam).</li>
+<li>Parameter server for remote access over CSP.</li>
+<li>Compile-time configuration of parameter system</li>
+</ul>
+<div class="section" id="basic-principle-of-operation">
+<span id="libparam-principle-of-operation"></span><h2>3.15.1.1. Basic Principle of operation<a class="headerlink" href="#basic-principle-of-operation" title="Permalink to this headline">¶</a></h2>
+<p>The parameter system is a generic system that translates a memory area into network messages and vice-versa.
+It has two basic operations: Read or Write. This basic operation is how most memory works and is something that most programmers can understand.
+Therefore the parameter system have been designed to work just like you would expect a memory to work.
+However it also throws in some more added benefits such as parameter tables, serialization, arrays, data locking and intuitive client interfaces.
+To best demonstrate this principle, let’s take a simple example:</p>
+<div class="figure" id="id1">
+<a class="reference internal image-reference" href="../../../_images/command_example.png"><img alt="../../../_images/command_example.png" src="../../../_images/command_example.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.7 </span><span class="caption-text">Example of Set and Get commands</span></p>
+</div>
+<p>In this example, a set command is sent from the client to the memory, to update the parameter with address 0x00.
+The response is an OK message. Later the client issues a get command to the memory and receives the value that was stored.
+While this example shows the basic principle, it is of course pretty difficult for the programmer to be able to remember the address 0x00 of a given parameter.
+Therefore the parameter system only uses addresses internally. Externally to the programmer, only parameter names are used.
+The next example will show how parameter tables work:</p>
+</div>
+<div class="section" id="parameter-tables">
+<h2>3.15.1.2. Parameter tables<a class="headerlink" href="#parameter-tables" title="Permalink to this headline">¶</a></h2>
+<p>In order to translate from names to addresses, a parameter table is used:</p>
+<table border="1" class="colwidths-given docutils" id="id2">
+<caption><span class="caption-number">Table 3.16 </span><span class="caption-text">Parameter table example</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="10%" />
+<col width="20%" />
+<col width="10%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Address</strong></th>
+<th class="head"><strong>Name</strong></th>
+<th class="head"><strong>Type</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+<tr class="row-even"><th class="head">0x00</th>
+<th class="head">param1</th>
+<th class="head">U32</th>
+<th class="head">Parameter 1</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td>0x04</td>
+<td>param2</td>
+<td>U32</td>
+<td>Parameter 2</td>
+</tr>
+</tbody>
+</table>
+<p>The complexity of packing and unpacking data into messages is now handled by the parameter system based upon a pre-shared parameter-table.
+This means that a command such as ‘set param1 to 0x1234’ can easily be translated into a request by the client.</p>
+<div class="figure" id="id3">
+<a class="reference internal image-reference" href="../../../_images/translate_example.png"><img alt="../../../_images/translate_example.png" src="../../../_images/translate_example.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.8 </span><span class="caption-text">Parameter Translator example</span></p>
+</div>
+<p>Here the first abstraction have been performed by the parameter translator.
+This now uses the address and type of the parameter ‘param1’ to generate a C-function that can be called by the source code.
+This C-function will ensure proper locking of the memory while the parameter is read and make sure that the data is also in the correct endian and datatype when returned.</p>
+</div>
+<div class="section" id="network-service">
+<h2>3.15.1.3. Network service<a class="headerlink" href="#network-service" title="Permalink to this headline">¶</a></h2>
+<p>In order for the parameter system to work across multiple nodes, a client/server network API has been added.
+The client and server shares the same serialization core, which is based on the parameter tables shown above.
+This means that a simple request can be sent over the network in a simple manner, without having to write any specific software client for a given command.</p>
+<div class="figure" id="id4">
+<a class="reference internal image-reference" href="../../../_images/network_example.png"><img alt="../../../_images/network_example.png" src="../../../_images/network_example.png" style="width: 90%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.9 </span><span class="caption-text">Network Example</span></p>
+</div>
+<p>The parameter client can now use a pre-shared parameter table from a remote system to generate lists and change parameters on remote systems.</p>
+</div>
+</div>
+<div class="section" id="table-storage">
+<h1>3.15.2. Table storage<a class="headerlink" href="#table-storage" title="Permalink to this headline">¶</a></h1>
+<p>The final thing that the parameter system needs is a method to store configurations into a persistent location, e.g. non-volatile memory.
+The parameter system is not limited to one or two types of stores, depending on the hardware available a number of table stores will be available.</p>
+<div class="section" id="logical-stores-and-initialization-sources">
+<h2>3.15.2.1. Logical stores and initialization sources<a class="headerlink" href="#logical-stores-and-initialization-sources" title="Permalink to this headline">¶</a></h2>
+<p>To help describe schemes and recommendations for table storage, fallback and initialization we define a number of logical store types and initialization sources.</p>
+<table border="1" class="docutils" id="id5">
+<caption><span class="caption-number">Table 3.17 </span><span class="caption-text">Logical store types and initialization sources</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="23%" />
+<col width="37%" />
+<col width="40%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Name</strong></th>
+<th class="head"><strong>Description</strong></th>
+<th class="head"><strong>Hardware</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Volatile Store</td>
+<td>Working copy of the parameter table.</td>
+<td>Volatile memory / RAM.</td>
+</tr>
+<tr class="row-odd"><td>Persistent Store</td>
+<td>Persistent storage for saving parameter table
+values accross reboots.</td>
+<td>FRAM without any write protection.</td>
+</tr>
+<tr class="row-even"><td>Protected Store</td>
+<td>Persistent storage that is write protected by
+a hardware (or software) mechanism.</td>
+<td>FRAM area with support for enabling/disabling
+write protection.</td>
+</tr>
+<tr class="row-odd"><td>Backup Store</td>
+<td>An alternative to Persistent Protected when no
+write protection mechanism exists. Basically
+another copy of the table.</td>
+<td>FRAM without any write protection.</td>
+</tr>
+<tr class="row-even"><td>Read-only Store</td>
+<td>Persistent storage that can only be read while
+‘in-flight’. It can be programmed/written on
+ground to set mission/satellite specific
+values.</td>
+<td>Internal MCU flash. Provides backup if FRAM
+circuit fails completely.</td>
+</tr>
+<tr class="row-odd"><td>Initializer Function</td>
+<td>A C-function implemented by the application
+that sets default values in the table.</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>Auto Persist Store</td>
+<td>Special storage area for parameters that are
+always written to persistent storage when set.
+It is only recomended to use this for
+telemetry as values are not protected by a
+checksum. See section below for details.</td>
+<td>Dedicated area of an FRAM.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="fallback-examples-and-recommendations">
+<h2>3.15.2.2. Fallback examples and recommendations<a class="headerlink" href="#fallback-examples-and-recommendations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="connection-configuration">
+<h3>3.15.2.2.1. Connection configuration<a class="headerlink" href="#connection-configuration" title="Permalink to this headline">¶</a></h3>
+<p>Configuration that affect how a module connects to the rest of the satellite bus is paramount. If the module is unable to communicate on the satellite bus using fallback configuration the module is lost in the case of corrupted configuration.</p>
+<p>The recommended configuration stores scheme for such parameters is described by <a class="reference internal" href="#libparam-conn-conf-strategy1"><span class="std std-ref">Connection configuration initialization</span></a>. During initialization, if the table copy in ‘Persistent Store’ is corrupted initialization fails and an attempt is made to initialize from the hardware protected ‘Protected Store’. If this also fails, e.g. FRAM circuit is defect, table initialization is done from the ‘Read-only Store’ as a final backup.</p>
+<p>This scheme offers protection against corruption of unprotected FRAM and has default values defined by the mission in case of total FRAM failure.</p>
+<div class="figure" id="id6">
+<span id="libparam-conn-conf-strategy1"></span><a class="reference internal image-reference" href="../../../_images/param_storage.png"><img alt="../../../_images/param_storage.png" src="../../../_images/param_storage.png" style="width: 85%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.10 </span><span class="caption-text">Connection configuration initialization</span></p>
+</div>
+</div>
+<div class="section" id="ground-link-configuration">
+<h3>3.15.2.2.2. Ground link configuration<a class="headerlink" href="#ground-link-configuration" title="Permalink to this headline">¶</a></h3>
+<p>The GomSpace AX100 UHF/VHF radio protects ground link configuration using a ‘ground watchdog’ and a ‘Protected Store’. If the ‘ground watchdog’ is not maintained by a signal from the ground station the AX100 radio will invalidate configuration in the ‘Persistent Store’, reset and initialize from tables in the ‘Protected Store’.</p>
+<div class="figure" id="id7">
+<span id="libparam-conn-conf-strategy2"></span><a class="reference internal image-reference" href="../../../_images/param_storage_wdt.png"><img alt="../../../_images/param_storage_wdt.png" src="../../../_images/param_storage_wdt.png" style="width: 85%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.11 </span><span class="caption-text">Ground watchdog configuration fallback</span></p>
+</div>
+</div>
+</div>
+<div class="section" id="telemetry-store">
+<h2>3.15.2.3. Telemetry Store<a class="headerlink" href="#telemetry-store" title="Permalink to this headline">¶</a></h2>
+<p>The FRAM chip is particularly good at storing rapidly changing persistent parameters. This could for example be a boot counter.
+If a parameter is marked with the GS_PARAM_F_PERSIST flag in the parameter table and an auto-persist store has been setup for the table,
+every write operation to a persistent parameter will yield an update of the value stored in FRAM.
+After a reboot the FRAM will be checked for any stored auto-persist parameters and the value stored in RAM will be initialized from that.
+The advantage of using persistent parameters is that they are relatively cheap to update and does not require any checksums or similar.
+That means that they can be used for rapidly changing values without worrying about execution speed and storage wear.
+The disadvantage is that during initialization there is no checksum on auto-persist parameters and corrupted data may be loaded into the table.
+It is therefor <strong>not</strong> recommended to use auto-persist parameter for configuration.</p>
+</div>
+</div>
+<div class="section" id="system-overview">
+<h1>3.15.3. System overview<a class="headerlink" href="#system-overview" title="Permalink to this headline">¶</a></h1>
+<p>The parameter system is separated into three components:</p>
+<ul class="simple">
+<li><strong>Parameter Host API (libparam)</strong>: Local interface used by the firmware on a subsystem.</li>
+<li><strong>Parameter Service (libparam)</strong>: Defines the network interfaces and implements a CSP service task to process incoming get/set requests.</li>
+<li><strong>Parameter Client API (libparam_client)</strong>: Contains functions for sending get/set requests to a parameter service.</li>
+</ul>
+<p>On top of these components lies a client layer where there is two GOSH interfaces:</p>
+<ul class="simple">
+<li><strong>Local interface ‘param’</strong>: This is a set of commands that uses the Host API to modify parameters. This provides access to changing parameters. save/load tables, wihtout going through the service component.</li>
+<li><strong>Remote client ‘rparam’</strong>: This is a set of commands that uses the Client API to send requests to a remote parameter service. This can be used to remotely operate another subsystem over a CSP link. For example the spacelink.</li>
+</ul>
+<p>This can be illustrated in the following way:</p>
+<div class="figure" id="id8">
+<a class="reference internal image-reference" href="../../../_images/param_system.png"><img alt="../../../_images/param_system.png" src="../../../_images/param_system.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.12 </span><span class="caption-text">Parameter system modules</span></p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="commands.html" class="btn btn-neutral float-right" title="3.15.4. Commands" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="libparam.html" class="btn btn-neutral" title="3.15. Parameter System (libparam)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020 GomSpace A/S..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'2.12.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

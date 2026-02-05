@@ -1,0 +1,11 @@
+# JTAG - BusBlaster v2.5
+SUBSYSTEMS=="usb" ACTION=="add" ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", \
+MODE="0666"
+SUBSYSTEMS=="usb_device" ACTION=="add" ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", \
+MODE="0666"
+
+# JTAG - Digilent HS3
+SUBSYSTEMS=="usb" ACTION=="add" ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6014", \
+MODE="0666"
+SUBSYSTEMS=="usb_device" ACTION=="add" ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6014", \
+MODE="0666"

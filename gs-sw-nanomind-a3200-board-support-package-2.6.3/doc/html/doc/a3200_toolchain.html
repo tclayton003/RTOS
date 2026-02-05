@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. Programming &mdash; A3200 Board Support Package 2.6.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="A3200 Board Support Package 2.6.3 documentation" href="../index.html"/>
+        <link rel="next" title="3. Libraries" href="libraries.html"/>
+        <link rel="prev" title="1.3. User Application" href="user_application.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> A3200 Board Support Package
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.6.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="a3200-bsp.html">1. A3200 BSP</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Programming</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-setup">2.1. Hardware setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#powering-the-nanomind-a3200">2.1.1. Powering the NanoMind A3200</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-a-nanodock-dmc-3">2.2. Using a NanoDock DMC-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#avr-dragon-jtag-programmer">2.3. AVR Dragon - JTAG Programmer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#digilent-hs3-jtag-programmer">2.4. Digilent HS3 - JTAG Programmer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ftdi-serial-connection-gosh">2.5. FTDI - serial connection (GOSH)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vsc">2.6. Visual Studio Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="libraries.html">3. Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">4. Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/appendix.html">5. Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zrefs.html">6. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">A3200 Board Support Package</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>2. Programming</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="programming">
+<span id="a3200-toolchain"></span><h1>2. Programming<a class="headerlink" href="#programming" title="Permalink to this headline">¶</a></h1>
+<p>The NanoMind A3200 can be programmed with either the AVR Dragon JTAG programmer or the Digilent HS3 JTAG programmer.</p>
+<p>The following sections describes the details in installing and using both the toolchains for the AVR Dragon programmer and the Digilent HS3 programmer.</p>
+<div class="section" id="hardware-setup">
+<h2>2.1. Hardware setup<a class="headerlink" href="#hardware-setup" title="Permalink to this headline">¶</a></h2>
+<p>The AVR32 MCU can be programmed with an AVR Dragon JTAG programmer. The AVR Dragon is connected to the AVR32 MCU through a JTAG cable,
+and an USB cable connects the AVR Dragon to your PC.</p>
+<div class="figure" id="id1">
+<a class="reference internal image-reference" href="../_images/a3200-bsp-FTDI.svg"><img alt="../_images/a3200-bsp-FTDI.svg" src="../_images/a3200-bsp-FTDI.svg" width="70%" /></a>
+<p class="caption"><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Connections beween PC, JTAG, FTDI and the NanoMind A3200</span></p>
+</div>
+<div class="figure" id="id2">
+<a class="reference internal image-reference" href="../_images/a3200-with-dragon.png"><img alt="../_images/a3200-with-dragon.png" src="../_images/a3200-with-dragon.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2.2 </span><span class="caption-text">AVR Dragon (left), A3200 (middle) and FTDI/USB (right)</span></p>
+</div>
+<p>The FTDI cable is made to fit with the 4-pin picoblade connector: <cite>GND</cite>, <cite>VCC</cite>, <cite>UART RX</cite> and <cite>UART TX</cite>.</p>
+<p>See the individual GomSpace product manuals for a more detailed hardware setup.</p>
+<div class="section" id="powering-the-nanomind-a3200">
+<h3>2.1.1. Powering the NanoMind A3200<a class="headerlink" href="#powering-the-nanomind-a3200" title="Permalink to this headline">¶</a></h3>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Do not power the system using FTDI power and external power supply simultaneously.
+If an external power supply is used, the <cite>VCC</cite> line (in the FTDI/USB cable) must be removed from the picoblade connector head.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Please ensure that any PC/Laptop connected to the USB cable has a properly grounded AC-plug. The external power supply ground and PC/Laptop ground must be the same. Failure to do so will result in Common Mode noise on the GND lines of up to 100+ Volts.</p>
+</div>
+<p><em>External power</em>: The external power supply must be set to 3.3 volt and a current limiter of 1000 mA. The ground connection is taken from one of the four PCB corners, but could also be made in the USB/Serial cable.</p>
+</div>
+</div>
+<div class="section" id="using-a-nanodock-dmc-3">
+<h2>2.2. Using a NanoDock DMC-3<a class="headerlink" href="#using-a-nanodock-dmc-3" title="Permalink to this headline">¶</a></h2>
+<p>The NanoMind A3200 can be fitted on a GomSpace NanoDock DMC-3 with FSI connector. Please refer to the GomSpace NanoDock DMC-3 documentation for information about mounting and powering the NanoMind A3200 module.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Do not power the system using FTDI power and NanoDock DMC-3 power simultaneously.</p>
+</div>
+</div>
+<div class="section" id="avr-dragon-jtag-programmer">
+<h2>2.3. AVR Dragon - JTAG Programmer<a class="headerlink" href="#avr-dragon-jtag-programmer" title="Permalink to this headline">¶</a></h2>
+<p>The A3200 toolchain has been verified on Ubuntu 16.04.5 LTS (<a class="reference external" href="http://www.ubuntu.com">http://www.ubuntu.com</a>), with following tools:</p>
+<ul class="simple">
+<li>Python 2.7.12</li>
+<li>GomSpace AVR32 toolchain 3.4.2_gs1</li>
+</ul>
+<p>Install Ubuntu prerequisites:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ sudo apt install build-essential
+</pre></div>
+</div>
+<p>The AVR32 toolchain contains cross-compiler for the AVR32 platform and a number of utilities for programing the target platform using a AVR Dragon JTAG programmer.</p>
+<p>Install GomSpace AVR32 toolchain:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ tar xfz gs-avr32-toolchain-3.4.2_gs1.tar.gz
+$ cd gs-avr32-toolchain-3.4.2_gs1
+$ ./install-avr32.sh
+</pre></div>
+</div>
+<p>More info about the AVR Dragon can be found on Microchip’s homepage: <a class="reference external" href="http://www.microchip.com/developmenttools/ProductDetails/ATAVRDRAGON">http://www.microchip.com/developmenttools/ProductDetails/ATAVRDRAGON</a>.</p>
+<p>If programming fails with the error message “No USB programmers found.”, it is most likely due to a permission problem.</p>
+<p>Verify that the <cite>avrtools</cite> rule file is installed:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ ls  /etc/udev/rules.d/
+99-avrtools.rules
+</pre></div>
+</div>
+<p>If the <cite>99-avrtools.rules</cite> isn’t present, install the AVR32 toolchain (see <a class="reference internal" href="#a3200-toolchain"><span class="std std-ref">Programming</span></a>) or copy the file from the board support package, when it has been unpacked:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ sudo cp tools/99-avrtools.rules /etc/udev/rules.d/
+</pre></div>
+</div>
+<p>Unplug the programmer, wait a few seconds, re-connect the programmer and then re-try the program operation.</p>
+</div>
+<div class="section" id="digilent-hs3-jtag-programmer">
+<h2>2.4. Digilent HS3 - JTAG Programmer<a class="headerlink" href="#digilent-hs3-jtag-programmer" title="Permalink to this headline">¶</a></h2>
+<p>The Digilent HS3 JTAG programmer is used to flash the NanoMind A3200 as a replacement of the AVR Dragon JTAG programmer no longer manufactured.</p>
+<p>The toolchain for the Digilent HS3 is located in a3200-bsp/tools, and can also be found on the GomSpace GitHub reposetory called avr32-prog. The toolchain uses a pyhton script with dependencies on pyefltools and pyftdi.</p>
+<p>To install the dependencies:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ pip install pyelftools
+$ pip install pyftdi
+</pre></div>
+</div>
+<p>Make sure rules are copied to /etc/udev/rules.d:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ sudo cp tools/hs3/support/99-ftdi.rules /etc/udev/rules.d/
+</pre></div>
+</div>
+<p>run:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ udevadm control --reload-rules
+$ udevadm trigger
+</pre></div>
+</div>
+<p>afterwards, and re-connect the programmer.</p>
+<p>To use the programmer run:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ python3 &lt;PATH-TO&gt;/avr32-prog.py -p digilent_hs3 -R -E -f &lt;PATH-TO&gt;/nanomind-bsp.elf
+</pre></div>
+</div>
+</div>
+<div class="section" id="ftdi-serial-connection-gosh">
+<h2>2.5. FTDI - serial connection (GOSH)<a class="headerlink" href="#ftdi-serial-connection-gosh" title="Permalink to this headline">¶</a></h2>
+<p>When the A3200 NanoMind board boots up, it will will print information on it’s standard out. One of the UARTs on the A3200 is configured as standard in/out.</p>
+<p>Once the A3200 board is connected to the PC, using the provided FTDI cable, Linux will create a serial device in <cite>/dev/ttyUSB*</cite>.</p>
+<p><cite>minicom</cite> is a small terminal program, which can be used to handle the communication. It can be installed using <cite>apt</cite>:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ sudo apt install minicom
+</pre></div>
+</div>
+<p>Unless otherwise specified for any given GomSpace product, the communication settings are: 500000-8-n-1. This can be specified on the command line,
+when starting <cite>minicom</cite>:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ minicom -b 500000 -8 -D /dev/ttyUSB7
+</pre></div>
+</div>
+<p>Once <cite>minicom</cite> is started, it’s configuration can be changed using <cite>&lt;ctrl&gt;&lt;a&gt; and &lt;z&gt;</cite>.</p>
+</div>
+<div class="section" id="vsc">
+<h2>2.6. Visual Studio Code<a class="headerlink" href="#vsc" title="Permalink to this headline">¶</a></h2>
+<p>Visual Studio Code (<a class="reference external" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>) is a free code editor, with a vast number of features, e.g. <cite>IntelliSense</cite> (go to definitions).
+For installation on Linux, please see the online documentation: <a class="reference external" href="https://code.visualstudio.com/docs/setup/linux">https://code.visualstudio.com/docs/setup/linux</a>.</p>
+<p>Once the tool is installed, navigate to the top folder of your project and start Visual Studio Code by typing:</p>
+<div class="highlight-default"><div class="highlight"><pre>$ code .
+</pre></div>
+</div>
+<p>This will launch the graphical interface of Visual Studio Code and you are ready to browse/edit the code:</p>
+<div class="figure" id="id3">
+<a class="reference internal image-reference" href="../_images/visual_studio_code.png"><img alt="../_images/visual_studio_code.png" src="../_images/visual_studio_code.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2.3 </span><span class="caption-text">Visual Studio Code</span></p>
+</div>
+<p>To learn more about Visual Studio Code and how it works, please see the online documentation <a class="reference external" href="https://code.visualstudio.com/docs">https://code.visualstudio.com/docs</a>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="libraries.html" class="btn btn-neutral float-right" title="3. Libraries" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="user_application.html" class="btn btn-neutral" title="1.3. User Application" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023 GomSpace A/S..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.6.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

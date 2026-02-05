@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1.3. Known Limitations &mdash; A3200 Command and Management SDK 2.12.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="A3200 Command and Management SDK 2.12.0 documentation" href="../../index.html"/>
+        <link rel="up" title="1. A3200 SDK" href="a3200-sdk.html"/>
+        <link rel="next" title="1.4. Parameter Tables" href="parameter_tables.html"/>
+        <link rel="prev" title="1.2. Software" href="software.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> A3200 Command and Management SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.12.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="a3200-sdk.html">1. A3200 SDK</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">1.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software.html">1.2. Software</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.3. Known Limitations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#avr32-toolchain">1.3.1. AVR32 toolchain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freertos">1.3.2. FreeRTOS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#freertos-runtime-stats">1.3.2.1. FreeRTOS runtime stats</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="parameter_tables.html">1.4. Parameter Tables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../product_interfaces.html">2. Product Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries.html">3. Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">4. Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">5. Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zrefs.html">6. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">A3200 Command and Management SDK</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="a3200-sdk.html">1. A3200 SDK</a> &raquo;</li>
+      
+    <li>1.3. Known Limitations</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="known-limitations">
+<h1>1.3. Known Limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="avr32-toolchain">
+<h2>1.3.1. AVR32 toolchain<a class="headerlink" href="#avr32-toolchain" title="Permalink to this headline">¶</a></h2>
+<p>The toolchain has been upgraded to a GomSpace patched version (3.4.2_gs1), which solves the following issues
+when running in a multi-threaded environment;</p>
+<ul class="simple">
+<li>Enabling FreeRETOS configUSE_NEWLIB_REENTRANT causes a crash when a task/thread terminates. This is due to a bug in newlib 1.16 (part of the
+toolchain).
+configUSE_NEWLIB_REENTRANT allows formatting of float/double from multiple threads, without crashing.</li>
+<li>Missing file locking, when accessing files from mulitple threads. The patched toolchain now supports retargetable locks in newlib, and the
+locks has been implemented in libembed.</li>
+</ul>
+<p>The new toolchain 3.4.2_gs1 comes with <cite>NanoMind A3200 BSP</cite> (a3200-bsp) version 2.5.1. The toolchain source files are available on <a class="reference external" href="https://github.com/GomSpace/avr32-toolchain">https://github.com/GomSpace/avr32-toolchain</a>.</p>
+</div>
+<div class="section" id="freertos">
+<h2>1.3.2. FreeRTOS<a class="headerlink" href="#freertos" title="Permalink to this headline">¶</a></h2>
+<p>FreeRTOS has been upgraded to version 10.2, to solve some stability issues with 8.0. The FreeRTOS version can be changed through the wscript:</p>
+<div class="highlight-default"><div class="highlight"><pre><span class="c1"># Options for libasf</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">freertos_version</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<div class="section" id="freertos-runtime-stats">
+<h3>1.3.2.1. FreeRTOS runtime stats<a class="headerlink" href="#freertos-runtime-stats" title="Permalink to this headline">¶</a></h3>
+<p>Runtime stats (<cite>Time %</cite> from the <code class="docutils literal"><span class="pre">ps</span></code> command) is disabled (in liba3200/conf/FreeRTOSConfig.h) for the time being.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="parameter_tables.html" class="btn btn-neutral float-right" title="1.4. Parameter Tables" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="software.html" class="btn btn-neutral" title="1.2. Software" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020 GomSpace A/S..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2.12.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

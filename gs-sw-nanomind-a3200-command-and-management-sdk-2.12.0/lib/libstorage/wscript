@@ -1,0 +1,84 @@
+#!/usr/bin/env python
+# encoding: utf-8
+# Copyright (c) 2013-2017 GomSpace A/S. All rights reserved.
+
+import os
+import gs_gcc
+import gs_doc
+import gs_dist
+from waflib.Build import BuildContext
+
+APPNAME = 'storage'
+
+
+def options(ctx):
+    ctx.load("gs_gcc")
+    gs_gcc.gs_recurse(ctx)
+
+    gr = ctx.add_option_group('libstorage options')
+    gr.add_option('--enable-uffs-driver-fl512s', action='store_true', help='Enable Spansion FL512S driver for UFFS')
+
+
+def configure(ctx):
+    ctx.load("gs_gcc")
+
+    ctx.env.append_unique('FILES_STORAGE', ['src/vfs/cmd_fs.c', 'src/vfs/vfs_rmdir.c'])
+
+    enable_vfs = False
+    enable_uffs = False
+
+    if ctx.options.enable_uffs_driver_fl512s:
+        enable_uffs = True
+        ctx.env.append_unique('FILES_STORAGE', ['src/uffs/drivers/fl512s.c'])
+
+    if enable_uffs:
+        enable_vfs = True
+        ctx.env.append_unique('FILES_STORAGE_3RD', ['src/3rd/uffs/**/*.c'])
+        ctx.env.append_unique('FILES_STORAGE', ['src/uffs/*.c'])
+
+    # VFS
+    if enable_vfs:
+        ctx.env.append_unique('DEFINES', ['HAVE_OPENDIR=1'])
+        ctx.env.append_unique('FILES_STORAGE', ['src/vfs/**/*.c'])
+
+    ctx.gs_add_doxygen(exclude=['*/include/uffs'])
+
+    gs_gcc.gs_recurse(ctx)
+
+
+def build(ctx):
+    gs_gcc.gs_recurse(ctx)
+
+    public_include = ctx.gs_include(includes='include', name=APPNAME)
+
+    # uffs uses casts to struct pointers in several places, e.g. for
+    # mapping tag headers in the beginning of buffers. GCC does not like
+    # this and spews out cast-align warnings, because the casts do not
+    # guarantee proper alignment. We have verified that all the casts in
+    # uffs actually use aligned buffers, so it is safe to silence the
+    # warning.
+    appname_3rd = APPNAME + '_3rd'
+    if ctx.env.FILES_STORAGE_3RD:
+        ctx.gs_objects(source=ctx.path.ant_glob(ctx.env.FILES_STORAGE_3RD),
+                       target=appname_3rd,
+                       use=['embed', 'util', public_include],
+                       cflags=['-Wno-sign-compare', '-Wno-cast-align', '-fno-strict-aliasing'])
+
+    ctx.gs_objects(source=ctx.path.ant_glob(ctx.env.FILES_STORAGE),
+                   target=APPNAME,
+                   use=['thirdparty', 'embed', 'util', appname_3rd, public_include])
+
+
+def doc(ctx):
+    gs_doc.library(ctx, keyvalues={
+        'gs_prod_name': 'lib'+APPNAME,
+        'gs_prod_desc': 'File system for A3200',
+    })
+
+
+class Doc(BuildContext):
+    cmd = fun = 'doc'
+
+
+def gs_dist(ctx):
+    ctx.add_default_files(source_module=True)

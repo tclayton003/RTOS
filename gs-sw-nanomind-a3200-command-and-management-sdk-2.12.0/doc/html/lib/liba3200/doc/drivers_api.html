@@ -1,0 +1,424 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.1.2. Drivers and API &mdash; A3200 Command and Management SDK 2.12.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="A3200 Command and Management SDK 2.12.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="3.1. A3200 (liba3200)" href="liba3200.html"/>
+        <link rel="next" title="3.1.3. Software Update in Orbit" href="software_update.html"/>
+        <link rel="prev" title="3.1.1. Introduction" href="introduction.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../doc/index.html" class="icon icon-home"> A3200 Command and Management SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.12.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/a3200-sdk/a3200-sdk.html">1. A3200 SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/product_interfaces.html">2. Product Interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../doc/libraries.html">3. Libraries</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="liba3200.html">3.1. A3200 (liba3200)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">3.1.1. Introduction</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.1.2. Drivers and API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#spi-bus">3.1.2.1. SPI Bus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#i2c-bus">3.1.2.2. I<sup>2</sup>C Bus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#can-bus">3.1.2.3. CAN Bus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fm33256b-fram-rtc">3.1.2.4. FM33256B (FRAM / RTC)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adc-channels">3.1.2.5. ADC Channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fl512-nor-flash">3.1.2.6. FL512 (NOR flash)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pulse-width-modulation-pwm">3.1.2.7. Pulse Width Modulation (PWM)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#power-switch-control-pwr">3.1.2.8. Power Switch Control (PWR)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lm71-temperature-sensor">3.1.2.9. LM71 Temperature sensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mpu3300-gyro">3.1.2.10. MPU3300 (Gyro)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hmc5843-magnetometer">3.1.2.11. HMC5843 (Magnetometer)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="software_update.html">3.1.3. Software Update in Orbit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parameters.html">3.1.4. Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../liba3200dock/doc/liba3200dock.html">3.2. A3200 Dock (liba3200dock)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libasf/doc/libasf.html">3.3. ASF (libasf)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libgscsp/doc/libgscsp.html">3.4. GomSpace CSP (libgscsp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libembed/doc/libembed.html">3.5. Embed (libembed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libemul/doc/libemul.html">3.6. Emulation (libemul)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libfp/doc/libfp.html">3.7. Flight Planner (libfp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libftp/doc/libftp.html">3.8. FTP (libftp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libgosh/doc/libgosh.html">3.9. GOSH (libgosh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libgssb/doc/libgssb.html">3.10. GomSpace Sensor Bus (libgssb)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libhk/doc/libhk.html">3.11. Housekeeping (libhk)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libjson/doc/libjson.html">3.12. JSON parser (libjson)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../liblog/doc/liblog.html">3.13. Log (liblog)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libnanopb/doc/libnanopb.html">3.14. Nano Protobuf (libnanopb)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libparam/doc/libparam.html">3.15. Parameter System (libparam)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../librgosh/doc/librgosh.html">3.16. Remote GOSH (librgosh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libstorage/doc/libstorage.html">3.17. Storage (libstorage)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libthirdparty/doc/libthirdparty.html">3.18. Thirdparty (libthirdparty)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libutil/doc/libutil.html">3.19. Utility (libutil)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/tools.html">4. Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/appendix/appendix.html">5. Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/zrefs.html">6. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../doc/index.html">A3200 Command and Management SDK</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../doc/index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../doc/libraries.html">3. Libraries</a> &raquo;</li>
+      
+          <li><a href="liba3200.html">3.1. A3200 (liba3200)</a> &raquo;</li>
+      
+    <li>3.1.2. Drivers and API</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="drivers-and-api">
+<span id="liba3200-a3200-drivers-api"></span><h1>3.1.2. Drivers and API<a class="headerlink" href="#drivers-and-api" title="Permalink to this headline">¶</a></h1>
+<p>The A3200 Library includes drivers and API functions for</p>
+<ul class="simple">
+<li><a class="reference internal" href="#liba3200-spi-bus"><span class="std std-ref">SPI Bus</span></a></li>
+<li><a class="reference internal" href="#liba3200-i2c-bus"><span class="std std-ref">I2C Bus</span></a></li>
+<li><a class="reference internal" href="#liba3200-can"><span class="std std-ref">CAN Bus</span></a></li>
+<li><a class="reference internal" href="#liba3200-fram"><span class="std std-ref">FM33256B (FRAM / RTC)</span></a></li>
+<li><a class="reference internal" href="#liba3200-adc"><span class="std std-ref">ADC Channels</span></a></li>
+<li><a class="reference internal" href="#liba3200-fl512"><span class="std std-ref">FL512 (NOR flash)</span></a></li>
+<li><a class="reference internal" href="#liba3200-pwm"><span class="std std-ref">Pulse Width Modulation (PWM)</span></a></li>
+<li><a class="reference internal" href="#liba3200-pwr"><span class="std std-ref">Power Switch Control (PWR)</span></a></li>
+<li><a class="reference internal" href="#liba3200-mpu3300"><span class="std std-ref">MPU3300 (Gyro)</span></a></li>
+<li><a class="reference internal" href="#liba3200-hmc5843"><span class="std std-ref">HMC5843 (Magnetometer)</span></a></li>
+</ul>
+<div class="section" id="spi-bus">
+<span id="liba3200-spi-bus"></span><h2>3.1.2.1. SPI Bus<a class="headerlink" href="#spi-bus" title="Permalink to this headline">¶</a></h2>
+<p>The AVR32 SPI controllers are used for:</p>
+<ul class="simple">
+<li>SPI 0: wired to X3 (external use).</li>
+<li>SPI 1: wired to <a class="reference internal" href="#liba3200-fl512"><span class="std std-ref">FL512 (NOR flash)</span></a>. <a class="reference internal" href="#liba3200-fram"><span class="std std-ref">FM33256B (FRAM / RTC)</span></a>, <a class="reference internal" href="#liba3200-lm71"><span class="std std-ref">LM71 Temperature sensor</span></a>.</li>
+</ul>
+<p>The SPI interface can be initialised using:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="c1">// liba3200/src/init.c</span>
+<span class="kt">void</span> <span class="nf">gs_a3200_init_spi0</span><span class="p">(</span><span class="kt">bool</span> <span class="n">decode</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">gs_a3200_init_spi1</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../../libasf/doc/libasf.html#libasf"><span class="std std-ref">ASF (libasf)</span></a> for further details on the SPI bus.</p>
+<p>Related APIs: <cite>libembed/include/gs/embed/asf/drivers/spi/master.h</cite></p>
+</div>
+<div class="section" id="i2c-bus">
+<span id="liba3200-i2c-bus"></span><h2>3.1.2.2. I<sup>2</sup>C Bus<a class="headerlink" href="#i2c-bus" title="Permalink to this headline">¶</a></h2>
+<p>The I<sup>2</sup>C supports bidirectional data transfer between master and slaves, and can be configured as multi-master bus - handling arbitration
+between simultaneously transmitting masters without corruption of serial data on the bus.</p>
+<p>The I<sup>2</sup>C controllers are used for:</p>
+<ul class="simple">
+<li>twi0 / I<sup>2</sup>C 0: wired to X1, through an isolator (external).</li>
+<li>twi2 / I<sup>2</sup>C 2: wired to P7, <a class="reference internal" href="#liba3200-hmc5843"><span class="std std-ref">HMC5843 (Magnetometer)</span></a>, <a class="reference internal" href="#liba3200-mpu3300"><span class="std std-ref">MPU3300 (Gyro)</span></a>.</li>
+</ul>
+<p>The I<sup>2</sup>C interface can be initialised using:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="c1">// liba3200/src/init.c</span>
+<span class="kt">void</span> <span class="nf">gs_a3200_init_twi0</span><span class="p">(</span><span class="n">gs_avr32_i2c_mode_t</span> <span class="n">mode</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">addr</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">bps</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">gs_a3200_init_twi2</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../../libasf/doc/libasf.html#libasf"><span class="std std-ref">ASF (libasf)</span></a> for further details on the I<sup>2</sup>C bus.</p>
+<p>Related APIs: <cite>libembed/include/gs/embed/asf/drivers/i2c/i2c.h</cite>, <cite>libgscsp/include/gs/csp/drivers/i2c/i2c.h</cite></p>
+</div>
+<div class="section" id="can-bus">
+<span id="liba3200-can"></span><h2>3.1.2.3. CAN Bus<a class="headerlink" href="#can-bus" title="Permalink to this headline">¶</a></h2>
+<p>The CAN controllers are used for:</p>
+<ul class="simple">
+<li>CAN0: wired to X1, through a CAN transceiver (external).</li>
+</ul>
+<p>The CAN interface can be initialised using:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="c1">// liba3200/src/init.c</span>
+<span class="kt">void</span> <span class="n">gs_a3200_init_can</span><span class="p">(</span><span class="kt">bool</span> <span class="n">enable</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../../libasf/doc/libasf.html#libasf"><span class="std std-ref">ASF (libasf)</span></a> for further details on the CAN Bus.</p>
+<p>Related APIs: <cite>libembed/include/gs/embed/asf/avr32/drivers/can/can.h</cite>, <cite>libgscsp/include/gs/csp/drivers/can/can.h</cite></p>
+</div>
+<div class="section" id="fm33256b-fram-rtc">
+<span id="liba3200-fram"></span><h2>3.1.2.4. FM33256B (FRAM / RTC)<a class="headerlink" href="#fm33256b-fram-rtc" title="Permalink to this headline">¶</a></h2>
+<p>The board includes a FM33256B processor companion from Cypress, which provides:</p>
+<blockquote>
+<div><ul class="simple">
+<li>32 KB FRAM, none-volatile data storage</li>
+<li>Real Time Clock (RTC)</li>
+<li>Watchdog</li>
+<li>Power detection (drives reset of the AVR32)</li>
+</ul>
+</div></blockquote>
+<p>The FM33256B is connected via SPI 1.</p>
+<p>The FRAM interface can be initialised using:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="c1">// liba3200/src/init.c</span>
+<span class="n">gs_error_t</span> <span class="nf">gs_a3200_init_fram</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This will also initialise the RTC of the FRAM.</p>
+<p>Related APIs: <cite>libthirdparty/src/fram/fm33256b.c</cite>, <cite>libutil/include/gs/util/rtc.h</cite>.</p>
+<p>The command group <code class="docutils literal"><span class="pre">fm33256b</span></code> supports the device. The command implementation can be used as a code example: <cite>libthirdparty/src/fram/fm33256b_cmd.c</cite>.</p>
+</div>
+<div class="section" id="adc-channels">
+<span id="liba3200-adc"></span><h2>3.1.2.5. ADC Channels<a class="headerlink" href="#adc-channels" title="Permalink to this headline">¶</a></h2>
+<p>To sample external analog values, the board supports a number of ADC channels in one of the main connectors. The ADC pins can also be
+configured to be GPIO instead of ADC inputs.</p>
+<p>The ADC interface can be initialised using:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="c1">// liba3200/src/adc_channels.c</span>
+<span class="kt">void</span> <span class="nf">gs_a3200_adc_channels_init</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Related APIs: <cite>liba3200/include/gs/a3200/adc_channels.h</cite>.</p>
+<p>The command group <code class="docutils literal"><span class="pre">adc</span></code> supports the device. The command implementation can be used as a code example: <cite>liba3200/src/cmd/cmd_adc.c</cite>.</p>
+</div>
+<div class="section" id="fl512-nor-flash">
+<span id="liba3200-fl512"></span><h2>3.1.2.6. FL512 (NOR flash)<a class="headerlink" href="#fl512-nor-flash" title="Permalink to this headline">¶</a></h2>
+<p>The FL512 Spansion chip is a 128 MB NOR flash (on two dies of 64 MB each). The flash is connected via SPI 1.</p>
+<p>The flash interface can be initialised using:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="c1">// libthirdparty/src/flash/spn_fl512s.c</span>
+<span class="n">gs_error_t</span> <span class="nf">spn_fl512s_init</span><span class="p">(</span><span class="k">const</span> <span class="n">spn_fl512s_config_t</span> <span class="o">*</span> <span class="n">config</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Related APIs: <cite>libthirdparty/include/gs/thirdparty/flash/spn_fl512s.h</cite>.</p>
+<p>The command group <code class="docutils literal"><span class="pre">spn</span></code> supports the device. The command implementation can be used as a code example: <cite>libthirdparty/src/flash/cmd_spn_fl512s.c</cite>.</p>
+<div class="section" id="file-system">
+<h3>3.1.2.6.1. File system<a class="headerlink" href="#file-system" title="Permalink to this headline">¶</a></h3>
+<p>On A3200 SDK systems, the flash is used as file system (UFFS). For further details see <a class="reference internal" href="../../libstorage/doc/libstorage.html#libstorage"><span class="std std-ref">Storage (libstorage)</span></a>.</p>
+<p>Mounting is initiated by calling:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="c1">// liba3200/src/sdk/fs.c</span>
+<span class="n">gs_error_t</span> <span class="n">gs_a3200_fs_mount</span><span class="p">(</span><span class="n">gs_a3200_mount_fs_completed_t</span> <span class="n">cb</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Because mounting the file system is a relative slow process, the work is done in a separate task with low priority.</p>
+</div>
+</div>
+<div class="section" id="pulse-width-modulation-pwm">
+<span id="liba3200-pwm"></span><h2>3.1.2.7. Pulse Width Modulation (PWM)<a class="headerlink" href="#pulse-width-modulation-pwm" title="Permalink to this headline">¶</a></h2>
+<p>The A3200 has 3 bidirectional outputs from 3 H-bridge drivers, designed to be controlled by a PWM output
+from the AVR32. The main purpose of these bidirectional outputs is to be used for external
+magnetorquers to implement attitude control. It is possible to switch the power to the PWM driver and
+they also support current measurements.</p>
+<p>The PWM interface can be initialised using:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="c1">// liba3200/src/pwm.c</span>
+<span class="kt">void</span> <span class="nf">gs_a3200_pwm_init</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Related APIs: <cite>liba3200/include/gs/a3200/pwm.h</cite>.</p>
+<p>The command group <code class="docutils literal"><span class="pre">pwm</span></code> supports the device. The command implementation can be used as a code example: <cite>liba3200/src/cmd/cmd_pwm.c</cite>.</p>
+</div>
+<div class="section" id="power-switch-control-pwr">
+<span id="liba3200-pwr"></span><h2>3.1.2.8. Power Switch Control (PWR)<a class="headerlink" href="#power-switch-control-pwr" title="Permalink to this headline">¶</a></h2>
+<p>The PWR turns power on/off to the on-board devices. Power switches are <strong>off</strong> after initilisation.</p>
+<p>The PWR interface can be initialised using:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="c1">// liba3200/src/pwr_switch.c</span>
+<span class="kt">void</span> <span class="n">gs_a3200_pwr_switch_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Related APIs: <cite>liba3200/include/gs/a3200/pwr_switch.h</cite></p>
+</div>
+<div class="section" id="lm71-temperature-sensor">
+<span id="liba3200-lm71"></span><h2>3.1.2.9. LM71 Temperature sensor<a class="headerlink" href="#lm71-temperature-sensor" title="Permalink to this headline">¶</a></h2>
+<p>The 2 LM71 temperature sensors can be used to measure the temperature on the A3200 board. The sensors are connected via SPI 1.</p>
+<p>The LM71 interface can be initialised using:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="c1">// liba3200/src/lm71.c</span>
+<span class="kt">void</span> <span class="nf">gs_a3200_lm71_init</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Related APIs: <cite>libthirdparty/include/gs/thirdparty/lm71/lm71.h</cite></p>
+<p>The command group <code class="docutils literal"><span class="pre">lm71</span></code> supports the device. The command implementation can be used as a code example: <cite>liba3200/src/cmd/cmd_lm71.c</cite>.</p>
+</div>
+<div class="section" id="mpu3300-gyro">
+<span id="liba3200-mpu3300"></span><h2>3.1.2.10. MPU3300 (Gyro)<a class="headerlink" href="#mpu3300-gyro" title="Permalink to this headline">¶</a></h2>
+<p>The A3200 board includes a 3-Axis gyroscope, the MPU3300 from InvenSense. The MPU3300 is connected via I<sup>2</sup>C 2.</p>
+<p>The MPU3300 interface can be initialised using:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="c1">// liba3200/src/mpu3300.c</span>
+<span class="n">gs_error_t</span> <span class="n">gs_mpu3300_init</span><span class="p">(</span><span class="n">gs_mpu3300_bandwidth_t</span> <span class="n">bandwidth</span><span class="p">,</span> <span class="n">gs_mpu3300_full_scale_reading_t</span> <span class="n">full_scale</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Related APIs: <cite>liba3200/include/gs/a3200/mpu3300.h</cite>.</p>
+<p>The command group <code class="docutils literal"><span class="pre">gyro</span></code> supports the device. The command implementation can be used as a code example: <cite>liba3200/src/cmd/cmd_mpu3300.c</cite>.</p>
+</div>
+<div class="section" id="hmc5843-magnetometer">
+<span id="liba3200-hmc5843"></span><h2>3.1.2.11. HMC5843 (Magnetometer)<a class="headerlink" href="#hmc5843-magnetometer" title="Permalink to this headline">¶</a></h2>
+<p>The A3200 board includes a 3-Axis magnetometer to sense the Earth’s magnetic field, the HMC5843 from Honeywell. The HMC5843 is connected via I<sup>2</sup>C 2.</p>
+<p>The HMC5843 interface can be initialised using:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="c1">// liba3200/src/hmc5843.c</span>
+<span class="n">gs_error_t</span> <span class="n">gs_hmc5843_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The command group <code class="docutils literal"><span class="pre">hmc5853</span></code> supports the device. The command implementation can be used as a code example: <cite>liba3200/src/cmd/cmd_hmc5843.c</cite>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="software_update.html" class="btn btn-neutral float-right" title="3.1.3. Software Update in Orbit" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral" title="3.1.1. Introduction" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020 GomSpace A/S..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'2.12.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

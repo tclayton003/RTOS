@@ -1,0 +1,65 @@
+{
+ "created": "2023-07-06T18:58:15Z",
+ "gitinfo": [
+  {
+   "commit": "5831f2dd219169c17113043860c3520da342d96a",
+   "path": "a3200-bsp-candidate",
+   "revision": "2.6.3-0-g5831f2d"
+  },
+  {
+   "commit": "bab606b73e6ec9478ab07ccc6f8adf3f0b80726d",
+   "path": ".jenkinstmp/buildtools",
+   "revision": "4.0.1-0-gbab606b"
+  },
+  {
+   "commit": "71703b0c4e2f5f70df2ad3b8741c6086f8aba4a8",
+   "path": "tools/buildtools",
+   "revision": "2.11.3-0-g71703b0"
+  },
+  {
+   "commit": "ace126b86cf420aefa4d76599491484d697fc3b3",
+   "path": "lib/liba3200",
+   "revision": "3.8.1-0-gace126b"
+  },
+  {
+   "commit": "8bc3d6a458e1255662e3905bd5a41a52014aa05b",
+   "path": "lib/liba3200/lib/liba3200_client",
+   "revision": "3.5.3-0-g8bc3d6a"
+  },
+  {
+   "commit": "7177c31bdc167e841510c4ca26b3f24dadf20b8e",
+   "path": "lib/libasf",
+   "revision": "3.6.1-0-g7177c31b"
+  },
+  {
+   "commit": "aa713e2abec433d46c4b6315b1b6b4e3abe4bd6d",
+   "path": "lib/libthirdparty",
+   "revision": "2.9.1-0-gaa713e2"
+  },
+  {
+   "commit": "deb84dd0a1e17786368e7269313ac5af1cd1ff31",
+   "path": "lib/libgscsp",
+   "revision": "2.7.2-0-gdeb84dd"
+  },
+  {
+   "commit": "1ee9a93b11184800659244a91fde3e369bea0977",
+   "path": "lib/libgscsp/lib/libcsp",
+   "revision": "1.5.15-0-g1ee9a93"
+  },
+  {
+   "commit": "a262e0bb4f320afe353a535327842feab6beb768",
+   "path": "lib/libaardvark",
+   "revision": "1.2.1-0-ga262e0b"
+  },
+  {
+   "commit": "b569c19dbf74163c3e89480a69af6b82c58d5bbd",
+   "path": "lib/libutil",
+   "revision": "3.9.3-0-gb569c19"
+  },
+  {
+   "commit": "65a5324ed2d2d9e4cbc0f6151a68c6ad6c3a517c",
+   "path": "lib/libembed",
+   "revision": "1.8.1-0-g65a5324"
+  }
+ ]
+}

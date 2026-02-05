@@ -1,0 +1,510 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. Libraries &mdash; A3200 Command and Management SDK 2.12.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="A3200 Command and Management SDK 2.12.0 documentation" href="../index.html"/>
+        <link rel="next" title="3.1. A3200 (liba3200)" href="../lib/liba3200/doc/liba3200.html"/>
+        <link rel="prev" title="2.10.2. Commands" href="../lib/libp60_client/doc/commands.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> A3200 Command and Management SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.12.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="a3200-sdk/a3200-sdk.html">1. A3200 SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="product_interfaces.html">2. Product Interfaces</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Libraries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/liba3200/doc/liba3200.html">3.1. A3200 (liba3200)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/liba3200dock/doc/liba3200dock.html">3.2. A3200 Dock (liba3200dock)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libasf/doc/libasf.html">3.3. ASF (libasf)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libgscsp/doc/libgscsp.html">3.4. GomSpace CSP (libgscsp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libembed/doc/libembed.html">3.5. Embed (libembed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libemul/doc/libemul.html">3.6. Emulation (libemul)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libfp/doc/libfp.html">3.7. Flight Planner (libfp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libftp/doc/libftp.html">3.8. FTP (libftp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libgosh/doc/libgosh.html">3.9. GOSH (libgosh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libgssb/doc/libgssb.html">3.10. GomSpace Sensor Bus (libgssb)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libhk/doc/libhk.html">3.11. Housekeeping (libhk)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libjson/doc/libjson.html">3.12. JSON parser (libjson)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/liblog/doc/liblog.html">3.13. Log (liblog)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libnanopb/doc/libnanopb.html">3.14. Nano Protobuf (libnanopb)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libparam/doc/libparam.html">3.15. Parameter System (libparam)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/librgosh/doc/librgosh.html">3.16. Remote GOSH (librgosh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libstorage/doc/libstorage.html">3.17. Storage (libstorage)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libthirdparty/doc/libthirdparty.html">3.18. Thirdparty (libthirdparty)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libutil/doc/libutil.html">3.19. Utility (libutil)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">4. Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/appendix.html">5. Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zrefs.html">6. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">A3200 Command and Management SDK</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>3. Libraries</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="libraries">
+<h1>3. Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../lib/liba3200/doc/liba3200.html">3.1. A3200 (liba3200)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/liba3200/doc/introduction.html">3.1.1. Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/liba3200/doc/introduction.html#a3200-board">3.1.1.1. A3200 board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/liba3200/doc/introduction.html#highlighted-features">3.1.1.2. Highlighted Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/liba3200/doc/introduction.html#block-diagram">3.1.1.3. Block Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/liba3200/doc/drivers_api.html">3.1.2. Drivers and API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/liba3200/doc/drivers_api.html#spi-bus">3.1.2.1. SPI Bus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/liba3200/doc/drivers_api.html#i2c-bus">3.1.2.2. I<sup>2</sup>C Bus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/liba3200/doc/drivers_api.html#can-bus">3.1.2.3. CAN Bus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/liba3200/doc/drivers_api.html#fm33256b-fram-rtc">3.1.2.4. FM33256B (FRAM / RTC)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/liba3200/doc/drivers_api.html#adc-channels">3.1.2.5. ADC Channels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/liba3200/doc/drivers_api.html#fl512-nor-flash">3.1.2.6. FL512 (NOR flash)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lib/liba3200/doc/drivers_api.html#file-system">3.1.2.6.1. File system</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/liba3200/doc/drivers_api.html#pulse-width-modulation-pwm">3.1.2.7. Pulse Width Modulation (PWM)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/liba3200/doc/drivers_api.html#power-switch-control-pwr">3.1.2.8. Power Switch Control (PWR)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/liba3200/doc/drivers_api.html#lm71-temperature-sensor">3.1.2.9. LM71 Temperature sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/liba3200/doc/drivers_api.html#mpu3300-gyro">3.1.2.10. MPU3300 (Gyro)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/liba3200/doc/drivers_api.html#hmc5843-magnetometer">3.1.2.11. HMC5843 (Magnetometer)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/liba3200/doc/software_update.html">3.1.3. Software Update in Orbit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/liba3200/doc/parameters.html">3.1.4. Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/liba3200/doc/parameters.html#board-table">3.1.4.1. Board Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/liba3200/doc/parameters.html#configuration-table">3.1.4.2. Configuration Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/liba3200/doc/parameters.html#telemetry-table">3.1.4.3. Telemetry Table</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/liba3200dock/doc/liba3200dock.html">3.2. A3200 Dock (liba3200dock)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/liba3200dock/doc/introduction.html">3.2.1. Introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/libasf/doc/libasf.html">3.3. ASF (libasf)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libasf/doc/introduction.html">3.3.1. Introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/libgscsp/doc/libgscsp.html">3.4. GomSpace CSP (libgscsp)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libgscsp/doc/introduction.html">3.4.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libgscsp/doc/commands.html">3.4.2. Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/libcsp.html">3.4.3. CubeSat Space Protocol</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/README.html">3.4.3.1. The Cubesat Space Protocol</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/README.html#features">3.4.3.1.1. Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/README.html#lgpl-software-license">3.4.3.1.2. LGPL Software license</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/history.html">3.4.3.2. History</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/history.html#satellites-using-csp">3.4.3.2.1. Satellites using CSP</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/structure.html">3.4.3.3. Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/basic.html">3.4.3.4. The basics of CSP</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/basic.html#buffer">3.4.3.4.1. Buffer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/basic.html#connection">3.4.3.4.2. Connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/basic.html#send">3.4.3.4.3. Send</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/basic.html#receive">3.4.3.4.4. Receive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/basic.html#routing-table">3.4.3.4.5. Routing table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/basic.html#interface">3.4.3.4.6. Interface</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/basic.html#id1">3.4.3.4.6.1. Send</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/basic.html#id2">3.4.3.4.6.2. Receive</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/memory.html">3.4.3.5. How CSP uses memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/protocolstack.html">3.4.3.6. The Protocol Stack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/protocolstack.html#layer-1-drivers">3.4.3.6.1. Layer 1: Drivers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/protocolstack.html#layer-2-mac-interfaces">3.4.3.6.2. Layer 2: MAC interfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/protocolstack.html#layer-3-network-router">3.4.3.6.3. Layer 3: Network Router</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/protocolstack.html#layer-4-transport-layer">3.4.3.6.4. Layer 4: Transport Layer</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/protocolstack.html#udp">3.4.3.6.4.1. UDP</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/protocolstack.html#rdp">3.4.3.6.4.2. RDP</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/topology.html">3.4.3.7. Network Topology</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/mtu.html">3.4.3.8. Maximum Transfer Unit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/example.html">3.4.3.9. Client and server example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libgscsp/lib/libcsp/doc/example.html#running-the-example">3.4.3.9.1. Running the example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/libembed/doc/libembed.html">3.5. Embed (libembed)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libembed/doc/introduction.html">3.5.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libembed/doc/commands.html">3.5.2. Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/libemul/doc/libemul.html">3.6. Emulation (libemul)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libemul/doc/introduction.html">3.6.1. Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libemul/doc/introduction.html#known-limitations">3.6.1.1. Known limitations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/libfp/doc/libfp.html">3.7. Flight Planner (libfp)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libfp/doc/introduction.html">3.7.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libfp/doc/commands.html">3.7.2. Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libfp/lib/libfp_client/doc/commands_fp.html">3.7.2.1. fp</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libfp/doc/api.html">3.7.3. API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libfp/lib/libfp_client/doc/api_client.html">3.7.3.1. client</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libfp/doc/limitations.html">3.7.4. Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/libftp/doc/libftp.html">3.8. FTP (libftp)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libftp/doc/introduction.html">3.8.1. Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libftp/doc/introduction.html#limitations">3.8.1.1. Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libftp/lib/libftp_client/doc/commands.html">3.8.2. Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libftp/lib/libftp_client/doc/commands.html#ftp">3.8.2.1. ftp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/libgosh/doc/libgosh.html">3.9. GOSH (libgosh)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libgosh/doc/introduction.html">3.9.1. Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libgosh/doc/introduction.html#g-script">3.9.1.1. G-script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libgosh/doc/introduction.html#remote">3.9.1.2. Remote</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libgosh/doc/introduction.html#redirect">3.9.1.3. Redirect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libgosh/lib/libgosh_client/doc/commands.html">3.9.2. Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libgosh/lib/libgosh_client/doc/commands_gscript.html">3.9.2.1. G-script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libgosh/lib/libgosh_client/doc/commands_remote_shell.html">3.9.2.2. Remote Shell</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/libgssb/doc/libgssb.html">3.10. GomSpace Sensor Bus (libgssb)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libgssb/lib/libgssb_client/doc/introduction.html">3.10.1. Introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/libhk/doc/libhk.html">3.11. Housekeeping (libhk)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libhk/doc/introduction.html">3.11.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libhk/doc/introduction.html#system-overview">3.11.2. System overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libhk/doc/introduction.html#configuration">3.11.3. Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libhk/doc/introduction.html#collector-telemetry-cache">3.11.4. Collector &amp; Telemetry Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libhk/doc/introduction.html#beacon-service">3.11.5. Beacon Service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libhk/doc/introduction.html#encoding-and-transmission-of-automatic-telemetry-beacons">3.11.5.1. Encoding and transmission of automatic Telemetry Beacons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libhk/doc/introduction.html#handling-telemetry-beacon-requests">3.11.5.2. Handling Telemetry Beacon requests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libhk/doc/introduction.html#beacon-parser">3.11.6. Beacon Parser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libhk/doc/introduction.html#data-formats">3.11.7. Data formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libhk/doc/introduction.html#resource-usage-considerations">3.11.8. Resource usage considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libhk/doc/introduction.html#telemetry-cache-memory-consumption">3.11.8.1. Telemetry Cache - memory consumption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libhk/doc/introduction.html#telemetry-cache-persistent-storage-usage">3.11.8.2. Telemetry Cache - persistent storage usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libhk/doc/introduction.html#collector-csp-bus-utilization">3.11.8.3. Collector - CSP Bus utilization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libhk/doc/introduction.html#collector-mcu-utilization">3.11.8.4. Collector - MCU utilization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libhk/doc/introduction.html#api">3.11.9. API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libhk/doc/api_srv.html">3.11.9.1. server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libhk/lib/libhk_client/doc/api_client.html">3.11.9.2. client</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libhk/doc/tables.html">3.11.10. Parameter Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libhk/doc/commands.html">3.11.11. Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libhk/doc/commands_hk_srv.html">3.11.11.1. hk_srv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libhk/lib/libhk_client/doc/commands_hk.html">3.11.11.2. hk</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/libjson/doc/libjson.html">3.12. JSON parser (libjson)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libjson/doc/introduction.html">3.12.1. Introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/liblog/doc/liblog.html">3.13. Log (liblog)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/liblog/doc/introduction.html">3.13.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/liblog/doc/memory-appender.html">3.13.2. Memory Log Appender</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/libnanopb/doc/libnanopb.html">3.14. Nano Protobuf (libnanopb)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libnanopb/doc/introduction.html">3.14.1. Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libnanopb/doc/introduction.html#nanopb">3.14.1.1. nanopb</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/libparam/doc/libparam.html">3.15. Parameter System (libparam)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libparam/doc/introduction.html">3.15.1. Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libparam/doc/introduction.html#basic-principle-of-operation">3.15.1.1. Basic Principle of operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libparam/doc/introduction.html#parameter-tables">3.15.1.2. Parameter tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libparam/doc/introduction.html#network-service">3.15.1.3. Network service</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libparam/doc/introduction.html#table-storage">3.15.2. Table storage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libparam/doc/introduction.html#logical-stores-and-initialization-sources">3.15.2.1. Logical stores and initialization sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libparam/doc/introduction.html#fallback-examples-and-recommendations">3.15.2.2. Fallback examples and recommendations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libparam/doc/introduction.html#connection-configuration">3.15.2.2.1. Connection configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libparam/doc/introduction.html#ground-link-configuration">3.15.2.2.2. Ground link configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libparam/doc/introduction.html#telemetry-store">3.15.2.3. Telemetry Store</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libparam/doc/introduction.html#system-overview">3.15.3. System overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libparam/doc/commands.html">3.15.4. Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libparam/doc/commands_param.html">3.15.4.1. param</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libparam/lib/libparam_client/doc/commands_rparam.html">3.15.4.2. rparam</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/librgosh/doc/librgosh.html">3.16. Remote GOSH (librgosh)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/librgosh/lib/librgosh_client/doc/introduction.html">3.16.1. Introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/libstorage/doc/libstorage.html">3.17. Storage (libstorage)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libstorage/doc/introduction.html">3.17.1. Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libstorage/doc/introduction.html#vfs-virtual-file-systemm">3.17.1.1. VFS - Virtual File Systemm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libstorage/doc/introduction.html#uffs-ultra-low-cost-flash-file-system">3.17.1.2. UFFS - Ultra low cost Flash File System</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libstorage/doc/introduction.html#implementation">3.17.2. Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libstorage/doc/introduction.html#commands">3.17.3. Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/libthirdparty/doc/libthirdparty.html">3.18. Thirdparty (libthirdparty)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libthirdparty/doc/introduction.html">3.18.1. Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libthirdparty/doc/introduction.html#features">3.18.1.1. Features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/libutil/doc/libutil.html">3.19. Utility (libutil)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libutil/doc/introduction.html">3.19.1. Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libutil/doc/introduction.html#features">3.19.1.1. Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libutil/doc/software.html">3.19.2. Software concepts and terminology</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libutil/doc/software.html#swstack">3.19.2.1. Software Stack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libutil/doc/software.html#cpl">3.19.2.1.1. Cross Platform Layer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libutil/doc/software.html#psl">3.19.2.1.2. Platform Specific Layer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libutil/doc/software.html#libl">3.19.2.1.3. Libraries Layer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libutil/doc/software.html#prodl">3.19.2.1.4. Product Layer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libutil/doc/software.html#client-server">3.19.2.2. Client / Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libutil/doc/software.html#directory-structure">3.19.2.3. Directory Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libutil/doc/logging.html">3.19.3. Logging framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libutil/doc/logging.html#logging-hierarchy">3.19.3.1. Logging hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libutil/doc/logging.html#logging-example-application">3.19.3.2. Logging example application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libutil/doc/watchdog.html">3.19.4. Software Watchdog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libutil/doc/command.html">3.19.5. Command (GOSH)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libutil/doc/command.html#console">3.19.5.1. Console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libutil/doc/command.html#command-parser">3.19.5.2. Command Parser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libutil/doc/command.html#defining-commands">3.19.5.3. Defining commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libutil/doc/command.html#linker-optimization">3.19.5.4. Linker optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libutil/doc/command.html#command-handler">3.19.5.5. Command handler</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lib/libutil/doc/commands.html">3.19.6. Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libutil/doc/commands.html#miscellaneous-commands">3.19.6.1. Miscellaneous commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libutil/doc/commands.html#log">3.19.6.2. log</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lib/libutil/doc/commands.html#vmem">3.19.6.3. vmem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../lib/liba3200/doc/liba3200.html" class="btn btn-neutral float-right" title="3.1. A3200 (liba3200)" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../lib/libp60_client/doc/commands.html" class="btn btn-neutral" title="2.10.2. Commands" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020 GomSpace A/S..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.12.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+{
+ "created": "2020-06-12T07:06:37Z",
+ "gitinfo": [
+  {
+   "commit": "b12f8ddd1e9ad15d920170fc5d235c8b1ad2fac1",
+   "path": "a3200-sdk-candidate",
+   "revision": "2.12.0-0-gb12f8dd"
+  },
+  {
+   "commit": "46e8be68ea8603644123d2f244ea6670e7ac45ea",
+   "path": ".jenkinstmp/buildtools",
+   "revision": "2.11.4-6-g46e8be6"
+  },
+  {
+   "commit": "71703b0c4e2f5f70df2ad3b8741c6086f8aba4a8",
+   "path": "tools/buildtools",
+   "revision": "2.11.3-0-g71703b0"
+  },
+  {
+   "commit": "b87bbb3d136fdc700806c3e7b92f2aaebc3bd943",
+   "path": "lib/libutil",
+   "revision": "3.10.2-0-gb87bbb3"
+  },
+  {
+   "commit": "b8a88628e1076838d910414c44310a295bd06a58",
+   "path": "lib/libp60_client",
+   "revision": "2.0.2-0-gb8a8862"
+  },
+  {
+   "commit": "ef3a1bcacc8e323c636c5d9d9e6265e159bbe961",
+   "path": "lib/z7000-monitor_client",
+   "revision": "3.1.0-0-gef3a1bc"
+  },
+  {
+   "commit": "327f2d2141fbd0bc45eebe2ea009b75d3074ec43",
+   "path": "lib/libfp",
+   "revision": "3.8.0-0-g327f2d2"
+  },
+  {
+   "commit": "7682e3893c1a50e19e143f0aa55d5ea1e17e1812",
+   "path": "lib/libfp/lib/libfp_client",
+   "revision": "3.8.0-0-g7682e38"
+  },
+  {
+   "commit": "5f43a7530794a86db8033d4d10dee556913b48b6",
+   "path": "lib/nanocom-ax_client",
+   "revision": "3.12.1-0-g5f43a75"
+  },
+  {
+   "commit": "45cca510d96bc69f4d164c4a5e2068c2d3e4a82f",
+   "path": "lib/liba3200",
+   "revision": "4.0.1-0-g45cca51"
+  },
+  {
+   "commit": "8bc3d6a458e1255662e3905bd5a41a52014aa05b",
+   "path": "lib/liba3200/lib/liba3200_client",
+   "revision": "3.5.3-0-g8bc3d6a"
+  },
+  {
+   "commit": "35967a86303320c22199eceb496617fcc2159aac",
+   "path": "lib/librgosh",
+   "revision": "1.2.3-0-g35967a8"
+  },
+  {
+   "commit": "42f428a8c95da1dc168907152f7af947d10bb85c",
+   "path": "lib/librgosh/lib/librgosh_client",
+   "revision": "1.2.3-0-g42f428a"
+  },
+  {
+   "commit": "7dbda7d0b00385a9d9a5f64d1ab56448f4eee893",
+   "path": "lib/libthirdparty",
+   "revision": "2.10.2-0-g7dbda7d"
+  },
+  {
+   "commit": "0617f03a845163e9caef3eeb30549779f2d85c84",
+   "path": "lib/libhk",
+   "revision": "4.5.3-0-g0617f03"
+  },
+  {
+   "commit": "9eb4bf3db61ff772af3e2db927b4e8844567a6a0",
+   "path": "lib/libhk/lib/libhk_client",
+   "revision": "4.5.2-0-g9eb4bf3"
+  },
+  {
+   "commit": "5b32c199393fc23ef393bfd660ac3ca63e506a6b",
+   "path": "lib/libadcs_client",
+   "revision": "6.0.2-0-g5b32c19"
+  },
+  {
+   "commit": "9ccbadf489e0d0a4bbca2fb7ef0dd9ca9ed77698",
+   "path": "lib/liblog",
+   "revision": "3.6.1-0-g9ccbadf"
+  },
+  {
+   "commit": "b178d77188a678dca4c18221f7c0191a128d3a49",
+   "path": "lib/gatoss-uc_client",
+   "revision": "3.3.7-0-gb178d77"
+  },
+  {
+   "commit": "15b2500894bad769a774dfc47837cbcc1e31a28e",
+   "path": "lib/p60-pdu_client",
+   "revision": "1.2.21-0-g15b2500"
+  },
+  {
+   "commit": "05841e355fc23d0347ba576b5b52f2e08d35d603",
+   "path": "lib/nanopower_client",
+   "revision": "2.22.9-0-g05841e3"
+  },
+  {
+   "commit": "5574fd565ed30fa7843731501a86c737af7030f7",
+   "path": "lib/nanopower-bpx_client",
+   "revision": "3.0.7-0-g5574fd5"
+  },
+  {
+   "commit": "5de7170c46e7fc6f3f8a79cc2d0c6433e31e2e66",
+   "path": "lib/nanocam2_client",
+   "revision": "5.0.4-0-g5de7170"
+  },
+  {
+   "commit": "acebc8dcc2084bf2d6c3a6065d42d1b5ff51cf79",
+   "path": "lib/libgssb",
+   "revision": "4.4.3-0-gacebc8d"
+  },
+  {
+   "commit": "1ce4a0492feb09f8e7f9fd7fef35c943bc507ea8",
+   "path": "lib/libgssb/lib/libgssb_client",
+   "revision": "4.4.3-0-g1ce4a04"
+  },
+  {
+   "commit": "03f2964106203ae1f8747768883fabab2d2237f6",
+   "path": "lib/libembed",
+   "revision": "1.9.1-0-g03f2964"
+  },
+  {
+   "commit": "c598799a9c498d56864f68b76a9da69d17b4bdea",
+   "path": "lib/libgscsp",
+   "revision": "3.0.1-0-gc598799"
+  },
+  {
+   "commit": "0ae697ed21ce2c457e3943abf3f91fce0e02bd6b",
+   "path": "lib/libgscsp/lib/libcsp",
+   "revision": "1.6.1-0-g0ae697e"
+  },
+  {
+   "commit": "ade20c4d4578a041c8a792586c6399c0bfc1e5b5",
+   "path": "lib/libgosh",
+   "revision": "3.5.4-0-gade20c4"
+  },
+  {
+   "commit": "3e9be484376871bed5cd12ed2d1dc5ff02055673",
+   "path": "lib/libgosh/lib/libgosh_client",
+   "revision": "3.5.3-0-g3e9be48"
+  },
+  {
+   "commit": "18c230eea65e64992568de2126c7399ebcd7e733",
+   "path": "lib/libemul",
+   "revision": "1.3.2-0-g18c230e"
+  },
+  {
+   "commit": "1f7382ee00e61b118418dba194b54e4c3f841e3b",
+   "path": "lib/libjson",
+   "revision": "1.1.1-0-g1f7382e"
+  },
+  {
+   "commit": "e1de5713cfb0895a839e2620fc3ea12507b26478",
+   "path": "lib/libstorage",
+   "revision": "3.7.1-0-ge1de571"
+  },
+  {
+   "commit": "f992020c406473374f1e62e9e5fc63df1c5d6921",
+   "path": "lib/libftp",
+   "revision": "5.2.4-0-gf992020"
+  },
+  {
+   "commit": "90ca12d20edad62144d2523bbd588bbbdc084f17",
+   "path": "lib/libftp/lib/libftp_client",
+   "revision": "5.2.2-0-g90ca12d"
+  },
+  {
+   "commit": "249533203362be5cbc15c7538f123c2961a91e14",
+   "path": "lib/libasf",
+   "revision": "3.6.3-0-g24953320"
+  },
+  {
+   "commit": "33c844d4c106ce5467e313e95306b5f676cf5373",
+   "path": "lib/p60-acu_client",
+   "revision": "1.2.18-0-g33c844d"
+  },
+  {
+   "commit": "cfcab3d7b44c18e2f595136e42c2ea9d2b0e31df",
+   "path": "lib/libparam",
+   "revision": "4.8.1-0-gcfcab3d"
+  },
+  {
+   "commit": "5b037bfad45aa7ceebebab73dc87403ad6407608",
+   "path": "lib/libparam/lib/libparam_client",
+   "revision": "4.8.1-0-g5b037bf"
+  },
+  {
+   "commit": "048ff286a075a224acc26c9dfa0df36c59254193",
+   "path": "lib/liba3200dock",
+   "revision": "2.5.2-0-g048ff28"
+  },
+  {
+   "commit": "b208186726f7129258dac72c2361cb08c0998d99",
+   "path": "lib/p60-dock_client",
+   "revision": "2.2.9-0-gb208186"
+  },
+  {
+   "commit": "76d7520db735aae59267293faa65b5dfc3d2ed10",
+   "path": "lib/libnanopb",
+   "revision": "1.3.1-0-g76d7520"
+  },
+  {
+   "commit": "a36584335000e849dc7ba923ead7811b75a447c2",
+   "path": "lib/isl-modem-app_client",
+   "revision": "1.1-0-ga365843"
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+# encoding: utf-8
+# Copyright (c) 2013-2017 GomSpace A/S. All rights reserved.
+
+import os
+import gs_gcc
+import gs_doc
+import gs_dist
+import gs_util
+
+APPNAME = 'a3200_client'
+
+
+def options(ctx):
+    ctx.load("gs_gcc gs_doc")
+
+
+def configure(ctx):
+    ctx.load("gs_gcc gs_doc")
+    ctx.gs_add_doxygen()
+
+
+def build(ctx):
+    ctx.gs_include(includes=['include'], name=APPNAME)
+
+    ctx.gs_call_handler(handler='param_gen_4_3', name=APPNAME, prefix='a3200',
+                        generate_client=True, generate_rsti=True, update_source=True)
+
+
+def gs_dist(ctx):
+    gs_gcc.gs_recurse(ctx)
+    ctx.add_default_files(source_module=True)

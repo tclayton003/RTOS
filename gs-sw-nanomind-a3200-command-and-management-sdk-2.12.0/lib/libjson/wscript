@@ -1,0 +1,59 @@
+#!/usr/bin/env python
+# encoding: utf-8
+# Copyright (c) 2013-2017 GomSpace A/S. All rights reserved.
+
+import gs_gcc
+import gs_doc
+import gs_dist
+from waflib.Build import BuildContext
+
+APPNAME = 'json'
+
+
+def options(ctx):
+    ctx.load('gs_gcc gs_doc')
+    gs_gcc.gs_recurse(ctx)
+
+
+def configure(ctx):
+    ctx.load('gs_gcc gs_doc')
+    ctx.env.append_unique('FILES_JSON', ['src/**/*.c'])
+    ctx.env.append_unique('USE_JSON', ['util'])
+
+    ctx.gs_add_doxygen(exclude=['*/include/cjson/cJSON.h'])
+
+    gs_gcc.gs_recurse(ctx)
+
+
+def build(ctx):
+    gs_gcc.gs_recurse(ctx)
+
+    public_include = ctx.gs_include(name=APPNAME, includes=['include'])
+
+    ctx.gs_objects(source=ctx.path.ant_glob(ctx.env.FILES_JSON),
+                   target=APPNAME,
+                   includes=['include/cjson'],
+                   use=ctx.env.USE_JSON + [public_include],
+                   cflags=['-Wno-shadow'])
+
+    ctx.gs_shlib(source=ctx.path.ant_glob(ctx.env.FILES_JSON),
+                 target=APPNAME,
+                 includes=['include/cjson'],
+                 gs_use_shlib=ctx.env.USE_JSON + [public_include],
+                 cflags=['-Wno-shadow'])
+
+
+def doc(ctx):
+    gs_doc.library(ctx, keyvalues={
+        'gs_prod_name': 'lib'+APPNAME,
+        'gs_prod_desc': 'cJSON Parser',
+    })
+
+
+class Doc(BuildContext):
+    cmd = fun = 'doc'
+
+
+def gs_dist(ctx):
+    ctx.add_default_files(source_module=True)
+    ctx.add_license_file("cJSON", "doc/LICENSE.txt")

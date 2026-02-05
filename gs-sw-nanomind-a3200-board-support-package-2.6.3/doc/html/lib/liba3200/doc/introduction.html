@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.1.1. Introduction &mdash; A3200 Board Support Package 2.6.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="A3200 Board Support Package 2.6.3 documentation" href="../../../index.html"/>
+        <link rel="up" title="3.1. A3200 (liba3200)" href="liba3200.html"/>
+        <link rel="next" title="3.1.2. Drivers and API" href="drivers_api.html"/>
+        <link rel="prev" title="3.1. A3200 (liba3200)" href="liba3200.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../doc/index.html" class="icon icon-home"> A3200 Board Support Package
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.6.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/a3200-bsp.html">1. A3200 BSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/a3200_toolchain.html">2. Programming</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../doc/libraries.html">3. Libraries</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="liba3200.html">3.1. A3200 (liba3200)</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.1.1. Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#a3200-board">3.1.1.1. A3200 board</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#highlighted-features">3.1.1.2. Highlighted Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#block-diagram">3.1.1.3. Block Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="drivers_api.html">3.1.2. Drivers and API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../libasf/doc/libasf.html">3.2. ASF (libasf)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libgscsp/doc/libgscsp.html">3.3. GomSpace CSP (libgscsp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libembed/doc/libembed.html">3.4. Embed (libembed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libthirdparty/doc/libthirdparty.html">3.5. Thirdparty (libthirdparty)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libutil/doc/libutil.html">3.6. Utility (libutil)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/tools.html">4. Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/appendix/appendix.html">5. Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/zrefs.html">6. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../doc/index.html">A3200 Board Support Package</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../doc/index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../doc/libraries.html">3. Libraries</a> &raquo;</li>
+      
+          <li><a href="liba3200.html">3.1. A3200 (liba3200)</a> &raquo;</li>
+      
+    <li>3.1.1. Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<h1>3.1.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>The A3200 Library provides drivers and initialization code for the AVR32 processor, along with the
+peripheral devices and sensors on the A3200 board.</p>
+<p>The A3200 on-board computer (OBC) is designed as an efficient system for space applications with limited
+resources, such as e.g. for CubeSat or nano-satellite missions.</p>
+<p>The A3200 board is a powerfull and flexible CPU board that can be used to host several types of
+nanosat/cubesat satellite applications, e.g. Command and Data Handling (CDH)</p>
+<div class="section" id="a3200-board">
+<h2>3.1.1.1. A3200 board<a class="headerlink" href="#a3200-board" title="Permalink to this headline">¶</a></h2>
+<p>The A3200 board is equipped with a set of sensors to enable important tasks in space applications.</p>
+<p>The A3200 board can implement many of these tasks internally on the A3200 board, but the A3200 board can also
+interface to other systems/subsystems internally in the satellite as well as communicating with a Ground Station
+via a radio. The A3200 main interface to other subsystems are CAN and I<sup>2</sup>C.</p>
+<p>For storage the board carries a 128 MB NOR serial flash.</p>
+<p>The Real Time Clock (RTC) chip on the board also functions as a processor companion with 32 kB of FRAM, providing
+non-volatile storage.</p>
+<p>Beside the I<sup>2</sup>C controller for the main bus, the board also has an extra I<sup>2</sup>C controller that can be
+used to interface to external I<sup>2</sup>C components, e.g. GomSpace Sensor Bus (GSSB).</p>
+<p>For interfacing with SPI devices, the board has one external connection with three chip selects and
+it also has 8 inputs to an ADC. If needed the ADC inputs can also be used as GPIO.</p>
+</div>
+<div class="section" id="highlighted-features">
+<h2>3.1.1.2. Highlighted Features<a class="headerlink" href="#highlighted-features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>High-performance AVR32 MCU with advanced power saving features<ul>
+<li>512 KB build-in flash</li>
+<li>IEEE 754 FPU</li>
+<li>Wide range for clock speeds with build-in PLL</li>
+</ul>
+</li>
+<li>Multiple CSP data interfaces: I<sup>2</sup>C, CAN and UART</li>
+<li>128 MB NOR flash (On two dies of 64 MB each)</li>
+<li>32 kB FRAM for persistent configuration storage</li>
+<li>32 MB SDRAM</li>
+<li>RTC clock</li>
+<li>On-board temperature sensors</li>
+<li>8 external ADC channels, that also can be used as GPIO</li>
+<li>External SPI with 3 chip selects</li>
+<li>Attitude stabilization system<ul>
+<li>3-Axis magnetoresistive sensor</li>
+<li>3-Axis gyroscope</li>
+<li>3 bidirectional PWM output swith current measurements</li>
+</ul>
+</li>
+<li>I<sup>2</sup>C interface for GomSpace Sensor Bus (GSSB)</li>
+</ul>
+</div>
+<div class="section" id="block-diagram">
+<h2>3.1.1.3. Block Diagram<a class="headerlink" href="#block-diagram" title="Permalink to this headline">¶</a></h2>
+<p>The following block diagram shows the main blocks on the A3200 board:</p>
+<div class="figure" id="id1">
+<a class="reference internal image-reference" href="../../../_images/a3200_block.png"><img alt="../../../_images/a3200_block.png" src="../../../_images/a3200_block.png" style="width: 90%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Block diagram of the A3200 board</span></p>
+</div>
+<p>Please see the NanoMind A3200 Datasheet for further details on the AVR32 processor and the peripheral devices and sensors (available
+on the GomSpace website <a class="reference external" href="http://www.gomspace.com">http://www.gomspace.com</a>).</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="drivers_api.html" class="btn btn-neutral float-right" title="3.1.2. Drivers and API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="liba3200.html" class="btn btn-neutral" title="3.1. A3200 (liba3200)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023 GomSpace A/S..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'2.6.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

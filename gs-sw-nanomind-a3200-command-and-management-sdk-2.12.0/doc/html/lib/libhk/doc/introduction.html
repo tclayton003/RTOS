@@ -1,0 +1,718 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.11.1. Introduction &mdash; A3200 Command and Management SDK 2.12.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="A3200 Command and Management SDK 2.12.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="3.11. Housekeeping (libhk)" href="libhk.html"/>
+        <link rel="next" title="3.11.9.1. server" href="api_srv.html"/>
+        <link rel="prev" title="3.11. Housekeeping (libhk)" href="libhk.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../doc/index.html" class="icon icon-home"> A3200 Command and Management SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.12.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/a3200-sdk/a3200-sdk.html">1. A3200 SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/product_interfaces.html">2. Product Interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../doc/libraries.html">3. Libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../liba3200/doc/liba3200.html">3.1. A3200 (liba3200)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../liba3200dock/doc/liba3200dock.html">3.2. A3200 Dock (liba3200dock)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libasf/doc/libasf.html">3.3. ASF (libasf)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libgscsp/doc/libgscsp.html">3.4. GomSpace CSP (libgscsp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libembed/doc/libembed.html">3.5. Embed (libembed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libemul/doc/libemul.html">3.6. Emulation (libemul)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libfp/doc/libfp.html">3.7. Flight Planner (libfp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libftp/doc/libftp.html">3.8. FTP (libftp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libgosh/doc/libgosh.html">3.9. GOSH (libgosh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libgssb/doc/libgssb.html">3.10. GomSpace Sensor Bus (libgssb)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="libhk.html">3.11. Housekeeping (libhk)</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.11.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#system-overview">3.11.2. System overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">3.11.3. Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#collector-telemetry-cache">3.11.4. Collector &amp; Telemetry Cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#beacon-service">3.11.5. Beacon Service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#encoding-and-transmission-of-automatic-telemetry-beacons">3.11.5.1. Encoding and transmission of automatic Telemetry Beacons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#handling-telemetry-beacon-requests">3.11.5.2. Handling Telemetry Beacon requests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#beacon-parser">3.11.6. Beacon Parser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-formats">3.11.7. Data formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#resource-usage-considerations">3.11.8. Resource usage considerations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#telemetry-cache-memory-consumption">3.11.8.1. Telemetry Cache - memory consumption</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#telemetry-cache-persistent-storage-usage">3.11.8.2. Telemetry Cache - persistent storage usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#collector-csp-bus-utilization">3.11.8.3. Collector - CSP Bus utilization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#collector-mcu-utilization">3.11.8.4. Collector - MCU utilization</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#api">3.11.9. API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_srv.html">3.11.9.1. server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libhk_client/doc/api_client.html">3.11.9.2. client</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tables.html">3.11.10. Parameter Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands.html">3.11.11. Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../libjson/doc/libjson.html">3.12. JSON parser (libjson)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../liblog/doc/liblog.html">3.13. Log (liblog)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libnanopb/doc/libnanopb.html">3.14. Nano Protobuf (libnanopb)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libparam/doc/libparam.html">3.15. Parameter System (libparam)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../librgosh/doc/librgosh.html">3.16. Remote GOSH (librgosh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libstorage/doc/libstorage.html">3.17. Storage (libstorage)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libthirdparty/doc/libthirdparty.html">3.18. Thirdparty (libthirdparty)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libutil/doc/libutil.html">3.19. Utility (libutil)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/tools.html">4. Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/appendix/appendix.html">5. Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/zrefs.html">6. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../doc/index.html">A3200 Command and Management SDK</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../doc/index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../doc/libraries.html">3. Libraries</a> &raquo;</li>
+      
+          <li><a href="libhk.html">3.11. Housekeeping (libhk)</a> &raquo;</li>
+      
+    <li>3.11.1. Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<h1>3.11.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>The Housekeeping library provides functions and services for collecting telemetry parameters from individual nodes
+and for encoding and transmitting telemetry beacons to ground station.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The Housekeeping library is only included in the Mission Library version of the Command and Management SDK.</p>
+</div>
+</div>
+<div class="section" id="system-overview">
+<h1>3.11.2. System overview<a class="headerlink" href="#system-overview" title="Permalink to this headline">¶</a></h1>
+<p>The Housekeeping is logically separated into five components:</p>
+<ul class="simple">
+<li><strong>Configuration</strong>: The Configuration module is used to tell the Housekeeping which telemetry tables should be sampled and what beacon types it should know about.</li>
+<li><strong>Collector</strong>: The Collector is a number of tasks that sample, store and persist telemetry tables.</li>
+<li><strong>Telemetry Cache</strong>: Collector uses the Telemetry Cache to store and persist telemetry table samples.</li>
+<li><strong>Beacon Service</strong>: This module defines the network interfaces and implements a CSP service task to process incoming requests for telemetry beacons.</li>
+<li><strong>Beacon Parser</strong>: This module handles the decoding and parsing of telemetry beacons.</li>
+</ul>
+<p>The <strong>Beacon Parser</strong> component is part of the Housekeeping client library.</p>
+<p>These main components and their relations can be illustrated in the following way:</p>
+<blockquote>
+<div><div class="figure" id="id1">
+<a class="reference internal image-reference" href="../../../_images/hk_system.png"><img alt="../../../_images/hk_system.png" src="../../../_images/hk_system.png" style="width: 90%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.5 </span><span class="caption-text">Components in the Housekeeping library.</span></p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="configuration">
+<h1>3.11.3. Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
+<p>The main interface for configuring the Housekeeping is a number of <cite>.json</cite> files each containing a beacon specification. Active beacon specifications are stored in <cite>&lt;data_path&gt;/bcn_types</cite> - the <cite>data_path</cite> parameter can be found in <a class="reference internal" href="tables.html#table-gs-hk-hkcfg"><span class="std std-ref">Parameter Table ‘hkcfg’</span></a>. Beacon specifications can also be stored in other parts of the filesystem and copied to the <cite>bcn_types</cite> folder when needed and activated using the <a class="reference internal" href="../lib/libhk_client/doc/commands_hk.html#cmd-hk-reload"><span class="std std-ref">hk reload</span></a> command.</p>
+<div class="literal-block-wrapper docutils container" id="example1">
+<div class="code-block-caption"><span class="caption-number">Listing 3.1 </span><span class="caption-text">Beacon specification example 1.</span><a class="headerlink" href="#example1" title="Permalink to this code">¶</a></div>
+<div class="highlight-JSON"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;samplerate&quot;</span><span class="p">:</span> <span class="s2">&quot;high&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;auto_beacon_policy&quot;</span><span class="p">:</span> <span class="s2">&quot;always&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;max_samples&quot;</span><span class="p">:</span> <span class="mi">900</span><span class="p">,</span>
+    <span class="nt">&quot;elements&quot;</span> <span class="p">:</span> <span class="p">[</span>
+	<span class="p">{</span>
+	    <span class="nt">&quot;node_address&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+	    <span class="nt">&quot;table_id&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+	    <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">[</span>
+		<span class="p">{</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;i_PWM&quot;</span> <span class="p">},</span>
+		<span class="p">{</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;i_Flash&quot;</span> <span class="p">}</span>
+	    <span class="p">]</span>
+	<span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>When loaded by the Housekeeping the beacon specification in <a class="reference internal" href="#example1"><span class="std std-ref">Beacon specification example 1.</span></a> will trigger the Collector to sample table 4 from node 1 every 10’th second (<cite>samplerate</cite>). The Beacon Service will know how to generate the beacon type 1 in version 1 and due to the <cite>auto_beacon_policy</cite> setting a beacon will be generated and sent every 10’th second. The Collector will keep a max 900 samples of table 4 from node 1, making it possible to request telemetry beacons of this type 2,5 hours into the past. See <a class="reference internal" href="#autopoltable"><span class="std std-ref">Autobeacon policies</span></a> and <a class="reference internal" href="#sampleratetable"><span class="std std-ref">Samplerates</span></a> tables for details on the <cite>auto_beacon_policy</cite> and <cite>samplerate</cite> settings. Telemetry beacons of type 1 will contain the <cite>i_PWM</cite> and <cite>i_Flash</cite> parameters from table 4 on node 1.</p>
+<p>To update beacon type 1 a new specification would have to be uploaded and the <a class="reference internal" href="../lib/libhk_client/doc/commands_hk.html#cmd-hk-reload"><span class="std std-ref">hk reload</span></a> command would be used to activate the new version.</p>
+<p>It is possible to temporarily change the <cite>samplerate</cite> by using the <a class="reference internal" href="commands_hk_srv.html#cmd-hk-srv-beacon-samplerate"><span class="std std-ref">hk beacon samplerate</span></a> command. It is also possible to temporarily change the <cite>auto_beacon_policy</cite> using the <a class="reference internal" href="commands_hk_srv.html#cmd-hk-srv-beacon-policy"><span class="std std-ref">hk beacon policy</span></a> command. Both settings are reverted on system reboot or configuration reload.</p>
+<div class="literal-block-wrapper docutils container" id="example2">
+<div class="code-block-caption"><span class="caption-number">Listing 3.2 </span><span class="caption-text">Beacon specification example 2.</span><a class="headerlink" href="#example2" title="Permalink to this code">¶</a></div>
+<div class="highlight-JSON"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;samplerate&quot;</span><span class="p">:</span> <span class="s2">&quot;medium&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;auto_beacon_policy&quot;</span><span class="p">:</span> <span class="s2">&quot;off&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;max_samples&quot;</span><span class="p">:</span> <span class="mi">1200</span><span class="p">,</span>
+    <span class="nt">&quot;elements&quot;</span> <span class="p">:</span> <span class="p">[</span>
+	<span class="p">{</span>
+	    <span class="nt">&quot;node_address&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+	    <span class="nt">&quot;table_id&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+	    <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">[</span>
+		<span class="p">{</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;i_PWM&quot;</span> <span class="p">},</span>
+		<span class="p">{</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;i_Flash&quot;</span> <span class="p">}</span>
+	    <span class="p">]</span>
+	<span class="p">},{</span>
+	    <span class="nt">&quot;node_address&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+	    <span class="nt">&quot;table_id&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+	    <span class="nt">&quot;download_timeout&quot;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+	    <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">[</span>
+		<span class="p">{</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;temp_int&quot;</span><span class="p">,</span> <span class="nt">&quot;array_index&quot;</span><span class="p">:</span> <span class="s2">&quot;0-4&quot;</span> <span class="p">},</span>
+		<span class="p">{</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;temp_ext&quot;</span> <span class="p">}</span>
+	    <span class="p">]</span>
+	<span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>The beacon specification in <a class="reference internal" href="#example2"><span class="std std-ref">Beacon specification example 2.</span></a> is an example where a beacon contains data from mulitple tables. The beacon is never sent automatically (<cite>auto_beacon_policy</cite>) and both tables are sampled every 30 seconds (<cite>samplerate</cite>), storing maximum 1200 samples (<cite>max_samples</cite>). This makes it possible to request the beacon type 10 hours into the past. Telemetry beacons of type 2 will contain the <cite>i_PWM</cite> and <cite>i_Flash</cite> parameters from table 4 on node 1 and the <cite>temp_int</cite> and <cite>temp_ext</cite> parameters from table 4 on node 2. The parameter <cite>temp_int</cite> is an example of how to handle arrays in telemetry parameters by requesting index 0-4 in the <cite>temp_int</cite> array. The <cite>array_index</cite> option can also be given the value of a single index instead of a range.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Even though a table is required in mulitple beacons types, collection of the table is only configured once. The table will be collected with the most frequent samplerate, using the highest number for <cite>max_samples</cite>. This means that if <a class="reference internal" href="#example1"><span class="std std-ref">Beacon specification example 1.</span></a> and <a class="reference internal" href="#example2"><span class="std std-ref">Beacon specification example 2.</span></a> are configured on the same Housekeeping System, table 4 from node 1 would be collected using a <cite>high</cite> samplerate (1 every 10 seconds), storing 1200 samples. This means that you can data from table 4 from node 1 will be available 3 hours and 20 minutes into the past instead of the 10 hours achieved if only <a class="reference internal" href="#example2"><span class="std std-ref">Beacon specification example 2.</span></a> was configured.</p>
+</div>
+<p>The <cite>download_timeout</cite> setting can be used to tweak the time which the Collector waits for a response when collecting telemetry samples. This can be useful if a given node responds slowly for some reason. An example of use of this setting is show in <a class="reference internal" href="#example2"><span class="std std-ref">Beacon specification example 2.</span></a>. The default timeout value is 200 milliseconds.</p>
+<p>To save a bit of bandwidth when uploading beacon specifications, it is possibly to compact specifications by removing all whitespace - <a class="reference internal" href="#example3"><span class="std std-ref">Beacon specification example 3 - compacted specification.</span></a> is an example of such.</p>
+<div class="literal-block-wrapper docutils container" id="example3">
+<div class="code-block-caption"><span class="caption-number">Listing 3.3 </span><span class="caption-text">Beacon specification example 3 - compacted specification.</span><a class="headerlink" href="#example3" title="Permalink to this code">¶</a></div>
+<div class="highlight-JSON"><div class="highlight"><pre><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="nt">&quot;samplerate&quot;</span><span class="p">:</span><span class="s2">&quot;high&quot;</span><span class="p">,</span><span class="nt">&quot;auto_beacon_policy&quot;</span><span class="p">:</span><span class="s2">&quot;always&quot;</span><span class="p">,</span><span class="nt">&quot;max_samples&quot;</span><span class="p">:</span><span class="mi">900</span><span class="p">,</span><span class="nt">&quot;elements&quot;</span><span class="p">:[{</span><span class="nt">&quot;node_address&quot;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="nt">&quot;table_id&quot;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="nt">&quot;params&quot;</span><span class="p">:[{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;i_PWM&quot;</span><span class="p">},{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;i_Flash&quot;</span><span class="p">},{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;bananas&quot;</span><span class="p">,</span><span class="nt">&quot;array_index&quot;</span><span class="p">:</span><span class="s2">&quot;0-2&quot;</span><span class="p">}]}]}</span>
+</pre></div>
+</div>
+</div>
+<table border="1" class="docutils" id="sampleratetable">
+<caption><span class="caption-number">Table 3.6 </span><span class="caption-text">Samplerates</span><a class="headerlink" href="#sampleratetable" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="47%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Samplerate setting</strong></th>
+<th class="head"><strong>Table sample interval</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><cite>highest</cite></td>
+<td>1 / second</td>
+</tr>
+<tr class="row-odd"><td><cite>high</cite></td>
+<td>1 / 10 seconds</td>
+</tr>
+<tr class="row-even"><td><cite>medium</cite></td>
+<td>1 / 30 seconds</td>
+</tr>
+<tr class="row-odd"><td><cite>low</cite> (default)</td>
+<td>1 / 60 seconds</td>
+</tr>
+<tr class="row-even"><td><cite>lowest</cite></td>
+<td>1 / 180 seconds</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils" id="autopoltable">
+<caption><span class="caption-number">Table 3.7 </span><span class="caption-text">Autobeacon policies</span><a class="headerlink" href="#autopoltable" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Setting</strong></th>
+<th class="head"><strong>Function</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><cite>always</cite></td>
+<td>Send no matter the state of the sampled tables.</td>
+</tr>
+<tr class="row-odd"><td><cite>complete</cite></td>
+<td>Send only if all the sampled tables are being sampled correctly.</td>
+</tr>
+<tr class="row-even"><td><cite>off</cite> (default)</td>
+<td>Only send if requested.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="collector-telemetry-cache">
+<h1>3.11.4. Collector &amp; Telemetry Cache<a class="headerlink" href="#collector-telemetry-cache" title="Permalink to this headline">¶</a></h1>
+<p>The Collector samples telemetry tables from remote nodes and locally. It samples tables based on what tables are required for the loaded beacon specifications. Sampling is done into the Telemetry Cache and the <cite>max_samples</cite> parameter in the beacon specification is controlling how many samples are stored. Samplerate it controlled by the <cite>samplerate</cite> parameter in the beacon specification, see <a class="reference internal" href="#sampleratetable"><span class="std std-ref">Samplerates</span></a> for details.</p>
+<p>Note that the collector samples full tables, no matter how many parameters are needed in beacons.</p>
+<p>The Telemetry Cache can persist its cached telemetry samples to the local file system. It is possible to turn the persistence to local file system on and off using the <cite>persist_en</cite> parameter in the <a class="reference internal" href="tables.html#table-gs-hk-hkcfg"><span class="std std-ref">Parameter Table ‘hkcfg’</span></a>. It is also possible to configure how often the telemetry sample cache is persisted to local file system using the <cite>persist_interval</cite> parameter from <a class="reference internal" href="tables.html#table-gs-hk-hkcfg"><span class="std std-ref">Parameter Table ‘hkcfg’</span></a>. In case of a system reboot, the telemetry cache is re-initialised from the persisted telemetry samples.</p>
+<blockquote>
+<div><div class="figure" id="id2">
+<a class="reference internal image-reference" href="../../../_images/hk_collect.png"><img alt="../../../_images/hk_collect.png" src="../../../_images/hk_collect.png" style="width: 95%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.6 </span><span class="caption-text">Collector &amp; Telemetry Cache.</span></p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="beacon-service">
+<h1>3.11.5. Beacon Service<a class="headerlink" href="#beacon-service" title="Permalink to this headline">¶</a></h1>
+<p>The Beacon Service serves two purposes;</p>
+<div class="section" id="encoding-and-transmission-of-automatic-telemetry-beacons">
+<h2>3.11.5.1. Encoding and transmission of automatic Telemetry Beacons<a class="headerlink" href="#encoding-and-transmission-of-automatic-telemetry-beacons" title="Permalink to this headline">¶</a></h2>
+<p>Automatic telemetry beacons are generated and transmitted according to the <cite>auto_beacon_policy</cite> in the beacon specification. The <cite>auto_beacon_policy</cite> parameter controls whether to send the beacon, and the beacon is sent whenever tables are sampled - controlled by the <cite>samplerate</cite> setting. See <a class="reference internal" href="#autopoltable"><span class="std std-ref">Autobeacon policies</span></a> and <a class="reference internal" href="#sampleratetable"><span class="std std-ref">Samplerates</span></a> for details.
+All automatic beacon transmissions can be temporarily disabled using the <cite>bcn_atx_tpds</cite> parameter in <a class="reference internal" href="tables.html#table-gs-hk-hkcfg"><span class="std std-ref">Parameter Table ‘hkcfg’</span></a>. The CSP destination for automatic telemetry beacons can be controlled by <cite>bcn_atx_da</cite> and <cite>bcn_atx_dp</cite>, both in <a class="reference internal" href="tables.html#table-gs-hk-hkcfg"><span class="std std-ref">Parameter Table ‘hkcfg’</span></a>.</p>
+</div>
+<div class="section" id="handling-telemetry-beacon-requests">
+<h2>3.11.5.2. Handling Telemetry Beacon requests<a class="headerlink" href="#handling-telemetry-beacon-requests" title="Permalink to this headline">¶</a></h2>
+<p>The Beacon Service also handles Telemetry Beacon requests from clients. There are two ways of getting Telemetry Beacons from the Beacon Service, via CSP packets and via files.</p>
+<p>If Telemetry Beacons via CSP packets are requested the Beacon Service will transmit one CSP packet pr. requested timestamp, one CSP packet contains a single data for a single Beacon Configuration at a single timestamp.</p>
+<p>If Telemetry Beacons via files are requested the Beacon Service will write all the requested timestamps into a single file on the local filesystem. The file can be downloaded after the Beacon Service is done writing it.</p>
+<p>The recommended solution is to use Telemetry Beacons via CSP packets - that way partial results can still be downlinked on a link of low quality.</p>
+<p>See <a class="reference internal" href="#apiusage"><span class="std std-ref">API</span></a> for details on how to send requests to the Beacon Service and <a class="reference internal" href="#dataformats"><span class="std std-ref">Data formats</span></a> for details on the actual data layout of Telemetry Beacons and files.</p>
+</div>
+</div>
+<div class="section" id="beacon-parser">
+<h1>3.11.6. Beacon Parser<a class="headerlink" href="#beacon-parser" title="Permalink to this headline">¶</a></h1>
+<p>The Beacon Parser is a python module that is capable of parsing/decoding telemetry beacons from either a file or a CSP packet.</p>
+<p>Please refer to the API documentation in the module itself for further details. The module can be found in <cite>python/hk/beacon_parser.py</cite> in the Housekeeping client library.</p>
+</div>
+<div class="section" id="data-formats">
+<span id="dataformats"></span><h1>3.11.7. Data formats<a class="headerlink" href="#data-formats" title="Permalink to this headline">¶</a></h1>
+<p>A telemetry beacon is formated as described in the following tables:</p>
+<span id="table-beacon"></span><table border="1" class="docutils" id="id3">
+<caption><span class="caption-number">Table 3.8 </span><span class="caption-text">Telemetry Beacon</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="12%" />
+<col width="7%" />
+<col width="9%" />
+<col width="6%" />
+<col width="66%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Field</strong></th>
+<th class="head"><strong>Offset</strong></th>
+<th class="head"><strong>Size</strong></th>
+<th class="head"><strong>Type</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>protocol_version</td>
+<td>0</td>
+<td>1</td>
+<td>UINT8</td>
+<td>Beacon protocol version, rest of data is only valid if this equals 1.</td>
+</tr>
+<tr class="row-odd"><td>type</td>
+<td>1</td>
+<td>1</td>
+<td>UINT8</td>
+<td>The beacon type.</td>
+</tr>
+<tr class="row-even"><td>version</td>
+<td>2</td>
+<td>1</td>
+<td>UINT8</td>
+<td>The beacon version.</td>
+</tr>
+<tr class="row-odd"><td>satid</td>
+<td>3</td>
+<td>2</td>
+<td>UINT16</td>
+<td>Identifier of the satellite from which the beacon originates.</td>
+</tr>
+<tr class="row-even"><td>data_element1</td>
+<td>5</td>
+<td>8+M</td>
+<td>&#160;</td>
+<td>Data element 1, as described in <a class="reference internal" href="#table-beacon-elem"><span class="std std-ref">Telemetry Beacon Element</span></a>. M is the size of the data in this element.</td>
+</tr>
+<tr class="row-odd"><td>data_element2</td>
+<td>5+8+M</td>
+<td>8+M</td>
+<td>&#160;</td>
+<td>Data element 2, as described in <a class="reference internal" href="#table-beacon-elem"><span class="std std-ref">Telemetry Beacon Element</span></a>. M is the size of the data in this element.</td>
+</tr>
+<tr class="row-even"><td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="row-odd"><td>data_elementN</td>
+<td>5+N*(8+M)</td>
+<td>8+M</td>
+<td>&#160;</td>
+<td>Data element N, as described in <a class="reference internal" href="#table-beacon-elem"><span class="std std-ref">Telemetry Beacon Element</span></a>. M is the size of the data in this element.</td>
+</tr>
+</tbody>
+</table>
+<p>Each data element is formatted like this:</p>
+<span id="table-beacon-elem"></span><table border="1" class="docutils" id="id4">
+<caption><span class="caption-number">Table 3.9 </span><span class="caption-text">Telemetry Beacon Element</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="13%" />
+<col width="8%" />
+<col width="10%" />
+<col width="6%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Field</strong></th>
+<th class="head"><strong>Offset</strong></th>
+<th class="head"><strong>Size</strong></th>
+<th class="head"><strong>Type</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>checksum</td>
+<td>0</td>
+<td>2</td>
+<td>UINT16</td>
+<td>Checksum of the table used in this element.</td>
+</tr>
+<tr class="row-odd"><td>timestamp</td>
+<td>2</td>
+<td>4</td>
+<td>UINT32</td>
+<td>Timestamp (seconds since UNIX epoch) containing sampletime for the data in this element.</td>
+</tr>
+<tr class="row-even"><td>source</td>
+<td>4</td>
+<td>2</td>
+<td>UINT16</td>
+<td>Node from which this data originates.</td>
+</tr>
+<tr class="row-odd"><td>data</td>
+<td>8</td>
+<td>&#160;</td>
+<td>BYTE[]</td>
+<td>Beacon data as described by the beacon specification.</td>
+</tr>
+</tbody>
+</table>
+<p>The beacon data file format is listed in the following table:</p>
+<span id="table-beacon-datafile"></span><table border="1" class="docutils" id="id5">
+<caption><span class="caption-number">Table 3.10 </span><span class="caption-text">Telemetry Beacon File</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="11%" />
+<col width="7%" />
+<col width="8%" />
+<col width="5%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Field</strong></th>
+<th class="head"><strong>Offset</strong></th>
+<th class="head"><strong>Size</strong></th>
+<th class="head"><strong>Type</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>file_id</td>
+<td>0</td>
+<td>4</td>
+<td>UINT32</td>
+<td>File id, ‘magic’ file id. 0x62630001 indicates Big Endian byte order. 0x01006362 indicates Little Endian byte order.</td>
+</tr>
+<tr class="row-odd"><td>beacon1</td>
+<td>4</td>
+<td>3+M</td>
+<td>UINT32</td>
+<td>Beacon record 1, beacon data size M.</td>
+</tr>
+<tr class="row-even"><td>beacon2</td>
+<td>4+3+M</td>
+<td>3+M</td>
+<td>UINT32</td>
+<td>Beacon record 2, beacon data size M.</td>
+</tr>
+<tr class="row-odd"><td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="row-even"><td>beaconN</td>
+<td>4+N*(3+M)</td>
+<td>3+M</td>
+<td>UINT32</td>
+<td>Beacon record N, beacon data size M.</td>
+</tr>
+</tbody>
+</table>
+<p>Each record in the beacon file has the following format:</p>
+<span id="table-beacon-datafile-record"></span><table border="1" class="docutils" id="id6">
+<caption><span class="caption-number">Table 3.11 </span><span class="caption-text">Telemetry Beacon File Record</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="17%" />
+<col width="11%" />
+<col width="14%" />
+<col width="9%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Field</strong></th>
+<th class="head"><strong>Offset</strong></th>
+<th class="head"><strong>Size</strong></th>
+<th class="head"><strong>Type</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>rec_sz</td>
+<td>0</td>
+<td>2</td>
+<td>UINT16</td>
+<td>Size of beacon record</td>
+</tr>
+<tr class="row-odd"><td>type</td>
+<td>2</td>
+<td>1</td>
+<td>UINT8</td>
+<td>Beacon type</td>
+</tr>
+<tr class="row-even"><td>beacon_data</td>
+<td>3</td>
+<td>rec_sz</td>
+<td>BYTE []</td>
+<td>The beacon data as described by <a class="reference internal" href="#table-beacon"><span class="std std-ref">Telemetry Beacon</span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="resource-usage-considerations">
+<h1>3.11.8. Resource usage considerations<a class="headerlink" href="#resource-usage-considerations" title="Permalink to this headline">¶</a></h1>
+<p>The Housekeeping library uses resources in a dynamic way and the end user is responsible for validating actual configurations and that their resource use is within the bounds of the mission. Below are some guidelines to help calculate the resource usage of a given configuration.</p>
+<div class="section" id="telemetry-cache-memory-consumption">
+<h2>3.11.8.1. Telemetry Cache - memory consumption<a class="headerlink" href="#telemetry-cache-memory-consumption" title="Permalink to this headline">¶</a></h2>
+<p>Each table being sampled will consume an amount of memory in the Telemetry Cache dependent on the size of the table being sampled and the (<cite>max_samples</cite>) setting.</p>
+<p>If the specification from <a class="reference internal" href="#example1"><span class="std std-ref">Beacon specification example 1.</span></a> is loaded and we assume that <cite>table_id</cite> 4 on <cite>node_address</cite> 1 has a size of 120 bytes, the total memory consumption the Telemetry Cache for this is ~105KB <cite>((120 bytes * 900 samples) / 1024)</cite>.</p>
+<p>If multiple beacons use data from the same table it will only be sampled once - at the highest required rate and storing the largest <cite>max_samples</cite>. If the specification from <a class="reference internal" href="#example2"><span class="std std-ref">Beacon specification example 2.</span></a> is also loaded and we assume that <cite>table_id</cite> 4 on <cite>node_address</cite> 2 has a size of 150 bytes, the total memory consumption for the Telemetry Cache is ~316KB <cite>((120 bytes * 1200 samples + 150 bytes * 1200 samples) / 1024)</cite>.</p>
+<p>The <a class="reference internal" href="commands_hk_srv.html#cmd-hk-srv-table-show"><span class="std std-ref">hk table show</span></a> command can be used to check the number of samples and size of each sample for a collected table.</p>
+</div>
+<div class="section" id="telemetry-cache-persistent-storage-usage">
+<h2>3.11.8.2. Telemetry Cache - persistent storage usage<a class="headerlink" href="#telemetry-cache-persistent-storage-usage" title="Permalink to this headline">¶</a></h2>
+<p>If persisting is enabled, the amount of bytes used for the Telemetry Cache will also be used on the persistent storage.</p>
+</div>
+<div class="section" id="collector-csp-bus-utilization">
+<h2>3.11.8.3. Collector - CSP Bus utilization<a class="headerlink" href="#collector-csp-bus-utilization" title="Permalink to this headline">¶</a></h2>
+<p>Sampling a table from a remote CSP node will utilize the CSP bus. The amount of utilization is dependent on the size of the table being sampled and the <cite>samplerate</cite> used.</p>
+<p>If the specification from <a class="reference internal" href="#example1"><span class="std std-ref">Beacon specification example 1.</span></a> is loaded <cite>table_id</cite> 4 on <cite>node_address</cite> 1 will be sampled at a rate 1/30 Hz (<cite>samplerate=medium</cite>). If we assume that the table has a size of 120 bytes, the CSP bus utilization averaged over a period will be ~4bytes/s (1/30 * 120).</p>
+<p>It is important to be aware that sampling of tables is synchronized to whole seconds and therefore the utilization will not be evenly distributed.</p>
+</div>
+<div class="section" id="collector-mcu-utilization">
+<h2>3.11.8.4. Collector - MCU utilization<a class="headerlink" href="#collector-mcu-utilization" title="Permalink to this headline">¶</a></h2>
+<p>The collector tasks utilizes the MCU to an extent depedent on the number of tables being sampled, the size of these tables and the <cite>samplerate</cite>. A few examples of measured utilization on the Nanomind A3200 platform are given here to aid mission design.</p>
+<table border="1" class="docutils" id="id7">
+<caption><span class="caption-number">Table 3.12 </span><span class="caption-text">Collector MCU utilization</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="24%" />
+<col width="21%" />
+<col width="26%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Number of tables</strong></th>
+<th class="head"><strong>Samplerate</strong></th>
+<th class="head"><strong>Average table size</strong></th>
+<th class="head"><strong>Measured utilization</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>20</td>
+<td>1/60Hz (<cite>low</cite>)</td>
+<td>~100 bytes</td>
+<td>&lt;1%</td>
+</tr>
+<tr class="row-odd"><td>20</td>
+<td>1/10Hz (<cite>high</cite>)</td>
+<td>~100 bytes</td>
+<td>&lt;2%</td>
+</tr>
+<tr class="row-even"><td>20</td>
+<td>1Hz (<cite>highest</cite>)</td>
+<td>~100 bytes</td>
+<td>&lt;20%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="api">
+<span id="apiusage"></span><h1>3.11.9. API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api_srv.html">3.11.9.1. server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/libhk_client/doc/api_client.html">3.11.9.2. client</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_srv.html" class="btn btn-neutral float-right" title="3.11.9.1. server" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="libhk.html" class="btn btn-neutral" title="3.11. Housekeeping (libhk)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020 GomSpace A/S..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'2.12.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

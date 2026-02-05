@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['sc16is750_5fgpio_5fdirection',['sc16is750_gpio_direction',['../sc16is750_8h.html#a14aba6db971a73a5f41e132e6cab10e9',1,'sc16is750.h']]],
+  ['sc16is750_5fgpio_5fset',['sc16is750_gpio_set',['../sc16is750_8h.html#a543406ee012a560569263468fd948300',1,'sc16is750.h']]],
+  ['sc16is750_5fgpio_5fset_5fall',['sc16is750_gpio_set_all',['../sc16is750_8h.html#ae062d17b6f7f607d488d60f8a151af0e',1,'sc16is750.h']]],
+  ['sc16is750_5finit',['sc16is750_init',['../sc16is750_8h.html#aab60b6898ba7b0114f3f0f50dd68a70b',1,'sc16is750.h']]],
+  ['sc16is750_5freset_5ffifo',['sc16is750_reset_fifo',['../sc16is750_8h.html#af8bf5add56a5cf3242a24b30af65590f',1,'sc16is750.h']]],
+  ['sc16is750_5fscratchpad_5fping',['sc16is750_scratchpad_ping',['../sc16is750_8h.html#a52a6686c5b067fcf0ad6a8b8bd8d4ab9',1,'sc16is750.h']]],
+  ['sc16is750_5fusart_5fconn_5fconf',['sc16is750_usart_conn_conf',['../sc16is750_8h.html#a62faec8b120d3a5bd8dee3c821002144',1,'sc16is750.h']]],
+  ['sc16is750_5fusart_5fread_5fbyte',['sc16is750_usart_read_byte',['../sc16is750_8h.html#a2a45af6cfee213fb74465e92a691b3ea',1,'sc16is750.h']]],
+  ['sc16is750_5fusart_5freset_5ffifo',['sc16is750_usart_reset_fifo',['../sc16is750_8h.html#ac34b761206265f443aa3b91599d1b303',1,'sc16is750.h']]],
+  ['sc16is750_5fusart_5fsetbaud',['sc16is750_usart_setbaud',['../sc16is750_8h.html#a77300197711d7e131118479a2cd01c25',1,'sc16is750.h']]],
+  ['sc16is750_5fusart_5fwrite_5fbyte',['sc16is750_usart_write_byte',['../sc16is750_8h.html#a2f8f915b7c5848868093d79b14b7efa2',1,'sc16is750.h']]],
+  ['spn_5ffl512s_5ferase_5fblock',['spn_fl512s_erase_block',['../spn__fl512s_8h.html#a9911e9609f42fd3c297cf7d2ce5e71db',1,'spn_fl512s.h']]],
+  ['spn_5ffl512s_5ferase_5fchip',['spn_fl512s_erase_chip',['../spn__fl512s_8h.html#a3f25dc2f1dbe0edf3863223d2f92a488',1,'spn_fl512s.h']]],
+  ['spn_5ffl512s_5finit',['spn_fl512s_init',['../spn__fl512s_8h.html#ad581742955be6776d2275928e10965e2',1,'spn_fl512s.h']]],
+  ['spn_5ffl512s_5fread_5fdata',['spn_fl512s_read_data',['../spn__fl512s_8h.html#a3a20cd1264260415894aa10f4c4e7136',1,'spn_fl512s.h']]],
+  ['spn_5ffl512s_5fread_5fdevice_5fid',['spn_fl512s_read_device_id',['../spn__fl512s_8h.html#a9844a7d4ad101ecda3d30709bc41e2e0',1,'spn_fl512s.h']]],
+  ['spn_5ffl512s_5fread_5fstatus_5fregister',['spn_fl512s_read_status_register',['../spn__fl512s_8h.html#a02413c31276026bd6818427a01aa12da',1,'spn_fl512s.h']]],
+  ['spn_5ffl512s_5fwrite_5fdata',['spn_fl512s_write_data',['../spn__fl512s_8h.html#af22dc3679d75dc5bf39be4e55e1a3691',1,'spn_fl512s.h']]]
+];

@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.11.11.1. hk_srv &mdash; A3200 Command and Management SDK 2.12.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="A3200 Command and Management SDK 2.12.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="3.11.11. Commands" href="commands.html"/>
+        <link rel="next" title="3.11.11.2. hk" href="../lib/libhk_client/doc/commands_hk.html"/>
+        <link rel="prev" title="3.11.11. Commands" href="commands.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../doc/index.html" class="icon icon-home"> A3200 Command and Management SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.12.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/a3200-sdk/a3200-sdk.html">1. A3200 SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/product_interfaces.html">2. Product Interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../doc/libraries.html">3. Libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../liba3200/doc/liba3200.html">3.1. A3200 (liba3200)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../liba3200dock/doc/liba3200dock.html">3.2. A3200 Dock (liba3200dock)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libasf/doc/libasf.html">3.3. ASF (libasf)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libgscsp/doc/libgscsp.html">3.4. GomSpace CSP (libgscsp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libembed/doc/libembed.html">3.5. Embed (libembed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libemul/doc/libemul.html">3.6. Emulation (libemul)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libfp/doc/libfp.html">3.7. Flight Planner (libfp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libftp/doc/libftp.html">3.8. FTP (libftp)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libgosh/doc/libgosh.html">3.9. GOSH (libgosh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libgssb/doc/libgssb.html">3.10. GomSpace Sensor Bus (libgssb)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="libhk.html">3.11. Housekeeping (libhk)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">3.11.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html#system-overview">3.11.2. System overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html#configuration">3.11.3. Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html#collector-telemetry-cache">3.11.4. Collector &amp; Telemetry Cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html#beacon-service">3.11.5. Beacon Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html#beacon-parser">3.11.6. Beacon Parser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html#data-formats">3.11.7. Data formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html#resource-usage-considerations">3.11.8. Resource usage considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html#api">3.11.9. API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tables.html">3.11.10. Parameter Tables</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="commands.html">3.11.11. Commands</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">3.11.11.1. hk_srv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lib/libhk_client/doc/commands_hk.html">3.11.11.2. hk</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../libjson/doc/libjson.html">3.12. JSON parser (libjson)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../liblog/doc/liblog.html">3.13. Log (liblog)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libnanopb/doc/libnanopb.html">3.14. Nano Protobuf (libnanopb)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libparam/doc/libparam.html">3.15. Parameter System (libparam)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../librgosh/doc/librgosh.html">3.16. Remote GOSH (librgosh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libstorage/doc/libstorage.html">3.17. Storage (libstorage)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libthirdparty/doc/libthirdparty.html">3.18. Thirdparty (libthirdparty)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../libutil/doc/libutil.html">3.19. Utility (libutil)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/tools.html">4. Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/appendix/appendix.html">5. Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/zrefs.html">6. Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../doc/index.html">A3200 Command and Management SDK</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../doc/index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../doc/libraries.html">3. Libraries</a> &raquo;</li>
+      
+          <li><a href="libhk.html">3.11. Housekeeping (libhk)</a> &raquo;</li>
+      
+          <li><a href="commands.html">3.11.11. Commands</a> &raquo;</li>
+      
+    <li>3.11.11.1. hk_srv</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hk-srv">
+<span id="libhk-hk-srv-commands"></span><h1>3.11.11.1. hk_srv<a class="headerlink" href="#hk-srv" title="Permalink to this headline">¶</a></h1>
+<p>The <cite>hk_srv</cite> command group provides a number of commands that are useful as examples, for debugging and for simple operation.</p>
+<span id="table-gs-hk-srv-commands"></span><table border="1" class="longtable docutils" id="id1">
+<caption><span class="caption-number">Table 3.14 </span><span class="caption-text">Command Table ‘hk_srv’</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Command</th>
+<th class="head">&#160;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last" id="cmd-hk-srv-reload">hk_srv reload</p>
+</td>
+<td>Reload configuration from files.</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="cmd-hk-srv-options-show">hk_srv options show</p>
+</td>
+<td>Show current option values.</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="cmd-hk-srv-beacon-show">hk_srv beacon show</p>
+</td>
+<td><p class="first">Show information on one or all loaded beacon specifications.</p>
+<p>Arguments:</p>
+<p><code class="docutils literal"><span class="pre">[type]</span></code>: Beacon type, if omitted all known beacons specifications are briefly listed.</p>
+<p class="last"><code class="docutils literal"><span class="pre">[verbose]</span></code>: Show verbose information about a specific beacon.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="cmd-hk-srv-beacon-samplerate">hk_srv beacon samplerate</p>
+</td>
+<td><p class="first">Temporarily set the samplerate of a beacon (highest, high, medium, low, lowest), will revert on next reboot or reload.</p>
+<p>Arguments:</p>
+<p><code class="docutils literal"><span class="pre">&lt;type&gt;</span></code>: Beacon type to set samplerate on.</p>
+<p class="last"><code class="docutils literal"><span class="pre">&lt;samplerate&gt;</span></code>: Samplerate to set, can be highest, high, medium, low or lowest.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="cmd-hk-srv-beacon-policy">hk_srv beacon policy</p>
+</td>
+<td><p class="first">Temporarily set the autobeacon policy (always, complete, off), will revert on next reboot or reload.</p>
+<p>Arguments:</p>
+<p><code class="docutils literal"><span class="pre">&lt;type&gt;</span></code>: Beacon type to set policy on.</p>
+<p class="last"><code class="docutils literal"><span class="pre">&lt;policy&gt;</span></code>: Policy to set, can be always, complete or off.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="cmd-hk-srv-table-show">hk_srv table show</p>
+</td>
+<td><p class="first">Show information on one or all sampled tables.</p>
+<p>Arguments:</p>
+<p><code class="docutils literal"><span class="pre">[node]</span></code>: The source node of the sampled table.</p>
+<p><code class="docutils literal"><span class="pre">[id]</span></code>: The source id of the sampled table.</p>
+<p class="last"><code class="docutils literal"><span class="pre">[verbose]</span></code>: Show verbose information about a specific table.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../lib/libhk_client/doc/commands_hk.html" class="btn btn-neutral float-right" title="3.11.11.2. hk" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="commands.html" class="btn btn-neutral" title="3.11.11. Commands" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020 GomSpace A/S..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'2.12.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
