@@ -1,2 +1,0 @@
-pyelftools>=0.29
-pyftdi>=0.54.0
