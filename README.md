@@ -1,5 +1,11 @@
 # OKCubeSat (OBC System)
 
+
+## Naming Convention Update:
+- The nasty looking BSP and SDK dir names will likely be changed to just BSP and SDK once we verify that changing those will not break any imports or dependencies in the provided code (e.g. the SDK itself)
+- They look bad, but I want to make sure the very basic test programs work before changing file naming
+
+
 ## Overview
 OKCubeSat is an initiative of Oklahoma State University. It is a multi-year project, worked on mostly by Senior CEAT students and the OKCubeSat Club. 
 
