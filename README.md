@@ -1,8 +1,5 @@
 # OKCubeSat (OBC System)
 
-## Urgent Fix!!!!
-We will need to pick one toolchain. Either gs-avr32-toolchain-3.4.2_gs1 or hs3. They are different, but serve the same purpose, so we must figure out which one applies to us.
-
 ## Overview
 OKCubeSat is an initiative of Oklahoma State University. It is a multi-year project, worked on mostly be Senior CEAT students. We have the goal of verifying some of NASA's Low Earth Orbit (LEO) debris models so that future missions can better prepare for LEO missions.
 
