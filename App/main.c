@@ -1,3 +1,15 @@
+/*
+
+
+This is the boilerplate code that was called FreeRTOS_example.c
+Check this before using it
+
+
+*/
+
+
+
+
 // The first 3 includes would be files in our project that we get from different places
 #include "FreeRTOS.h"				// FreeRTOS functions
 #include "task.h"						// Defines task creation functions
