@@ -1,7 +1,9 @@
 # OKCubeSat (OBC System)
 
 ## Overview
-OKCubeSat is an initiative of Oklahoma State University. It is a multi-year project, worked on mostly be Senior CEAT students. We have the goal of verifying some of NASA's Low Earth Orbit (LEO) debris models so that future missions can better prepare for LEO missions.
+OKCubeSat is an initiative of Oklahoma State University. It is a multi-year project, worked on mostly by Senior CEAT students and the OKCubeSat Club. 
+
+Our mission is to verify NASA's Low Earth Orbit (LEO) debris models. This would allow NASA to begin researching removal methods and help future missions better prepare for LEO missions.
 
 This repo specifically is the software for the On-Board Computer (OBC), including the Operating System (OS), Board Support Package (BSP), Command and Management Software Development Kit (SDK), and mission specific programs.
 
@@ -32,6 +34,7 @@ This repo specifically is the software for the On-Board Computer (OBC), includin
 	- From the official FreeRTOS-Kernel repo and we retain it in our repo for legal transparency
 
 ### Tree Diagram
+```
 /
 │
 ├─ App/                                                     (Mission Code)
@@ -63,51 +66,51 @@ This repo specifically is the software for the On-Board Computer (OBC), includin
 │               ├─ port.c
 │               └─ portmacro.h
 │
-├─ FreeRTOSConfig.h          ← RTOS configuration for NanoMind
+├─ FreeRTOSConfig.h          								(RTOS configuration for NanoMind)
 │
-├─ SDK/   (optional)
+├─ SDK/
 │   └─ (command & management SDK if you keep it)
 │
 ├─ Makefile  or  CMakeLists.txt
 │
 ├─ LICENSE.md
 └─ README.md
-
+```
 
 ## Development
 - Code is written in App/
-- App/main.c is the entry of the whole program
+- <strong>App/main.c is the entry of the whole program</strong>
 	- It initializes the hardware and drivers, creates the tasks, then starts the scheduler
 	- The FreeRTOS scheduler initialize function should never return, so it will run forever
-- App/Tasks is where all of the individual tasks live
+- <strong>App/Tasks is where all of the individual tasks live</strong>
 	- You code functionality here
 	- These are then turned into OS tasks by main.c when the program starts
 
 
 ## Deployment
 - Use toolchain provided by GomSpace to compile program
-(Finish later)
+- (Finish later)
 
 
 ## Hardware Specs
 (Fill in later)
 
 
-## Onboarding
+# Onboarding
 Welcome to OKCubeSat! Satellite development can be overwhelming at first, but we would like to provide a clear picture of what it will look like so you can dive in ASAP!
 
 ### OS
-(FreeRTOS vs User OS)
-(Reason for choosing FreeRTOS)
-(Explanation that everything that was deleted from the downloaded official repo was generic code provided by FreeRTOS so it was compatible with any system, but we only need the stuff for our specific system)
+- (FreeRTOS vs User OS)
+- (Reason for choosing FreeRTOS)
+- (Explanation that everything that was deleted from the downloaded official repo was generic code provided by FreeRTOS so it was compatible with any system, but we only need the stuff for our specific system)
 
 ### BSP
-(GomSpace Provided)
-(What it is)
+- (GomSpace Provided)
+- (What it is)
 
 ### Tasks and Development
-(This is where you code)
-(Idea behind tasks)
+- (This is where you code)
+- (Idea behind tasks)
 
-
-(possible visual flow diagram to show data and logic? would help understanding how pieces fit together)
+### Data Flow Diagram???
+- (possible visual flow diagram to show data and logic? would help understanding how pieces fit together)
