@@ -2,6 +2,7 @@
 
 
 ## Naming Convention Update:
+(This is a temporary note, the readme would normally start at the overview section)
 - The nasty looking BSP and SDK dir names will likely be changed to just BSP and SDK once we verify that changing those will not break any imports or dependencies in the provided code (e.g. the SDK itself)
 - They look bad, but I want to make sure the very basic test programs work before changing file naming
 
